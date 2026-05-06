@@ -1,0 +1,35 @@
+node_modules
+.turbo
+dist
+build
+coverage
+
+# Next.js
+.next
+next-env.d.ts
+
+# Env
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+*.log
+.vscode
+.idea
+
+# Claude Code per-user overrides
+.claude/settings.local.json
+.claude/skill-usage.json
+
+# Build artifacts
+*.tsbuildinfo
+
+# yalc
+.yalc
+yalc.lock
+
+# Playwright
+playwright-report
+test-results
