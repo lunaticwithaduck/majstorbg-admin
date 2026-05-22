@@ -13,9 +13,7 @@ const config: NextConfig = {
     '@lunaticwithaduck/feature-flags',
     '@lunaticwithaduck/webui',
   ],
-  experimental: {
-    typedRoutes: true,
-  },
+  typedRoutes: true,
   output: 'standalone',
 };
 
