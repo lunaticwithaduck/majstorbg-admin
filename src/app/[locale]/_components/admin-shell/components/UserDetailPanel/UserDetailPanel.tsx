@@ -2,8 +2,9 @@
 
 import { Button, Link, Spinner, Text } from '@lunaticwithaduck/webui';
 import { ChevronLeft, Pencil } from 'lucide-react';
-import { useGetAdminUserQuery } from '@/api/store';
+import { useGetAdminUserQuery, useGetUserActivityQuery } from '@/api/store';
 import { routes } from '@/config/routes';
+import ActivityTimeline from '@/ui/components/composed/ActivityTimeline/ActivityTimeline';
 import DeleteUserButton from './components/DeleteUserButton/DeleteUserButton';
 import FieldLabel from './components/FieldLabel/FieldLabel';
 import FieldValue from './components/FieldValue/FieldValue';
@@ -25,6 +26,11 @@ function formatDate(iso: string | null): string {
 
 export default function UserDetailPanel({ userId }: { userId: string }) {
   const { data, isLoading, isError } = useGetAdminUserQuery(userId);
+  const {
+    data: activity,
+    isLoading: activityLoading,
+    isError: activityError,
+  } = useGetUserActivityQuery({ userId });
 
   if (isLoading) {
     return (
@@ -195,6 +201,17 @@ export default function UserDetailPanel({ userId }: { userId: string }) {
             <FieldValue>{String(data.counts.addresses)}</FieldValue>
           </div>
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <Text as="h2" size="lg" weight="semibold" className={styles.sectionTitle}>
+          {DETAIL_LABELS.activitySection}
+        </Text>
+        <ActivityTimeline
+          events={activity?.events ?? []}
+          isLoading={activityLoading}
+          isError={activityError}
+        />
       </section>
     </div>
   );
