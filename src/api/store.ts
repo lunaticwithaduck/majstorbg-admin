@@ -1,6 +1,8 @@
 import { adminUserEndpoints, createAppApi } from '@lunaticwithaduck/api';
 import { configureStore, type Middleware } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
+// TODO: replace with @lunaticwithaduck/api adminActivityEndpoints once BE lands.
+import { adminActivityEndpoints } from './admin-activity-endpoints';
 import { adminJobEndpoints } from './admin-job-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminUserMutations once BE lands.
 import { adminUserMutations } from './admin-user-mutations';
@@ -13,6 +15,7 @@ export const appApi = api.injectEndpoints({
     ...adminUserEndpoints(build),
     ...adminUserMutations(build),
     ...adminJobEndpoints(build),
+    ...adminActivityEndpoints(build),
   }),
 });
 
@@ -37,4 +40,5 @@ export const {
   useDeleteAdminUserMutation,
   useListAdminJobsQuery,
   useGetAdminJobQuery,
+  useGetUserActivityQuery,
 } = appApi;
