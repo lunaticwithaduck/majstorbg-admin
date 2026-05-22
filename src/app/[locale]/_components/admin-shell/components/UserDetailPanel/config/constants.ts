@@ -25,4 +25,5 @@ export const DETAIL_LABELS = {
   specializations: 'Specializations',
   acceptingWork: 'Accepting work',
   addressLine: 'Address line',
+  edit: 'Edit',
 } as const;

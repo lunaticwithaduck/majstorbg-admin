@@ -23,6 +23,7 @@ export const TABLE_LABELS = {
   roleAll: 'All roles',
   roleWorker: 'Worker',
   roleClient: 'Client',
+  newUser: '+ New user',
 } as const;
 
 export const PAGE_SIZE = 25;

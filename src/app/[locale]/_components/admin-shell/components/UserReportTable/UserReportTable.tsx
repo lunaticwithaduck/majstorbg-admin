@@ -191,6 +191,13 @@ export default function UserReportTable() {
             <SelectItem value="client">{TABLE_LABELS.roleClient}</SelectItem>
           </Select>
         }
+        actions={
+          <Button asChild variant="primary" size="sm">
+            <Link href={routes.users.create} variant="inherit">
+              {TABLE_LABELS.newUser}
+            </Link>
+          </Button>
+        }
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}

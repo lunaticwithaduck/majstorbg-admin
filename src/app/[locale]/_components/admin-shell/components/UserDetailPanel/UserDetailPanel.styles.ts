@@ -9,6 +9,9 @@ const styles = {
   grid: 'grid grid-cols-2 gap-x-6 gap-y-3',
   field: 'flex flex-col gap-1',
   badge: 'inline-flex items-center rounded-full px-2 py-0.5 bg-text/5 text-text w-fit',
+  titleRow: 'flex items-center justify-between gap-3 flex-wrap',
+  titleLeft: 'flex items-baseline gap-3',
+  titleActions: 'flex items-center gap-2',
 };
 
 export default styles;
