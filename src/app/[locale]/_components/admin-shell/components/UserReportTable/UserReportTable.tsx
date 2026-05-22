@@ -1,25 +1,12 @@
 'use client';
 
-import {
-  Button,
-  Input,
-  Link,
-  Select,
-  SelectItem,
-  Spinner,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Text,
-} from '@lunaticwithaduck/webui';
-import { type ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { Eye, Search } from 'lucide-react';
-import { type ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
+import { Button, Link, Select, SelectItem, Text } from '@lunaticwithaduck/webui';
+import type { ColumnDef } from '@tanstack/react-table';
+import { Eye } from 'lucide-react';
+import { useCallback, useMemo, useState } from 'react';
 import { useListAdminUsersQuery } from '@/api/store';
 import { routes } from '@/config/routes';
+import DataTable from '@/ui/components/composed/DataTable/DataTable';
 import { COLUMN_LABELS, PAGE_SIZE, type RoleFilter, TABLE_LABELS } from './config/constants';
 import styles from './UserReportTable.styles';
 
@@ -43,23 +30,12 @@ function formatDate(iso: string | null): string {
 
 export default function UserReportTable() {
   const [page, setPage] = useState(1);
-  // `searchInput` is the raw, instant display value. `searchQuery` is the
-  // debounced value sent to the BE — keeps typing responsive while throttling
-  // network traffic. webui's `SearchInput` controls its own debounce
-  // differently and ended up feeling laggy here, so we hand-roll it.
-  const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState<RoleFilter>('all');
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleSearchChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const next = event.target.value;
-    setSearchInput(next);
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      setSearchQuery(next);
-      setPage(1);
-    }, 250);
+  const handleSearch = useCallback((next: string) => {
+    setSearchQuery(next);
+    setPage(1);
   }, []);
   const handleRoleChange = useCallback((value: string) => {
     setRoleFilter(value as RoleFilter);
@@ -79,7 +55,6 @@ export default function UserReportTable() {
 
   const items = data?.items ?? [];
   const total = data?.total ?? 0;
-  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   const columns = useMemo<ColumnDef<AdminUserListItem>[]>(
     () => [
@@ -185,14 +160,6 @@ export default function UserReportTable() {
     [],
   );
 
-  const table = useReactTable({
-    data: items,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  const pageLabel = `${page}/${totalPages}`;
-
   return (
     <div className={styles.root}>
       <header className={styles.header}>
@@ -203,18 +170,16 @@ export default function UserReportTable() {
           {TABLE_LABELS.pageSub}
         </Text>
       </header>
-      <div className={styles.toolbar}>
-        <div className={styles.toolbarSearch}>
-          <Input
-            label={TABLE_LABELS.searchLabel}
-            size="sm"
-            iconLeft={Search}
-            placeholder={TABLE_LABELS.searchPlaceholder}
-            value={searchInput}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <div className={styles.toolbarFilter}>
+      <DataTable
+        data={items}
+        columns={columns}
+        total={total}
+        page={page}
+        pageSize={PAGE_SIZE}
+        onPageChange={setPage}
+        onSearch={handleSearch}
+        searchPlaceholder={TABLE_LABELS.searchPlaceholder}
+        filters={
           <Select
             label={TABLE_LABELS.roleFilterLabel}
             value={roleFilter}
@@ -225,77 +190,14 @@ export default function UserReportTable() {
             <SelectItem value="worker">{TABLE_LABELS.roleWorker}</SelectItem>
             <SelectItem value="client">{TABLE_LABELS.roleClient}</SelectItem>
           </Select>
-        </div>
-        <div className={styles.toolbarSpacer} aria-hidden />
-        <div className={styles.toolbarPagination}>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={page <= 1 || isFetching}
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-          >
-            {TABLE_LABELS.prev}
-          </Button>
-          <Text as="span" size="sm" color="muted">
-            {pageLabel}
-          </Text>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={page >= totalPages || isFetching}
-            onClick={() => setPage((p) => p + 1)}
-          >
-            {TABLE_LABELS.next}
-          </Button>
-        </div>
-      </div>
-      {isLoading ? (
-        <div className={styles.state}>
-          <Spinner />
-          <Text as="span" size="sm" color="muted">
-            {TABLE_LABELS.loading}
-          </Text>
-        </div>
-      ) : isError ? (
-        <div className={styles.state}>
-          <Text as="span" size="sm" color="destructive">
-            {TABLE_LABELS.error}
-          </Text>
-        </div>
-      ) : items.length === 0 ? (
-        <div className={styles.state}>
-          <Text as="span" size="sm" color="muted">
-            {TABLE_LABELS.empty}
-          </Text>
-        </div>
-      ) : (
-        <div className={styles.tableWrap}>
-          <Table className={styles.table}>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id} className={styles.th}>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableHead>
-                  ))}
-                </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className={styles.td}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      )}
+        }
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        loadingMessage={TABLE_LABELS.loading}
+        errorMessage={TABLE_LABELS.error}
+        emptyMessage={TABLE_LABELS.empty}
+      />
     </div>
   );
 }
