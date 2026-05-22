@@ -1,10 +1,16 @@
 # syntax=docker/dockerfile:1.7
 #
 # Build:
-#   docker build --build-arg NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN -t majstorbg-admin .
+#   docker build \
+#     --build-arg NODE_AUTH_TOKEN=$NODE_AUTH_TOKEN \
+#     --build-arg NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
+#     --build-arg NEXT_PUBLIC_APP_ENV=$NEXT_PUBLIC_APP_ENV \
+#     -t majstorbg-admin .
 #
-# Railway: set NODE_AUTH_TOKEN as a build-scope variable. Runtime env vars
-# (NEXT_PUBLIC_API_URL, NEXT_PUBLIC_APP_ENV) go on the service.
+# Railway: set these as service variables. Railway passes service variables
+# as --build-arg only for ARGs declared in the Dockerfile, so the NEXT_PUBLIC_*
+# ARGs below are required for the values to reach `next build` and be inlined
+# into the client bundle.
 
 # ---------- deps ----------
 FROM node:20-alpine AS deps
@@ -20,6 +26,15 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
+
+# NEXT_PUBLIC_* must be present during `next build` — they're inlined into
+# the client bundle as string literals at build time. Service-level env vars
+# alone don't reach the build; they have to be declared as ARG here and
+# promoted to ENV so `next build` sees them.
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_APP_ENV
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_APP_ENV=$NEXT_PUBLIC_APP_ENV
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
