@@ -1,4 +1,14 @@
-import { Briefcase, Code, FileText, Flag, type LucideIcon, Settings, Users } from 'lucide-react';
+import {
+  Bell,
+  Briefcase,
+  Code,
+  FileText,
+  Flag,
+  Languages,
+  type LucideIcon,
+  Settings,
+  Users,
+} from 'lucide-react';
 import { routes } from '@/config/routes';
 
 export type NavLink = {
@@ -25,10 +35,16 @@ export const NAV_MODULES: readonly NavModule[] = [
     links: [{ href: routes.jobs.explorer, label: 'Jobs', icon: Briefcase }],
   },
   {
+    label: 'Operations',
+    icon: Bell,
+    links: [{ href: routes.notifications, label: 'Notifications', icon: Bell }],
+  },
+  {
     label: 'Configuration',
     icon: Settings,
     links: [
       { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
+      { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
     ],
   },
