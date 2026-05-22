@@ -1,9 +1,10 @@
 'use client';
 
-import { Link, Spinner, Text } from '@lunaticwithaduck/webui';
-import { ChevronLeft } from 'lucide-react';
+import { Button, Link, Spinner, Text } from '@lunaticwithaduck/webui';
+import { ChevronLeft, Pencil } from 'lucide-react';
 import { useGetAdminUserQuery } from '@/api/store';
 import { routes } from '@/config/routes';
+import DeleteUserButton from './components/DeleteUserButton/DeleteUserButton';
 import FieldLabel from './components/FieldLabel/FieldLabel';
 import FieldValue from './components/FieldValue/FieldValue';
 import { DETAIL_LABELS } from './config/constants';
@@ -55,15 +56,26 @@ export default function UserDetailPanel({ userId }: { userId: string }) {
             {DETAIL_LABELS.back}
           </Text>
         </Link>
-        <div className={styles.title}>
-          <Text as="h1" size="2xl" weight="bold">
-            {data.name}
-          </Text>
-          <span className={styles.badge}>
-            <Text as="span" size="xs" weight="medium">
-              {data.role}
+        <div className={styles.titleRow}>
+          <div className={styles.titleLeft}>
+            <Text as="h1" size="2xl" weight="bold">
+              {data.name}
             </Text>
-          </span>
+            <span className={styles.badge}>
+              <Text as="span" size="xs" weight="medium">
+                {data.role}
+              </Text>
+            </span>
+          </div>
+          <div className={styles.titleActions}>
+            <Button asChild variant="outline" size="sm">
+              <Link href={routes.users.edit(data.id)} variant="inherit">
+                <Pencil size={14} />
+                {DETAIL_LABELS.edit}
+              </Link>
+            </Button>
+            <DeleteUserButton userId={data.id} />
+          </div>
         </div>
       </header>
 
