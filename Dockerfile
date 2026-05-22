@@ -31,7 +31,6 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=8080
-ENV HOSTNAME=0.0.0.0
 # libc6-compat: Next.js's SWC binary is built against glibc; Alpine ships musl.
 # Without this, runtime native-binding loads can fail with an opaque error.
 RUN apk add --no-cache libc6-compat && addgroup -S app && adduser -S app -G app
@@ -42,4 +41,8 @@ COPY --from=builder --chown=app:app /app/.next/static ./.next/static
 
 USER app
 EXPOSE 8080
-CMD ["node", "server.js"]
+# HOSTNAME must be set in CMD, not ENV. Docker overrides ENV HOSTNAME at
+# runtime with the container's hostname, which Next standalone then uses
+# as the bind address — making it bind to a non-routable name (or localhost)
+# instead of 0.0.0.0. Forcing it here, after Docker's runtime injection.
+CMD ["sh", "-c", "HOSTNAME=0.0.0.0 exec node server.js"]
