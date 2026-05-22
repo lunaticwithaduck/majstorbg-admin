@@ -1,4 +1,4 @@
-import { FileText, type LucideIcon, Users } from 'lucide-react';
+import { Briefcase, Code, FileText, Flag, type LucideIcon, Settings, Users } from 'lucide-react';
 import { routes } from '@/config/routes';
 
 export type NavLink = {
@@ -18,6 +18,19 @@ export const NAV_MODULES: readonly NavModule[] = [
     label: 'User management',
     icon: Users,
     links: [{ href: routes.users.report, label: 'Report', icon: FileText }],
+  },
+  {
+    label: 'Marketplace',
+    icon: Briefcase,
+    links: [{ href: routes.jobs.explorer, label: 'Jobs', icon: Briefcase }],
+  },
+  {
+    label: 'Configuration',
+    icon: Settings,
+    links: [
+      { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
+      { href: routes.apiExplorer, label: 'API explorer', icon: Code },
+    ],
   },
 ];
 

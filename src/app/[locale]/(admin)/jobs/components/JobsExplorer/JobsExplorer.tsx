@@ -4,41 +4,30 @@ import { Button, Link, Select, SelectItem, Text } from '@lunaticwithaduck/webui'
 import type { ColumnDef } from '@tanstack/react-table';
 import { Eye } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
-import { useListAdminUsersQuery } from '@/api/store';
+import type { AdminJobListItem } from '@/api/admin-job-endpoints';
+import { useListAdminJobsQuery } from '@/api/store';
 import { routes } from '@/config/routes';
 import DataTable from '@/ui/components/composed/DataTable/DataTable';
-import { COLUMN_LABELS, PAGE_SIZE, type RoleFilter, TABLE_LABELS } from './config/constants';
-import styles from './UserReportTable.styles';
+import {
+  COLUMN_LABELS,
+  PAGE_SIZE,
+  type StatusFilter,
+  TABLE_LABELS,
+} from './config/constants';
+import styles from './JobsExplorer.styles';
+import { formatBudget, formatDate, shortId } from './utils/format.utils';
 
-// Row type derived from the RTK Query response so the bracketed-path file
-// doesn't trip TS's type-only resolution against the bundled schemas .d.ts.
-type ListResp = NonNullable<ReturnType<typeof useListAdminUsersQuery>['data']>;
-type AdminUserListItem = ListResp['items'][number];
-
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-});
-
-function formatDate(iso: string | null): string {
-  if (!iso) return TABLE_LABELS.notOnboarded;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return TABLE_LABELS.notOnboarded;
-  return dateFormatter.format(d);
-}
-
-export default function UserReportTable() {
+export default function JobsExplorer() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const [roleFilter, setRoleFilter] = useState<RoleFilter>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
   const handleSearch = useCallback((next: string) => {
     setSearchQuery(next);
     setPage(1);
   }, []);
-  const handleRoleChange = useCallback((value: string) => {
-    setRoleFilter(value as RoleFilter);
+  const handleStatusChange = useCallback((value: string) => {
+    setStatusFilter(value as StatusFilter);
     setPage(1);
   }, []);
 
@@ -47,68 +36,103 @@ export default function UserReportTable() {
       page,
       pageSize: PAGE_SIZE,
       ...(searchQuery.trim().length > 0 ? { search: searchQuery.trim() } : {}),
-      ...(roleFilter !== 'all' ? { role: roleFilter } : {}),
+      ...(statusFilter !== 'all' ? { status: statusFilter } : {}),
     }),
-    [page, searchQuery, roleFilter],
+    [page, searchQuery, statusFilter],
   );
-  const { data, isLoading, isFetching, isError } = useListAdminUsersQuery(queryArgs);
+  const { data, isLoading, isFetching, isError } = useListAdminJobsQuery(queryArgs);
 
   const items = data?.items ?? [];
   const total = data?.total ?? 0;
 
-  const columns = useMemo<ColumnDef<AdminUserListItem>[]>(
+  const columns = useMemo<ColumnDef<AdminJobListItem>[]>(
     () => [
       {
-        id: 'name',
+        id: 'id',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {COLUMN_LABELS.name}
+            {COLUMN_LABELS.id}
+          </Text>
+        ),
+        cell: ({ row }) => <span className={styles.idCell}>{shortId(row.original.id)}</span>,
+      },
+      {
+        id: 'title',
+        header: () => (
+          <Text as="span" size="sm" weight="semibold">
+            {COLUMN_LABELS.title}
           </Text>
         ),
         cell: ({ row }) => (
           <Text as="span" size="sm" weight="medium">
-            {row.original.name}
+            {row.original.title}
           </Text>
         ),
       },
       {
-        id: 'email',
+        id: 'category',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {COLUMN_LABELS.email}
+            {COLUMN_LABELS.category}
           </Text>
         ),
         cell: ({ row }) => (
           <Text as="span" size="sm" color="muted">
-            {row.original.email}
+            {row.original.category}
           </Text>
         ),
       },
       {
-        id: 'role',
+        id: 'status',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {COLUMN_LABELS.role}
+            {COLUMN_LABELS.status}
           </Text>
         ),
         cell: ({ row }) => (
           <span className={styles.badge}>
             <Text as="span" size="xs" weight="medium">
-              {row.original.role}
+              {row.original.status}
             </Text>
           </span>
         ),
       },
       {
-        id: 'phone',
+        id: 'client',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {COLUMN_LABELS.phone}
+            {COLUMN_LABELS.client}
+          </Text>
+        ),
+        cell: ({ row }) => (
+          <Text as="span" size="sm">
+            {row.original.clientName}
+          </Text>
+        ),
+      },
+      {
+        id: 'budget',
+        header: () => (
+          <Text as="span" size="sm" weight="semibold">
+            {COLUMN_LABELS.budget}
           </Text>
         ),
         cell: ({ row }) => (
           <Text as="span" size="sm" color="muted">
-            {row.original.phone ?? TABLE_LABELS.noPhone}
+            {formatBudget(row.original.budget)}
+          </Text>
+        ),
+      },
+      {
+        id: 'city',
+        header: () => (
+          <Text as="span" size="sm" weight="semibold">
+            {COLUMN_LABELS.city}
+          </Text>
+        ),
+        cell: ({ row }) => (
+          <Text as="span" size="sm" color="muted">
+            {row.original.city ?? TABLE_LABELS.noCity}
           </Text>
         ),
       },
@@ -126,21 +150,6 @@ export default function UserReportTable() {
         ),
       },
       {
-        id: 'onboardingCompletedAt',
-        header: () => (
-          <Text as="span" size="sm" weight="semibold">
-            {COLUMN_LABELS.onboardingCompletedAt}
-          </Text>
-        ),
-        cell: ({ row }) => (
-          <Text as="span" size="sm" color="muted">
-            {row.original.onboardingCompletedAt
-              ? TABLE_LABELS.onboarded
-              : TABLE_LABELS.notOnboarded}
-          </Text>
-        ),
-      },
-      {
         id: 'actions',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
@@ -149,7 +158,7 @@ export default function UserReportTable() {
         ),
         cell: ({ row }) => (
           <Button asChild variant="outline" size="sm">
-            <Link href={routes.users.detail(row.original.id)} variant="inherit">
+            <Link href={routes.jobs.detail(row.original.id)} variant="inherit">
               <Eye size={14} />
               {TABLE_LABELS.view}
             </Link>
@@ -181,22 +190,18 @@ export default function UserReportTable() {
         searchPlaceholder={TABLE_LABELS.searchPlaceholder}
         filters={
           <Select
-            label={TABLE_LABELS.roleFilterLabel}
-            value={roleFilter}
-            onValueChange={handleRoleChange}
+            label={TABLE_LABELS.statusFilterLabel}
+            value={statusFilter}
+            onValueChange={handleStatusChange}
             size="sm"
           >
-            <SelectItem value="all">{TABLE_LABELS.roleAll}</SelectItem>
-            <SelectItem value="worker">{TABLE_LABELS.roleWorker}</SelectItem>
-            <SelectItem value="client">{TABLE_LABELS.roleClient}</SelectItem>
+            <SelectItem value="all">{TABLE_LABELS.statusAll}</SelectItem>
+            <SelectItem value="open">{TABLE_LABELS.statusOpen}</SelectItem>
+            <SelectItem value="accepted">{TABLE_LABELS.statusAccepted}</SelectItem>
+            <SelectItem value="in_progress">{TABLE_LABELS.statusInProgress}</SelectItem>
+            <SelectItem value="completed">{TABLE_LABELS.statusCompleted}</SelectItem>
+            <SelectItem value="cancelled">{TABLE_LABELS.statusCancelled}</SelectItem>
           </Select>
-        }
-        actions={
-          <Button asChild variant="primary" size="sm">
-            <Link href={routes.users.create} variant="inherit">
-              {TABLE_LABELS.newUser}
-            </Link>
-          </Button>
         }
         isLoading={isLoading}
         isFetching={isFetching}

@@ -14,18 +14,16 @@ export const TABLE_LABELS = {
   loading: 'Loading users…',
   error: 'Failed to load users.',
   empty: 'No users found.',
-  prev: 'Previous',
-  next: 'Next',
   view: 'View',
   noPhone: '—',
   notOnboarded: '—',
   onboarded: 'Yes',
-  searchLabel: 'Search',
   searchPlaceholder: 'Search name or email…',
   roleFilterLabel: 'Role',
   roleAll: 'All roles',
   roleWorker: 'Worker',
   roleClient: 'Client',
+  newUser: '+ New user',
 } as const;
 
 export const PAGE_SIZE = 25;

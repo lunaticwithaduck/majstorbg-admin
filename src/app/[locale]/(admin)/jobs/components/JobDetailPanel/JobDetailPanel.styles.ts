@@ -9,9 +9,13 @@ const styles = {
   grid: 'grid grid-cols-2 gap-x-6 gap-y-3',
   field: 'flex flex-col gap-1',
   badge: 'inline-flex items-center rounded-full px-2 py-0.5 bg-text/5 text-text w-fit',
-  titleRow: 'flex items-center justify-between gap-3 flex-wrap',
-  titleLeft: 'flex items-baseline gap-3',
-  titleActions: 'flex items-center gap-2',
+  description: 'whitespace-pre-line',
+  bidsList: 'flex flex-col gap-2',
+  bidRow:
+    'grid grid-cols-[1.5fr_1fr_1fr_1fr] items-center gap-3 rounded-lg border border-border px-3 py-2',
+  bidHeader:
+    'grid grid-cols-[1.5fr_1fr_1fr_1fr] items-center gap-3 px-3 pb-2 border-b border-border',
+  empty: 'text-muted',
 };
 
 export default styles;
