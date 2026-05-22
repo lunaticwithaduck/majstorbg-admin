@@ -30,14 +30,16 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV PORT=3001
+ENV PORT=8080
 ENV HOSTNAME=0.0.0.0
-RUN addgroup -S app && adduser -S app -G app
+# libc6-compat: Next.js's SWC binary is built against glibc; Alpine ships musl.
+# Without this, runtime native-binding loads can fail with an opaque error.
+RUN apk add --no-cache libc6-compat && addgroup -S app && adduser -S app -G app
 
 # Next.js standalone output bundles only the minimal runtime + required deps.
 COPY --from=builder --chown=app:app /app/.next/standalone ./
 COPY --from=builder --chown=app:app /app/.next/static ./.next/static
 
 USER app
-EXPOSE 3001
+EXPOSE 8080
 CMD ["node", "server.js"]
