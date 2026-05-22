@@ -12,4 +12,6 @@ export const routes = {
   },
   featureFlags: '/feature-flags',
   apiExplorer: '/api-explorer',
+  notifications: '/notifications',
+  localisations: '/localisations',
 } as const;

@@ -1,4 +1,4 @@
-import { Icon, Link, Text } from '@lunaticwithaduck/webui';
+import { Link, Text } from '@lunaticwithaduck/webui';
 import { ExternalLink } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 import { env } from '@/config/env';
@@ -29,8 +29,11 @@ export default async function ApiExplorerPage({ params }: ApiExplorerPageProps) 
               {API_EXPLORER_LABELS.description}
             </Text>
           </div>
+          {/* Render the lucide icon directly: webui's <Icon icon={Fn}> passes a
+              function across the server/client boundary, which React rejects on
+              a server component. Lucide components ARE server-renderable. */}
           <Link href={swaggerUrl} external variant="default" size="sm">
-            <Icon icon={ExternalLink} size="sm" />
+            <ExternalLink size={14} />
             <Text as="span" size="sm" weight="medium">
               {API_EXPLORER_LABELS.openInNewTab}
             </Text>
