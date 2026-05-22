@@ -1,0 +1,38 @@
+node_modules
+.next
+.turbo
+dist
+build
+coverage
+
+# Env — never bake secrets into the image. NODE_AUTH_TOKEN is passed via --build-arg.
+.env
+.env.*
+!.env.example
+
+# Git / editor
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# Tests & local-only tooling
+e2e
+playwright-report
+test-results
+*.tsbuildinfo
+
+# Claude / agentic flow — not needed in the image
+.claude
+workflows
+SESSION.md
+
+# yalc
+.yalc
+yalc.lock
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
