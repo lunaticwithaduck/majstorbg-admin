@@ -4,8 +4,6 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 // TODO: replace with @lunaticwithaduck/api adminActivityEndpoints once BE lands.
 import { adminActivityEndpoints } from './admin-activity-endpoints';
 import { adminJobEndpoints } from './admin-job-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminNotificationEndpoints once BE lands.
-import { adminNotificationEndpoints } from './admin-notification-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminUserMutations once BE lands.
 import { adminUserMutations } from './admin-user-mutations';
 import { axiosClient } from './axios';
@@ -18,7 +16,6 @@ export const appApi = api.injectEndpoints({
     ...adminUserMutations(build),
     ...adminJobEndpoints(build),
     ...adminActivityEndpoints(build),
-    ...adminNotificationEndpoints(build),
   }),
 });
 
@@ -44,6 +41,4 @@ export const {
   useListAdminJobsQuery,
   useGetAdminJobQuery,
   useGetUserActivityQuery,
-  useListAdminNotificationsQuery,
-  useSendTestNotificationMutation,
 } = appApi;

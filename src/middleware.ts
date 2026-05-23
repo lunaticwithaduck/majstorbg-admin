@@ -8,20 +8,30 @@ export default function middleware(request: NextRequest) {
   const response = intlMiddleware(request);
 
   // Behind a reverse proxy (Railway, Cloud Run, etc.) Next.js / next-intl
-  // builds absolute redirect URLs using the container's internal listening
-  // port (e.g. https://example.com:8080/en) instead of the public 443. The
-  // browser then follows the redirect to a port that isn't externally open
-  // and times out. Strip the port from the Location header here.
+  // builds absolute redirect URLs from `request.url`, which carries the
+  // container's internal listening address (e.g. `http://0.0.0.0:8080/en`)
+  // rather than the public origin. The browser then follows that absolute
+  // URL and either times out (wrong port) or 404s (wrong host). Rewrite the
+  // host/proto from the forwarded headers the proxy sets so the redirect
+  // lands on the public origin instead. (Path-only Location breaks the
+  // Next.js edge-runtime adapter, so keep it absolute.)
   const location = response.headers.get('location');
   if (location) {
     try {
       const url = new URL(location);
-      if (url.port) {
+      const fwdHost = request.headers.get('x-forwarded-host') ?? request.headers.get('host');
+      const fwdProto = request.headers.get('x-forwarded-proto');
+      if (fwdHost) {
+        url.host = fwdHost;
+        url.port = '';
+        if (fwdProto) url.protocol = `${fwdProto}:`;
+        response.headers.set('location', url.toString());
+      } else if (url.port) {
         url.port = '';
         response.headers.set('location', url.toString());
       }
     } catch {
-      // Relative Location header — no host/port to strip.
+      // Relative Location header — already safe.
     }
   }
 

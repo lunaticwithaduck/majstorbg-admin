@@ -1,5 +1,4 @@
 import {
-  Bell,
   Briefcase,
   Code,
   FileText,
@@ -33,11 +32,6 @@ export const NAV_MODULES: readonly NavModule[] = [
     label: 'Marketplace',
     icon: Briefcase,
     links: [{ href: routes.jobs.explorer, label: 'Jobs', icon: Briefcase }],
-  },
-  {
-    label: 'Operations',
-    icon: Bell,
-    links: [{ href: routes.notifications, label: 'Notifications', icon: Bell }],
   },
   {
     label: 'Configuration',

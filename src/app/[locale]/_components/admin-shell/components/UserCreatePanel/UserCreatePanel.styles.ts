@@ -1,5 +1,5 @@
 const styles = {
-  root: 'flex flex-col gap-6 max-w-3xl',
+  root: 'flex flex-col gap-6',
   header: 'flex flex-col gap-2',
   backRow: 'flex items-center gap-2 text-muted',
   title: 'flex flex-col gap-1',
