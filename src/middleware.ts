@@ -19,16 +19,24 @@ export default function middleware(request: NextRequest) {
   if (location) {
     try {
       const url = new URL(location);
-      const fwdHost = request.headers.get('x-forwarded-host') ?? request.headers.get('host');
+      const fwdHost = request.headers.get('x-forwarded-host');
       const fwdProto = request.headers.get('x-forwarded-proto');
+      // `host` header carries the correct hostname:port in all environments.
+      // Next.js constructs `request.url` (which next-intl uses for redirects)
+      // without the port, so the Location URL needs patching in every case.
+      const host = request.headers.get('host');
+      let newHost: string | null = null;
+      let newProto: string | null = null;
       if (fwdHost) {
-        url.host = fwdHost;
-        url.port = '';
-        if (fwdProto) url.protocol = `${fwdProto}:`;
-        response.headers.set('location', url.toString());
-      } else if (url.port) {
-        url.port = '';
-        response.headers.set('location', url.toString());
+        newHost = fwdHost;
+        newProto = fwdProto;
+      } else if (host && host !== url.host) {
+        newHost = host;
+      }
+      if (newHost !== null) {
+        const proto = newProto ? `${newProto}:` : url.protocol;
+        const fixed = `${proto}//${newHost}${url.pathname}${url.search}${url.hash}`;
+        response.headers.set('location', fixed);
       }
     } catch {
       // Relative Location header — already safe.

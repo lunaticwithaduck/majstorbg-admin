@@ -9,6 +9,8 @@ export const routes = {
   jobs: {
     explorer: '/jobs',
     detail: (jobId: string) => `/jobs/${encodeURIComponent(jobId)}`,
+    create: '/jobs/new',
+    edit: (jobId: string) => `/jobs/${encodeURIComponent(jobId)}/edit`,
   },
   featureFlags: '/feature-flags',
   apiExplorer: '/api-explorer',

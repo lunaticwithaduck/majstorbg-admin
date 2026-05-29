@@ -26,6 +26,7 @@ export const TABLE_LABELS = {
   statusInProgress: 'In progress',
   statusCompleted: 'Completed',
   statusCancelled: 'Cancelled',
+  newJob: '+ New job',
 } as const;
 
 export const PAGE_SIZE = 25;
