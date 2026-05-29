@@ -12,8 +12,8 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.76.0(react@19.2.6))
       '@lunaticwithaduck/api':
-        specifier: file:.yalc/@lunaticwithaduck/api
-        version: file:.yalc/@lunaticwithaduck/api(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)
+        specifier: ^2.5.0
+        version: 2.5.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)
       '@lunaticwithaduck/feature-flags':
         specifier: ^3.2.0
         version: 3.2.0
@@ -21,8 +21,8 @@ importers:
         specifier: file:.yalc/@lunaticwithaduck/i18n
         version: file:.yalc/@lunaticwithaduck/i18n(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       '@lunaticwithaduck/schemas':
-        specifier: ^5.4.0
-        version: 5.4.0
+        specifier: ^5.5.0
+        version: 5.5.0
       '@lunaticwithaduck/types':
         specifier: ^1.0.0
         version: 1.0.0
@@ -665,8 +665,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lunaticwithaduck/api@file:.yalc/@lunaticwithaduck/api':
-    resolution: {directory: .yalc/@lunaticwithaduck/api, type: directory}
+  '@lunaticwithaduck/api@2.5.0':
+    resolution: {integrity: sha512-djTS2UHbewkpmRKY2t4isSf8S9RvgzQnxLZri4Ionet+gTuzHVmobukTl86jbWRk0vJi3E/V8ANDVnG6UrDZtw==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/api/2.5.0/9fda8e4077f21fd86b99687dab7fb2fde92b7d4b}
     peerDependencies:
       react: '>=18'
 
@@ -689,8 +689,8 @@ packages:
       next-intl: '>=4'
       react: '>=19'
 
-  '@lunaticwithaduck/schemas@5.4.0':
-    resolution: {integrity: sha512-OqMssYJjDwxBakLLl3ZM/2T7BKixT+gW8llBZp1AA+NuGO0/kx1rOBz5CMo6vgVofo4nXQfs68GvwZ9D8zhU4w==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/schemas/5.4.0/af9111484232e4f732ec66ed9fb2a04beab8ddf5}
+  '@lunaticwithaduck/schemas@5.5.0':
+    resolution: {integrity: sha512-B0fFhFbdAjyho8JqtTh4jR/VVqTJLsiXCqp+4RHNY2z1953mTOaMJPwnPUD5Z/bVZIhf39bxMpMKQ1GW8y7b+Q==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/schemas/5.5.0/a5bec2e8e456e6ea4a66434d45d425a619c34272}
 
   '@lunaticwithaduck/types@1.0.0':
     resolution: {integrity: sha512-0iSRGPLIC8YzcBHFceGPx0eoU8O2ODdXxFru1JKIE+oD4eu/GAs8GfBwkFCUQlPJE8juekxSVzSiHVLKXOEitQ==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/types/1.0.0/1b8a2b0f081312e1aa085075a726ba6615a545c1}
@@ -3191,9 +3191,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lunaticwithaduck/api@file:.yalc/@lunaticwithaduck/api(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)':
+  '@lunaticwithaduck/api@2.5.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)':
     dependencies:
-      '@lunaticwithaduck/schemas': 5.4.0
+      '@lunaticwithaduck/schemas': 5.5.0
       '@lunaticwithaduck/types': 1.0.0
       '@reduxjs/toolkit': 2.12.0(react-redux@9.3.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1))(react@19.2.6)
       axios: 1.16.1
@@ -3222,7 +3222,7 @@ snapshots:
       next-intl: 4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3)
       react: 19.2.6
 
-  '@lunaticwithaduck/schemas@5.4.0':
+  '@lunaticwithaduck/schemas@5.5.0':
     dependencies:
       zod: 3.25.76
 
