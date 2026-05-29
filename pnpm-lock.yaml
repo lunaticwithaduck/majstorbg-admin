@@ -18,8 +18,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       '@lunaticwithaduck/i18n':
-        specifier: file:.yalc/@lunaticwithaduck/i18n
-        version: file:.yalc/@lunaticwithaduck/i18n(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
+        specifier: ^3.5.0
+        version: 3.5.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       '@lunaticwithaduck/schemas':
         specifier: ^5.5.0
         version: 5.5.0
@@ -681,8 +681,8 @@ packages:
       next-intl: '>=4'
       react: '>=19'
 
-  '@lunaticwithaduck/i18n@file:.yalc/@lunaticwithaduck/i18n':
-    resolution: {directory: .yalc/@lunaticwithaduck/i18n, type: directory}
+  '@lunaticwithaduck/i18n@3.5.0':
+    resolution: {integrity: sha512-N1IuNLvDjsCIZJWxtrwdh8lCXRGl0XnnP5lzpHez2lie8P6fqoqn1WTFlKKWKirpNaMGtqDGT7RkxHNpSad50Q==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/i18n/3.5.0/899047ae93e8190bdea3bb3d3b0aa19b4cc73d94}
     hasBin: true
     peerDependencies:
       next: '>=15'
@@ -3215,7 +3215,7 @@ snapshots:
       next-intl: 4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3)
       react: 19.2.6
 
-  '@lunaticwithaduck/i18n@file:.yalc/@lunaticwithaduck/i18n(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
+  '@lunaticwithaduck/i18n@3.5.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@lunaticwithaduck/types': 1.0.0
       next: 16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
