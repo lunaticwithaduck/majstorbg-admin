@@ -25,4 +25,5 @@ export const DETAIL_LABELS = {
   bidColAmount: 'Amount',
   bidColStatus: 'Status',
   bidColCreatedAt: 'Submitted',
+  edit: 'Edit',
 } as const;

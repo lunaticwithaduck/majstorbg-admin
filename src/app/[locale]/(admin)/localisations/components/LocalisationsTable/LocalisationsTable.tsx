@@ -1,166 +1,269 @@
 'use client';
 
-import { Button, Select, SelectItem, Text } from '@lunaticwithaduck/webui';
+import { Select, SelectItem, Text } from '@lunaticwithaduck/webui';
 import type { ColumnDef } from '@tanstack/react-table';
-import { Copy } from 'lucide-react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import type { TranslationRow } from '@/api/admin-translation-endpoints';
+import {
+  useBulkUpsertAdminTranslationsMutation,
+  useListAdminTranslationsQuery,
+  useUpdateAdminTranslationMutation,
+} from '@/api/store';
 import DataTable from '@/ui/components/composed/DataTable/DataTable';
 import {
-  LOCALISATIONS_COLUMNS,
-  LOCALISATIONS_LABELS,
-  LOCALISATIONS_PAGE_SIZE,
-  STATUS_FILTER_LABELS,
-  STATUS_FILTER_VALUES,
-  type StatusFilter,
+  COLUMNS,
+  LABELS,
+  LOCALE_FILTER_LABELS,
+  LOCALE_FILTER_VALUES,
+  PAGE_SIZE,
+  type LocaleFilter,
 } from './config/constants';
 import styles from './LocalisationsTable.styles';
 
-export type LocalisationStatus = 'complete' | 'missing-bg' | 'missing-en' | 'placeholder';
-
-export type LocalisationRow = {
-  key: string;
-  en: string;
-  bg: string;
-  status: LocalisationStatus;
-};
-
-type LocalisationsTableProps = {
-  rows: LocalisationRow[];
-};
-
-function statusBadgeClass(status: LocalisationStatus): string {
-  switch (status) {
-    case 'complete':
-      return styles.badgeComplete;
-    case 'missing-bg':
-      return styles.badgeMissingBg;
-    case 'missing-en':
-      return styles.badgeMissingEn;
-    case 'placeholder':
-      return styles.badgePlaceholder;
-  }
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
 }
 
-function statusBadgeLabel(status: LocalisationStatus): string {
-  switch (status) {
-    case 'complete':
-      return LOCALISATIONS_LABELS.statusComplete;
-    case 'missing-bg':
-      return LOCALISATIONS_LABELS.statusMissingBg;
-    case 'missing-en':
-      return LOCALISATIONS_LABELS.statusMissingEn;
-    case 'placeholder':
-      return LOCALISATIONS_LABELS.statusPlaceholder;
+type InlineCellProps = {
+  row: TranslationRow;
+};
+
+function InlineValueCell({ row }: InlineCellProps) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(row.value);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [update, { isLoading }] = useUpdateAdminTranslationMutation();
+
+  const startEdit = useCallback(() => {
+    setDraft(row.value);
+    setEditing(true);
+    setTimeout(() => textareaRef.current?.focus(), 0);
+  }, [row.value]);
+
+  const cancel = useCallback(() => {
+    setDraft(row.value);
+    setEditing(false);
+  }, [row.value]);
+
+  const save = useCallback(async () => {
+    if (draft === row.value) {
+      setEditing(false);
+      return;
+    }
+    try {
+      await update({ id: row.id, value: draft }).unwrap();
+      setEditing(false);
+    } catch {
+      // leave editing open so user can retry
+    }
+  }, [draft, row.id, row.value, update]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === 'Escape') cancel();
+    },
+    [cancel],
+  );
+
+  if (editing) {
+    return (
+      <div className={styles.editCell}>
+        <textarea
+          ref={textareaRef}
+          className={styles.textarea}
+          value={draft}
+          rows={3}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={isLoading}
+        />
+        <div className={styles.editActions}>
+          <button
+            type="button"
+            className={styles.editBtn}
+            onClick={() => void save()}
+            disabled={isLoading}
+          >
+            {LABELS.save}
+          </button>
+          <button
+            type="button"
+            className={styles.cancelBtn}
+            onClick={cancel}
+            disabled={isLoading}
+          >
+            {LABELS.cancel}
+          </button>
+        </div>
+      </div>
+    );
   }
+
+  return (
+    <div className="flex items-start gap-2">
+      {row.value.length === 0 ? (
+        <span className={styles.valueMuted}>{LABELS.missingValue}</span>
+      ) : (
+        <span className={styles.valueCell}>{row.value}</span>
+      )}
+      <button
+        type="button"
+        className={styles.editIconBtn}
+        onClick={startEdit}
+        title={LABELS.edit}
+      >
+        ✎
+      </button>
+    </div>
+  );
 }
 
-export default function LocalisationsTable({ rows }: LocalisationsTableProps) {
+function flattenNested(obj: Record<string, unknown>, prefix = ''): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [key, val] of Object.entries(obj)) {
+    const path = prefix ? `${prefix}.${key}` : key;
+    if (typeof val === 'string') {
+      out[path] = val;
+    } else if (val !== null && typeof val === 'object') {
+      Object.assign(out, flattenNested(val as Record<string, unknown>, path));
+    }
+  }
+  return out;
+}
+
+export default function LocalisationsTable() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
-  const [copied, setCopied] = useState(false);
+  const [localeFilter, setLocaleFilter] = useState<LocaleFilter>('en');
+  const [importStatus, setImportStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [importMessage, setImportMessage] = useState('');
+  const importInputRef = useRef<HTMLInputElement>(null);
+
+  const [bulkUpsert] = useBulkUpsertAdminTranslationsMutation();
 
   const handleSearch = useCallback((next: string) => {
     setSearchQuery(next);
     setPage(1);
   }, []);
 
-  const handleStatusChange = useCallback((value: string) => {
-    if ((STATUS_FILTER_VALUES as readonly string[]).includes(value)) {
-      setStatusFilter(value as StatusFilter);
+  const handleLocaleChange = useCallback((value: string) => {
+    if ((LOCALE_FILTER_VALUES as readonly string[]).includes(value)) {
+      setLocaleFilter(value as LocaleFilter);
       setPage(1);
     }
   }, []);
 
-  const filteredRows = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-    return rows.filter((row) => {
-      if (statusFilter !== 'all' && row.status !== statusFilter) return false;
-      if (query.length === 0) return true;
-      return (
-        row.key.toLowerCase().includes(query) ||
-        row.en.toLowerCase().includes(query) ||
-        row.bg.toLowerCase().includes(query)
-      );
-    });
-  }, [rows, searchQuery, statusFilter]);
+  const handleExport = useCallback(async () => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? '';
+    const res = await fetch(`${apiUrl}/translations/${localeFilter}`);
+    const nested = (await res.json()) as Record<string, unknown>;
+    const flat = flattenNested(nested);
+    const blob = new Blob([JSON.stringify(flat, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `translations-${localeFilter}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [localeFilter]);
 
-  const pagedRows = useMemo(() => {
-    const start = (page - 1) * LOCALISATIONS_PAGE_SIZE;
-    return filteredRows.slice(start, start + LOCALISATIONS_PAGE_SIZE);
-  }, [filteredRows, page]);
-
-  const handleCopyMissing = useCallback(() => {
-    const missing = rows
-      .filter((row) => row.status === 'missing-bg' || row.status === 'missing-en')
-      .map((row) => ({ key: row.key, en: row.en, bg: row.bg, status: row.status }));
-    const json = JSON.stringify(missing, null, 2);
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      void navigator.clipboard.writeText(json).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      });
+  const handleImportFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    e.target.value = '';
+    setImportStatus('loading');
+    setImportMessage('');
+    try {
+      const text = await file.text();
+      const flat = JSON.parse(text) as Record<string, string>;
+      const items = Object.entries(flat).map(([key, value]) => ({
+        locale: localeFilter,
+        key,
+        value,
+      }));
+      const BATCH = 500;
+      let total = 0;
+      for (let i = 0; i < items.length; i += BATCH) {
+        const res = await bulkUpsert({ items: items.slice(i, i + BATCH) }).unwrap();
+        total += res.count;
+      }
+      setImportStatus('success');
+      setImportMessage(LABELS.importSuccess(total));
+    } catch {
+      setImportStatus('error');
+      setImportMessage(LABELS.importError);
     }
-  }, [rows]);
+  }, [bulkUpsert, localeFilter]);
 
-  const columns = useMemo<ColumnDef<LocalisationRow>[]>(
+  const queryArgs = useMemo(
+    () => ({
+      page,
+      pageSize: PAGE_SIZE,
+      locale: localeFilter,
+      ...(searchQuery.trim().length > 0 ? { search: searchQuery.trim() } : {}),
+    }),
+    [page, localeFilter, searchQuery],
+  );
+
+  const { data, isLoading, isFetching, isError } = useListAdminTranslationsQuery(queryArgs);
+
+  const items = data?.items ?? [];
+  const total = data?.total ?? 0;
+
+  const columns = useMemo<ColumnDef<TranslationRow>[]>(
     () => [
+      {
+        id: 'locale',
+        header: () => (
+          <Text as="span" size="sm" weight="semibold">
+            {COLUMNS.locale}
+          </Text>
+        ),
+        cell: ({ row }) => (
+          <span
+            className={
+              row.original.locale === 'en' ? styles.badgeEn : styles.badgeBg
+            }
+          >
+            <Text as="span" size="xs" weight="medium">
+              {row.original.locale === 'en' ? LABELS.localeBadgeEn : LABELS.localeBadgeBg}
+            </Text>
+          </span>
+        ),
+      },
       {
         id: 'key',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {LOCALISATIONS_COLUMNS.key}
+            {COLUMNS.key}
           </Text>
         ),
         cell: ({ row }) => <span className={styles.keyCell}>{row.original.key}</span>,
       },
       {
-        id: 'en',
+        id: 'value',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {LOCALISATIONS_COLUMNS.en}
+            {COLUMNS.value}
           </Text>
         ),
-        cell: ({ row }) => {
-          const value = row.original.en;
-          if (value.length === 0) {
-            return (
-              <span className={styles.valueMuted}>{LOCALISATIONS_LABELS.missingValue}</span>
-            );
-          }
-          return <span className={styles.valueCell}>{value}</span>;
-        },
+        cell: ({ row }) => <InlineValueCell row={row.original} />,
       },
       {
-        id: 'bg',
+        id: 'updatedAt',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {LOCALISATIONS_COLUMNS.bg}
-          </Text>
-        ),
-        cell: ({ row }) => {
-          const value = row.original.bg;
-          if (value.length === 0) {
-            return (
-              <span className={styles.valueMuted}>{LOCALISATIONS_LABELS.missingValue}</span>
-            );
-          }
-          return <span className={styles.valueCell}>{value}</span>;
-        },
-      },
-      {
-        id: 'status',
-        header: () => (
-          <Text as="span" size="sm" weight="semibold">
-            {LOCALISATIONS_COLUMNS.status}
+            {COLUMNS.updatedAt}
           </Text>
         ),
         cell: ({ row }) => (
-          <span className={statusBadgeClass(row.original.status)}>
-            <Text as="span" size="xs" weight="medium">
-              {statusBadgeLabel(row.original.status)}
-            </Text>
-          </span>
+          <Text as="span" size="sm" color="muted">
+            {formatDate(row.original.updatedAt)}
+          </Text>
         ),
       },
     ],
@@ -171,45 +274,72 @@ export default function LocalisationsTable({ rows }: LocalisationsTableProps) {
     <div className={styles.root}>
       <header className={styles.header}>
         <Text as="h1" size="2xl" weight="bold">
-          {LOCALISATIONS_LABELS.pageHeading}
+          {LABELS.pageHeading}
         </Text>
         <Text as="p" size="sm" color="muted">
-          {LOCALISATIONS_LABELS.pageSub}
+          {LABELS.pageSub}
         </Text>
       </header>
+      <input
+        ref={importInputRef}
+        type="file"
+        accept="application/json,.json"
+        className="hidden"
+        onChange={handleImportFile}
+      />
+      {importMessage && (
+        <p className={importStatus === 'error' ? 'text-sm text-destructive' : 'text-sm text-muted'}>
+          {importMessage}
+        </p>
+      )}
       <DataTable
-        data={pagedRows}
+        data={items}
         columns={columns}
-        total={filteredRows.length}
+        total={total}
         page={page}
-        pageSize={LOCALISATIONS_PAGE_SIZE}
+        pageSize={PAGE_SIZE}
         onPageChange={setPage}
         onSearch={handleSearch}
-        searchPlaceholder={LOCALISATIONS_LABELS.searchPlaceholder}
+        searchPlaceholder={LABELS.searchPlaceholder}
         filters={
           <Select
-            label={LOCALISATIONS_LABELS.statusFilterLabel}
-            value={statusFilter}
-            onValueChange={handleStatusChange}
+            label={LABELS.localeFilterLabel}
+            value={localeFilter}
+            onValueChange={handleLocaleChange}
             size="sm"
           >
-            {STATUS_FILTER_VALUES.map((value) => (
+            {LOCALE_FILTER_VALUES.map((value) => (
               <SelectItem key={value} value={value}>
-                {STATUS_FILTER_LABELS[value]}
+                {LOCALE_FILTER_LABELS[value]}
               </SelectItem>
             ))}
           </Select>
         }
         actions={
-          <Button variant="outline" size="sm" onClick={handleCopyMissing}>
-            <Copy size={14} />
-            <Text as="span" size="sm" weight="medium">
-              {copied ? LOCALISATIONS_LABELS.copyMissingCopied : LOCALISATIONS_LABELS.copyMissing}
-            </Text>
-          </Button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className={styles.actionBtn}
+              onClick={handleExport}
+            >
+              {LABELS.exportJson}
+            </button>
+            <button
+              type="button"
+              className={styles.actionBtnPrimary}
+              disabled={importStatus === 'loading'}
+              onClick={() => importInputRef.current?.click()}
+            >
+              {importStatus === 'loading' ? LABELS.importing : LABELS.importJson}
+            </button>
+          </div>
         }
-        emptyMessage={LOCALISATIONS_LABELS.empty}
-        loadingMessage={LOCALISATIONS_LABELS.loading}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        loadingMessage={LABELS.loading}
+        errorMessage={LABELS.error}
+        emptyMessage={LABELS.empty}
       />
     </div>
   );

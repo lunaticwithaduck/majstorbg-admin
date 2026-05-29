@@ -1,72 +1,36 @@
 'use client';
 
 import { type FeatureFlagKey, featureFlags } from '@lunaticwithaduck/feature-flags';
-import { Banner, Button, Text } from '@lunaticwithaduck/webui';
+import { Button, Text } from '@lunaticwithaduck/webui';
 import type { ColumnDef } from '@tanstack/react-table';
 import { RotateCcw } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
-  clearFlagOverride,
-  type FlagEnvSnapshot,
-  getFlagOverride,
-  resolveFlag,
-  setFlagEnvSnapshot,
-  setFlagOverride,
-} from '@/config/feature-flags';
+  useDeleteAdminFeatureFlagMutation,
+  useGetFeatureFlagMapQuery,
+  useUpsertAdminFeatureFlagMutation,
+} from '@/api/store';
 import DataTable from '@/ui/components/composed/DataTable/DataTable';
-import { FEATURE_FLAGS_COLUMNS, FEATURE_FLAGS_LABELS, FEATURE_FLAGS_PAGE_SIZE } from './config/constants';
+import {
+  FEATURE_FLAGS_COLUMNS,
+  FEATURE_FLAGS_LABELS,
+  FEATURE_FLAGS_PAGE_SIZE,
+} from './config/constants';
 import styles from './FeatureFlagsTable.styles';
-
-type FeatureFlagsTableProps = {
-  envSnapshot: FlagEnvSnapshot;
-};
 
 type FlagRow = {
   key: FeatureFlagKey;
   description: string;
   defaultValue: boolean;
-  envValue: boolean | null;
 };
 
-// Subscribe to override changes so every row's `effective`, `override`, and the
-// row-level controls stay in sync when one row is toggled.
-const OVERRIDE_EVENT = 'majstor:flag-override-changed';
-function subscribeOverrides(callback: () => void): () => void {
-  if (typeof window === 'undefined') return () => undefined;
-  const onChange = () => callback();
-  window.addEventListener(OVERRIDE_EVENT, onChange);
-  window.addEventListener('storage', onChange);
-  return () => {
-    window.removeEventListener(OVERRIDE_EVENT, onChange);
-    window.removeEventListener('storage', onChange);
-  };
-}
-// Returns an opaque tick that increments whenever any override changes. We use
-// it to invalidate the column closures so cells re-read live override + effective values.
-function useOverridesTick(): number {
-  const [tick, setTick] = useState(0);
-  const subscribe = useCallback((callback: () => void) => {
-    return subscribeOverrides(() => {
-      setTick((t) => t + 1);
-      callback();
-    });
-  }, []);
-  const getSnapshot = useCallback(() => tick, [tick]);
-  const getServerSnapshot = useCallback(() => 0, []);
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-}
-
-export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProps) {
-  // Hydrate the module-level env snapshot so resolveFlag() picks env values
-  // up across the whole app (not just on this page).
-  useEffect(() => {
-    setFlagEnvSnapshot(envSnapshot);
-  }, [envSnapshot]);
-
-  const tick = useOverridesTick();
-
+export default function FeatureFlagsTable() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const { data: dbMap = {}, isLoading, isError } = useGetFeatureFlagMapQuery();
+  const [upsert] = useUpsertAdminFeatureFlagMutation();
+  const [deleteFlag] = useDeleteAdminFeatureFlagMutation();
 
   const handleSearch = useCallback((next: string) => {
     setSearchQuery(next);
@@ -74,39 +38,27 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
   }, []);
 
   const allRows = useMemo<FlagRow[]>(() => {
-    const keys = Object.keys(featureFlags) as FeatureFlagKey[];
-    return keys.map((key) => {
-      const def = featureFlags[key];
-      const envValue = envSnapshot[key];
-      return {
-        key,
-        description: def.description,
-        defaultValue: def.default,
-        envValue: envValue === undefined ? null : envValue,
-      };
-    });
-  }, [envSnapshot]);
+    return (Object.keys(featureFlags) as FeatureFlagKey[]).map((key) => ({
+      key,
+      description: featureFlags[key].description,
+      defaultValue: featureFlags[key].default,
+    }));
+  }, []);
 
   const filteredRows = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-    if (query.length === 0) return allRows;
-    return allRows.filter((row) => {
-      return (
-        row.key.toLowerCase().includes(query) || row.description.toLowerCase().includes(query)
-      );
-    });
+    if (!query) return allRows;
+    return allRows.filter(
+      (row) =>
+        row.key.toLowerCase().includes(query) ||
+        row.description.toLowerCase().includes(query),
+    );
   }, [allRows, searchQuery]);
 
   const pagedRows = useMemo(() => {
     const start = (page - 1) * FEATURE_FLAGS_PAGE_SIZE;
     return filteredRows.slice(start, start + FEATURE_FLAGS_PAGE_SIZE);
   }, [filteredRows, page]);
-
-  const handleResetAll = useCallback(() => {
-    for (const row of allRows) {
-      clearFlagOverride(row.key);
-    }
-  }, [allRows]);
 
   const columns = useMemo<ColumnDef<FlagRow>[]>(
     () => [
@@ -148,27 +100,27 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
         ),
       },
       {
-        id: 'env',
+        id: 'stored',
         header: () => (
           <Text as="span" size="sm" weight="semibold">
-            {FEATURE_FLAGS_COLUMNS.env}
+            {FEATURE_FLAGS_COLUMNS.stored}
           </Text>
         ),
         cell: ({ row }) => {
-          const env = row.original.envValue;
-          if (env === null) {
+          const stored = dbMap[row.original.key];
+          if (stored === undefined) {
             return (
               <span className={styles.indicatorMuted}>
                 <Text as="span" size="xs" weight="medium">
-                  {FEATURE_FLAGS_LABELS.envUnset}
+                  {FEATURE_FLAGS_LABELS.notSet}
                 </Text>
               </span>
             );
           }
           return (
-            <span className={env ? styles.indicatorOn : styles.indicatorOff}>
+            <span className={stored ? styles.indicatorOn : styles.indicatorOff}>
               <Text as="span" size="xs" weight="medium">
-                {env ? FEATURE_FLAGS_LABELS.on : FEATURE_FLAGS_LABELS.off}
+                {stored ? FEATURE_FLAGS_LABELS.on : FEATURE_FLAGS_LABELS.off}
               </Text>
             </span>
           );
@@ -182,8 +134,9 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
           </Text>
         ),
         cell: ({ row }) => {
-          const effective = resolveFlag(row.original.key);
-          const isOverridden = getFlagOverride(row.original.key) !== null;
+          const stored = dbMap[row.original.key];
+          const effective = stored !== undefined ? stored : row.original.defaultValue;
+          const isOverridden = stored !== undefined;
           return (
             <div className={styles.effectiveCell}>
               <span className={effective ? styles.indicatorOn : styles.indicatorOff}>
@@ -191,13 +144,13 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
                   {effective ? FEATURE_FLAGS_LABELS.on : FEATURE_FLAGS_LABELS.off}
                 </Text>
               </span>
-              {isOverridden ? (
+              {isOverridden && (
                 <span className={styles.overrideBadge}>
                   <Text as="span" size="xs" weight="medium">
-                    {FEATURE_FLAGS_LABELS.overrideBadge}
+                    {FEATURE_FLAGS_LABELS.dbBadge}
                   </Text>
                 </span>
-              ) : null}
+              )}
             </div>
           );
         },
@@ -210,13 +163,14 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
           </Text>
         ),
         cell: ({ row }) => {
-          const effective = resolveFlag(row.original.key);
+          const stored = dbMap[row.original.key];
+          const effective = stored !== undefined ? stored : row.original.defaultValue;
           return (
             <div className={styles.toggleCell}>
               <Button
                 variant={effective ? 'primary' : 'outline'}
                 size="sm"
-                onClick={() => setFlagOverride(row.original.key, !effective)}
+                onClick={() => void upsert({ key: row.original.key, value: !effective })}
               >
                 <Text as="span" size="sm" weight="medium">
                   {effective ? FEATURE_FLAGS_LABELS.disable : FEATURE_FLAGS_LABELS.enable}
@@ -234,14 +188,14 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
           </Text>
         ),
         cell: ({ row }) => {
-          const isOverridden = getFlagOverride(row.original.key) !== null;
+          const isOverridden = dbMap[row.original.key] !== undefined;
           return (
             <div className={styles.resetCell}>
               <Button
                 variant="ghost"
                 size="sm"
                 disabled={!isOverridden}
-                onClick={() => clearFlagOverride(row.original.key)}
+                onClick={() => void deleteFlag(row.original.key)}
               >
                 <RotateCcw size={14} />
                 <Text as="span" size="sm" weight="medium">
@@ -253,10 +207,7 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
         },
       },
     ],
-    // `tick` is intentionally a dep so the columns re-render when an override
-    // flips elsewhere — cells read live state from resolveFlag/getFlagOverride
-    // rather than from the row model.
-    [tick],
+    [dbMap, upsert, deleteFlag],
   );
 
   return (
@@ -269,13 +220,6 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
           {FEATURE_FLAGS_LABELS.pageSub}
         </Text>
       </header>
-      <Banner variant="info">
-        <div className={styles.banner}>
-          <Text as="p" size="sm">
-            {FEATURE_FLAGS_LABELS.bannerCopy}
-          </Text>
-        </div>
-      </Banner>
       <DataTable
         data={pagedRows}
         columns={columns}
@@ -285,16 +229,11 @@ export default function FeatureFlagsTable({ envSnapshot }: FeatureFlagsTableProp
         onPageChange={setPage}
         onSearch={handleSearch}
         searchPlaceholder={FEATURE_FLAGS_LABELS.searchPlaceholder}
-        actions={
-          <Button variant="outline" size="sm" onClick={handleResetAll}>
-            <RotateCcw size={14} />
-            <Text as="span" size="sm" weight="medium">
-              {FEATURE_FLAGS_LABELS.resetAll}
-            </Text>
-          </Button>
-        }
+        isLoading={isLoading}
+        isError={isError}
         emptyMessage={FEATURE_FLAGS_LABELS.empty}
         loadingMessage={FEATURE_FLAGS_LABELS.loading}
+        errorMessage={FEATURE_FLAGS_LABELS.error}
       />
     </div>
   );

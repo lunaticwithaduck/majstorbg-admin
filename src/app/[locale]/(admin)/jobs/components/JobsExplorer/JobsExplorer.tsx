@@ -203,6 +203,13 @@ export default function JobsExplorer() {
             <SelectItem value="cancelled">{TABLE_LABELS.statusCancelled}</SelectItem>
           </Select>
         }
+        actions={
+          <Button asChild variant="primary" size="sm">
+            <Link href={routes.jobs.create} variant="inherit">
+              {TABLE_LABELS.newJob}
+            </Link>
+          </Button>
+        }
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
