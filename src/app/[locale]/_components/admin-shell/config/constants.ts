@@ -3,9 +3,11 @@ import {
   Code,
   FileText,
   Flag,
+  Hammer,
   Languages,
   type LucideIcon,
   Settings,
+  Tag,
   Users,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -32,6 +34,14 @@ export const NAV_MODULES: readonly NavModule[] = [
     label: 'Marketplace',
     icon: Briefcase,
     links: [{ href: routes.jobs.explorer, label: 'Jobs', icon: Briefcase }],
+  },
+  {
+    label: 'Categories',
+    icon: Tag,
+    links: [
+      { href: routes.skillCategories, label: 'Skill categories', icon: Hammer },
+      { href: routes.jobCategories, label: 'Job categories', icon: Tag },
+    ],
   },
   {
     label: 'Configuration',
