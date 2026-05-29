@@ -12,23 +12,23 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.76.0(react@19.2.6))
       '@lunaticwithaduck/api':
-        specifier: ^1.13.0
-        version: 1.13.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)
+        specifier: ^2.5.0
+        version: 2.5.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)
       '@lunaticwithaduck/feature-flags':
-        specifier: ^1.3.0
-        version: 1.3.0
+        specifier: ^3.2.0
+        version: 3.2.0
       '@lunaticwithaduck/i18n':
-        specifier: ^3.0.0
-        version: 3.0.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
+        specifier: ^3.5.0
+        version: 3.5.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       '@lunaticwithaduck/schemas':
-        specifier: ^1.24.0
-        version: 1.24.0
+        specifier: ^5.5.0
+        version: 5.5.0
       '@lunaticwithaduck/types':
         specifier: ^1.0.0
         version: 1.0.0
       '@lunaticwithaduck/webui':
-        specifier: ^2.0.10
-        version: 2.0.10(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^2.3.0
+        version: 2.3.1(@preact/signals@2.9.1(preact@10.29.2))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(preact@10.29.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@reduxjs/toolkit':
         specifier: ^2.12.0
         version: 2.12.0(react-redux@9.3.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1))(react@19.2.6)
@@ -665,33 +665,30 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lunaticwithaduck/api@1.13.0':
-    resolution: {integrity: sha512-BaZuINUs43QbbvLSdS/bj9LNVIdJBN6ZnOFWivV53+XLBagtcHR+R5Z1Ya7CWJ/XqQulvGqj3yfs6oGHGe1Kiw==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/api/1.13.0/9fd4fad6b4ceaa042d952d1133a96486e9cf0bd4}
+  '@lunaticwithaduck/api@2.5.0':
+    resolution: {integrity: sha512-djTS2UHbewkpmRKY2t4isSf8S9RvgzQnxLZri4Ionet+gTuzHVmobukTl86jbWRk0vJi3E/V8ANDVnG6UrDZtw==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/api/2.5.0/9fda8e4077f21fd86b99687dab7fb2fde92b7d4b}
     peerDependencies:
       react: '>=18'
 
-  '@lunaticwithaduck/feature-flags@1.3.0':
-    resolution: {integrity: sha512-iYuXgyaXi74BQYNPI/D/3PVPu/vppsqK0wdsk5eEZ9ywsmhS4ywCVEPmL4bwcmSBWzLbBBHoIMq+mU1dbXYapA==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/feature-flags/1.3.0/ee1c832fae1320517e8aff9ec18f92b5f8e65c70}
+  '@lunaticwithaduck/feature-flags@3.2.0':
+    resolution: {integrity: sha512-G1V76zWsqA5rsOz1UrRb1j4Ctpc6CeRRtqZKVnOEzIQkAUYpJQLR6uQfjVTCznutLWnK980ViEGdozTh0RBMcg==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/feature-flags/3.2.0/36d4ab0528895e86068ead7bb4627cee9e5fefbe}
 
-  '@lunaticwithaduck/i18n@3.0.0':
-    resolution: {integrity: sha512-h1p9HtRkF5K69SCSNTWeZV7iR1T+0Ffiw8cKNbyvHN2y0j9rsk6u801vi1ziC3/0HfC1O+zfRZpYszq3W9EOug==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/i18n/3.0.0/31b16e02a0da740d07fcf5d61692ce6d44925206}
+  '@lunaticwithaduck/i18n@3.5.0':
+    resolution: {integrity: sha512-N1IuNLvDjsCIZJWxtrwdh8lCXRGl0XnnP5lzpHez2lie8P6fqoqn1WTFlKKWKirpNaMGtqDGT7RkxHNpSad50Q==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/i18n/3.5.0/899047ae93e8190bdea3bb3d3b0aa19b4cc73d94}
     hasBin: true
     peerDependencies:
       next: '>=15'
       next-intl: '>=4'
       react: '>=19'
 
-  '@lunaticwithaduck/schemas@1.24.0':
-    resolution: {integrity: sha512-hxw6dM5ACkKQWiQdtLr4ctHWmyqKntBXXjZ8osITxIhjg/U94SK/rzmP/SQTtziR9l2ryqYQGtgHVWoT3qXQQQ==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/schemas/1.24.0/be8d597983defec79c04aa8ed3a4623a2f6127be}
-
-  '@lunaticwithaduck/schemas@3.1.0':
-    resolution: {integrity: sha512-MTsWQNTIHFhyiPu+wF2AstdCcdh1IzYYfNTqDk5CjeqaKnKS1rSTVWqZkTViOcw+kCOzMiiwd5Wu2U7a5hKmQA==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/schemas/3.1.0/2ca2691902e8111a74564a825ffb6025717b69b7}
+  '@lunaticwithaduck/schemas@5.5.0':
+    resolution: {integrity: sha512-B0fFhFbdAjyho8JqtTh4jR/VVqTJLsiXCqp+4RHNY2z1953mTOaMJPwnPUD5Z/bVZIhf39bxMpMKQ1GW8y7b+Q==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/schemas/5.5.0/a5bec2e8e456e6ea4a66434d45d425a619c34272}
 
   '@lunaticwithaduck/types@1.0.0':
     resolution: {integrity: sha512-0iSRGPLIC8YzcBHFceGPx0eoU8O2ODdXxFru1JKIE+oD4eu/GAs8GfBwkFCUQlPJE8juekxSVzSiHVLKXOEitQ==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/types/1.0.0/1b8a2b0f081312e1aa085075a726ba6615a545c1}
 
-  '@lunaticwithaduck/webui@2.0.10':
-    resolution: {integrity: sha512-mA+Axc6X8JiXNenpeClFrkvEljXfLI3HJUx8vmEc0tZYp7bMy7fKnqNEUeu2vXZ4aycLARBWNskW6fQ0KFbdtA==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/webui/2.0.10/99cb5b331617deba556b2aa594368db13963c1d8}
+  '@lunaticwithaduck/webui@2.3.1':
+    resolution: {integrity: sha512-uztxuVM9jsIMn5WRjAdpjEuWYmnwf7aNJtcFr1KUnFgp2NtlR+jvoKccCmd3ZD4MV1sHhOemxB4TkpgPBpI/Ow==, tarball: https://npm.pkg.github.com/download/@lunaticwithaduck/webui/2.3.1/15a99b05c90104eb57ad0ca0b28e661eded197ba}
     peerDependencies:
       next: '>=15'
       next-intl: '>=4'
@@ -845,6 +842,14 @@ packages:
     resolution: {integrity: sha512-O71yZIbAh/PxDMNGns37GHBIfrVkEVyn+AXyIa5dOTfb4/xNvRWV+Vv/NMbNCtODB/pO7vLlF2OTmMVLhmr7Ag==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@preact/signals-core@1.14.2':
+    resolution: {integrity: sha512-RZHdBj9ZF4n40Rp4jS052EHHjBWf96P9oNdXPfhQTovCuWY9iQn3Gq+gOTJSgBO9A/JBuPfMOWsSX/lIU9Pc/A==}
+
+  '@preact/signals@2.9.1':
+    resolution: {integrity: sha512-xVqN8mJjbSN5IB/8Ubmd9NN+Ew6zJswoRxrjZbH3YsgkMshFeO6d8zxEFpHRTq9GJZx7cnPs2CnCpFqtGXGNsw==}
+    peerDependencies:
+      preact: '>= 10.25.0 || >=11.0.0-0'
 
   '@radix-ui/number@1.1.1':
     resolution: {integrity: sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g==}
@@ -1484,6 +1489,35 @@ packages:
     resolution: {integrity: sha512-QVTUovf40zgTqlFVrKA1uXMVvU2QWEFWfAH8Wdc48IxLvrJMQVMBRjuQyUpzZCDkakImib9eVazbWlC6ksWtJw==}
     cpu: [x64]
     os: [win32]
+
+  '@schedule-x/calendar-controls@4.6.0':
+    resolution: {integrity: sha512-+VVmJ4AhZkAqTsz/U6L6mftuohBXSdJ10/HFWoMrO5coaoj0K5MExCdcG7UkFK3ZmoPz03koO0RnqRt5FKyXsg==}
+
+  '@schedule-x/calendar@4.6.0':
+    resolution: {integrity: sha512-8Rf5bUf0DVphJB2BaudtG4IHkw21wgMJiiuk5o+7SIOq6YH4hkVJo+Kk12pWSfp2KTZ9mnnUuLV+szBVhiEPlg==}
+    peerDependencies:
+      '@preact/signals': ^2.0.2
+      preact: ^10.19.2
+      temporal-polyfill: 0.3.0
+
+  '@schedule-x/drag-and-drop@3.7.3':
+    resolution: {integrity: sha512-nHwZKzdIKWNTdT5BEXy4vLlHOmOH3C3M744QUIU0EOXPAFZQR1bBTviGs2NhmvaLiGstnVx2/TZtdhocy60hgg==}
+
+  '@schedule-x/events-service@4.6.0':
+    resolution: {integrity: sha512-czUSPdanESNYgckCxId3weoL3omSG6FKuJMYMefCyzx/NFBxJM83b6PKQQ+pJeRnPuyax+KNKFc/DQFCC05YLA==}
+
+  '@schedule-x/react@4.1.0':
+    resolution: {integrity: sha512-l2hn1kdTModk4Lbt+nEr/VAcuNMA+w+hAAtgz8VLOj5UeieM7PWoK+cDapzPHCjUKisCSPd8QZfAX966Ma82kQ==}
+    peerDependencies:
+      '@schedule-x/calendar': ^3.1.0 || ^4.0.0
+      react: ^16.7.0 || ^17 || ^18 || ^19
+      react-dom: ^16.7.0 || ^17 || ^18 || ^19
+
+  '@schedule-x/resize@3.7.3':
+    resolution: {integrity: sha512-rdzsBx6Dw7d7jwYb8IQzphTwxAofegn1caVaWEdv9WTj8RkLzDILgpM2Oe6KHtpgjMcUWs6aKBaPirJh0T9VZg==}
+
+  '@schedule-x/theme-default@4.6.0':
+    resolution: {integrity: sha512-SM3bcvROJeG7ScH14lBIHZSTOBTR8h+oTswbpx1gpscddUfQfAnu7cFW4OJJI+ii+Si1IdTd4T3+rrnKd4HDDg==}
 
   '@schummar/icu-type-parser@1.21.5':
     resolution: {integrity: sha512-bXHSaW5jRTmke9Vd0h5P7BtWZG9Znqb8gSDxZnxaGSJnGwPLDPfS+3g0BKzeWqzgZPsIVZkM7m2tbo18cm5HBw==}
@@ -2345,6 +2379,9 @@ packages:
     resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
     engines: {node: ^10 || ^12 || >=14}
 
+  preact@10.29.2:
+    resolution: {integrity: sha512-7tNmwg/7mzzAoB/8kSg6Hl37JraAZw3Z3A0JSY7VXlZwo82Xn0G7wKbNNs2qoF4ZEEsQGTwDAroNdqKs1ofJxQ==}
+
   pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -2512,6 +2549,12 @@ packages:
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
+
+  temporal-polyfill@0.3.2:
+    resolution: {integrity: sha512-TzHthD/heRK947GNiSu3Y5gSPpeUDH34+LESnfsq8bqpFhsB79HFBX8+Z834IVX68P3EUyRPZK5bL/1fh437Eg==}
+
+  temporal-spec@0.3.1:
+    resolution: {integrity: sha512-B4TUhezh9knfSIMwt7RVggApDRJZo73uZdj8AacL2mZ8RP5KtLianh2MXxL06GN9ESYiIsiuoLQhgVfwe55Yhw==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -3140,9 +3183,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lunaticwithaduck/api@1.13.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)':
+  '@lunaticwithaduck/api@2.5.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1)':
     dependencies:
-      '@lunaticwithaduck/schemas': 3.1.0
+      '@lunaticwithaduck/schemas': 5.5.0
       '@lunaticwithaduck/types': 1.0.0
       '@reduxjs/toolkit': 2.12.0(react-redux@9.3.0(@types/react@19.2.15)(react@19.2.6)(redux@5.0.1))(react@19.2.6)
       axios: 1.16.1
@@ -3155,28 +3198,24 @@ snapshots:
       - redux
       - supports-color
 
-  '@lunaticwithaduck/feature-flags@1.3.0': {}
+  '@lunaticwithaduck/feature-flags@3.2.0': {}
 
-  '@lunaticwithaduck/i18n@3.0.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
+  '@lunaticwithaduck/i18n@3.5.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@lunaticwithaduck/types': 1.0.0
       next: 16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       next-intl: 4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3)
       react: 19.2.6
 
-  '@lunaticwithaduck/schemas@1.24.0':
-    dependencies:
-      zod: 3.25.76
-
-  '@lunaticwithaduck/schemas@3.1.0':
+  '@lunaticwithaduck/schemas@5.5.0':
     dependencies:
       zod: 3.25.76
 
   '@lunaticwithaduck/types@1.0.0': {}
 
-  '@lunaticwithaduck/webui@2.0.10(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@lunaticwithaduck/webui@2.3.1(@preact/signals@2.9.1(preact@10.29.2))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(preact@10.29.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@lunaticwithaduck/i18n': 3.0.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
+      '@lunaticwithaduck/i18n': 3.5.0(next-intl@4.12.0(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(next@16.2.6(@babel/core@7.29.0)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-avatar': 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-checkbox': 1.3.3(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -3190,6 +3229,13 @@ snapshots:
       '@radix-ui/react-tabs': 1.1.13(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-toast': 1.2.15(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-tooltip': 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@schedule-x/calendar': 4.6.0(@preact/signals@2.9.1(preact@10.29.2))(preact@10.29.2)(temporal-polyfill@0.3.2)
+      '@schedule-x/calendar-controls': 4.6.0
+      '@schedule-x/drag-and-drop': 3.7.3
+      '@schedule-x/events-service': 4.6.0
+      '@schedule-x/react': 4.1.0(@schedule-x/calendar@4.6.0(@preact/signals@2.9.1(preact@10.29.2))(preact@10.29.2)(temporal-polyfill@0.3.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@schedule-x/resize': 3.7.3
+      '@schedule-x/theme-default': 4.6.0
       class-variance-authority: 0.7.1
       clsx: 2.1.1
       lucide-react: 0.468.0(react@19.2.6)
@@ -3199,10 +3245,13 @@ snapshots:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
       tailwind-merge: 2.6.1
+      temporal-polyfill: 0.3.2
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
+      - '@preact/signals'
       - '@types/react'
       - '@types/react-dom'
+      - preact
 
   '@next/env@16.2.6': {}
 
@@ -3293,6 +3342,13 @@ snapshots:
   '@playwright/test@1.60.0':
     dependencies:
       playwright: 1.60.0
+
+  '@preact/signals-core@1.14.2': {}
+
+  '@preact/signals@2.9.1(preact@10.29.2)':
+    dependencies:
+      '@preact/signals-core': 1.14.2
+      preact: 10.29.2
 
   '@radix-ui/number@1.1.1': {}
 
@@ -3887,6 +3943,28 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.60.4':
     optional: true
+
+  '@schedule-x/calendar-controls@4.6.0': {}
+
+  '@schedule-x/calendar@4.6.0(@preact/signals@2.9.1(preact@10.29.2))(preact@10.29.2)(temporal-polyfill@0.3.2)':
+    dependencies:
+      '@preact/signals': 2.9.1(preact@10.29.2)
+      preact: 10.29.2
+      temporal-polyfill: 0.3.2
+
+  '@schedule-x/drag-and-drop@3.7.3': {}
+
+  '@schedule-x/events-service@4.6.0': {}
+
+  '@schedule-x/react@4.1.0(@schedule-x/calendar@4.6.0(@preact/signals@2.9.1(preact@10.29.2))(preact@10.29.2)(temporal-polyfill@0.3.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+    dependencies:
+      '@schedule-x/calendar': 4.6.0(@preact/signals@2.9.1(preact@10.29.2))(preact@10.29.2)(temporal-polyfill@0.3.2)
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+
+  '@schedule-x/resize@3.7.3': {}
+
+  '@schedule-x/theme-default@4.6.0': {}
 
   '@schummar/icu-type-parser@1.21.5': {}
 
@@ -4672,6 +4750,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
+  preact@10.29.2: {}
+
   pretty-format@27.5.1:
     dependencies:
       ansi-regex: 5.0.1
@@ -4852,6 +4932,12 @@ snapshots:
   tailwindcss@4.3.0: {}
 
   tapable@2.3.3: {}
+
+  temporal-polyfill@0.3.2:
+    dependencies:
+      temporal-spec: 0.3.1
+
+  temporal-spec@0.3.1: {}
 
   tinybench@2.9.0: {}
 
