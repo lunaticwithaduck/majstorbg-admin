@@ -1,0 +1,1417 @@
+[
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hgf0eus",
+    "value": "JOB DETAIL"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1jsgz7m",
+    "value": "{rating} ★ ({reviews} reviews · {jobs} jobs)"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1g22pvu",
+    "value": "QUICK ACTIONS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hcrf8ry",
+    "value": "Message craftsman"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hcri2ar",
+    "value": "Share listing"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1q80vze",
+    "value": "AGREEMENT"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1fjwzwe",
+    "value": "No craftsman yet."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h14l46lo",
+    "value": "Waiting for offers from verified craftsmen."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h6i8nv0",
+    "value": "Resolution"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hwvsy21",
+    "value": "MEDIATOR DECISION"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h167fkuh",
+    "value": "Escrow funds are frozen immediately. No funds move while a case is open."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hxw760p",
+    "value": "Choose the issue type"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hh8fblv",
+    "value": "Continue to evidence"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h6l7ui",
+    "value": "Raise an issue"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1kz9oct",
+    "value": "STEP 1 OF 3"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h11zrown",
+    "value": "Escrow funds freeze immediately while we look into it. Majstor reviews every case within 24 business hours."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h7ehv93",
+    "value": "Evidence"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h173h4qo",
+    "value": "STEP 2 / 3"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hpb8fsg",
+    "value": "{count, plural, one {1 offer} other {# offers}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1613agm",
+    "value": "No offers"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hdplhg9",
+    "value": "New offer {time}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1lq2kck",
+    "value": "Cancelled {time}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1xp33iu",
+    "value": "Posted {time}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h14fa3xv",
+    "value": "Repost"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h6bohuv",
+    "value": "Your projects."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hakfv2",
+    "value": "{label} — {count, plural, one {1 project} other {# projects}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h8259n1",
+    "value": "Account"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hnlwttq",
+    "value": "Edit address"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h64dcma",
+    "value": "Address jobs"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hr8yj4k",
+    "value": "New address"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1p02",
+    "value": "PDF"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h4w8gv6",
+    "value": "Total billed"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hmwx17j",
+    "value": "This year"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h4dhpt4",
+    "value": "Invoices."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hej5ukd",
+    "value": "Receipts for completed jobs, newest first."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h8j9892",
+    "value": "Saved cards are used when you accept an offer. The primary card is charged by default."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1hr978t",
+    "value": "Reviews you've left for craftsmen after a job wraps up."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h18s5zpr",
+    "value": "Location access"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1kxaemn",
+    "value": "typing…"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h17f5ceo",
+    "value": "CLIENT · PUBLIC PROFILE"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h10nz7x2",
+    "value": "from {count} craftsmen"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1v14ork",
+    "value": "Hires for: {category} ×{count}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h3ivt66",
+    "value": "Avg offer"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1ugza8u",
+    "value": "Responds"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h11dv04l",
+    "value": "Open listings"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h16kee85",
+    "value": "OPEN LISTINGS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1feyuz8",
+    "value": "Escrow deposit on every job"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hjoj0ta",
+    "value": "Identity & payment verified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h12ibwyf",
+    "value": "OFFERS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1z0zohb",
+    "value": "FOR REVIEW"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1w5s7dd",
+    "value": "{count, plural, one {1 completed job awaits your approval.} other {# completed jobs await your approval.}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h14fdt2w",
+    "value": "Review"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1akdsfr",
+    "value": "RECEIVING OFFERS · {count}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h18poizc",
+    "value": "Active →"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hqdh5eh",
+    "value": "Budget {amount} · {area}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1axc9ku",
+    "value": "No offers yet"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1zuxen",
+    "value": "ONGOING PROJECTS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hr2dofd",
+    "value": "{name} sent you an offer"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h17dtw3a",
+    "value": "{title} was marked complete"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hm83p0c",
+    "value": "Awaiting your approval"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hq1lwrr",
+    "value": "Got a new task?"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1c9btej",
+    "value": "Post it and start receiving offers."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1s61mu4",
+    "value": "NEEDS YOU"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hdssl0w",
+    "value": "{count, plural, one {1 new offer} other {# new offers}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hj5qccg",
+    "value": "from {amount}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1wo0ib3",
+    "value": "Leave a review · {count, plural, one {1 completed job} other {# completed jobs}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1ifpc",
+    "value": "Rate"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1g9cfta",
+    "value": "{count, plural, one {1 job completed} other {# jobs completed}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1qd8eds",
+    "value": "e.g. Ivan Petrov"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h77sxi2",
+    "value": "Continue into app"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hw4rbyo",
+    "value": "By site"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1oqzijc",
+    "value": "Send to client"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hhvk5g1",
+    "value": "Couldn't send the invoice. Try again."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h12wxxqr",
+    "value": "PAY TO"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h17j98",
+    "value": "BANK"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h9sj7fx",
+    "value": "Payment is due by the date shown above. Please quote invoice {ref} on your transfer."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h15vopt3",
+    "value": "Bank details available on request."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h12mpp6c",
+    "value": "{count, plural, =0 {No invoices} one {1 invoice} other {# invoices}}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h45cdxc",
+    "value": "3 months"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hjl3r4t",
+    "value": "6 months"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1771ebg",
+    "value": "The client sees this entry and gets notified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1e93n4q",
+    "value": "{client} will see the entry and get notified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h12vlav",
+    "value": "Cover"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1pske15",
+    "value": "Drag to reorder · first is the cover"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hvdt8rd",
+    "value": "Retry upload"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hnmyltb",
+    "value": "Publish"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hga52jm",
+    "value": "The client sees this expense and gets notified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1jhdcv1",
+    "value": "AMOUNT (€)"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hq4o2fn",
+    "value": "Couldn't add the expense. Please try again."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hebmcd7",
+    "value": "Accept a job from the marketplace and it shows up here — active first, then your history."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hdtjngb",
+    "value": "Couldn't load your projects."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hk1we7d",
+    "value": "Awaiting confirmation"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hwapbus",
+    "value": "Jobs you’re working on now, plus the completed work clients have rated."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hdtx4vz",
+    "value": "Filter saved"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h5ac8d",
+    "value": "Mark all seen"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1hq8r9c",
+    "value": "Filter saved — it’ll reopen with these chips next time."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.he1oq1a",
+    "value": "No income in this period."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h14sj53q",
+    "value": "Last month"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1eoieza",
+    "value": "Last 90 days"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.htuhouk",
+    "value": "All time"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1oct8fa",
+    "value": "COMPLETED WORK"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h45o4ti",
+    "value": "Delivered jobs · {amount} total — send an invoice to get paid"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hku4j31",
+    "value": "Remove project"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1xab3m4",
+    "value": "Remove this project?"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1imkpo9",
+    "value": "Couldn't remove the project. Try again."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hgrbl4u",
+    "value": "No skills or pricing yet."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1rmnr8w",
+    "value": "Add your skills"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h17mjc4o",
+    "value": "PORTFOLIO · {count}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h17js0s6",
+    "value": "Which marketplace listings this skill should surface."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1jcyj",
+    "value": "Soon"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1bj78",
+    "value": "HIRE"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h116ajgq",
+    "value": "Available today"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1kyobx2",
+    "value": "Not accepting work right now"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hgf0yer",
+    "value": "Usually responds in ~{hours}h"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1t96fmv",
+    "value": "Hire for a task"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h3pfjl0",
+    "value": "This is what clients tap to reach you."
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1nvurwh",
+    "value": "View all reviews"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h13njnt3",
+    "value": "Selected **{count}** of {max}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hqf958g",
+    "value": "{city} · {years} yrs experience"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.he65jqx",
+    "value": "· documents verified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hyo7n37",
+    "value": "Repeat clients"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hp05vwe",
+    "value": "Free from"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1vjf2hw",
+    "value": "Documents & skills verified"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hw3nz59",
+    "value": "AVAILABLE NEXT DAYS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h15f1smi",
+    "value": "Thread"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1c7du",
+    "value": "Hide"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h2zajuc",
+    "value": "COMMENTS"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hgijac3",
+    "value": "**Job accepted** · {date}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h19wb9u",
+    "value": "Photo"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1d8lxb8",
+    "value": "New listing"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hai73wn",
+    "value": "{name} · {time}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h9xrgkl",
+    "value": "{rating}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1cnh7n1",
+    "value": "{category} · {when}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h16u2tq9",
+    "value": "“{body}”"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hbkohm",
+    "value": "{workerName} · ★{rating}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1oolx03",
+    "value": "{title} · {amount}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1vn64pn",
+    "value": "{bankName}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1nw2k64",
+    "value": "{iban}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hhg0pst",
+    "value": " · {date}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1n62fo2",
+    "value": "{category} · {location}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.hghv6zu",
+    "value": "{name} · ★{rating} · {job}"
+  },
+  {
+    "locale": "en",
+    "key": "_pendingI18n.h1eu2dku",
+    "value": "· {time}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hgf0eus",
+    "value": "ДЕТАЙЛИ ЗА ЗАДАЧАТА"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1jsgz7m",
+    "value": "{rating} ★ ({reviews} отзива · {jobs} задачи)"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1g22pvu",
+    "value": "БЪРЗИ ДЕЙСТВИЯ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hcrf8ry",
+    "value": "Съобщение до майстора"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hcri2ar",
+    "value": "Сподели обявата"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1q80vze",
+    "value": "СПОРАЗУМЕНИЕ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1fjwzwe",
+    "value": "Все още няма майстор."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h14l46lo",
+    "value": "В очакване на оферти от проверени майстори."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h6i8nv0",
+    "value": "Решение"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hwvsy21",
+    "value": "РЕШЕНИЕ НА МЕДИАТОРА"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h167fkuh",
+    "value": "Средствата в ескроу се замразяват веднага. Докато случаят е отворен, не се местят средства."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hxw760p",
+    "value": "Изберете типа на проблема"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hh8fblv",
+    "value": "Продължи към доказателствата"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h6l7ui",
+    "value": "Заведи спор"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1kz9oct",
+    "value": "СТЪПКА 1 ОТ 3"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h11zrown",
+    "value": "Средствата в ескроу се замразяват веднага, докато проверяваме. Majstor разглежда всеки случай в рамките на 24 работни часа."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h7ehv93",
+    "value": "Доказателства"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h173h4qo",
+    "value": "СТЪПКА 2 / 3"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hpb8fsg",
+    "value": "{count, plural, one {1 оферта} other {# оферти}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1613agm",
+    "value": "Няма оферти"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hdplhg9",
+    "value": "Нова оферта {time}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1lq2kck",
+    "value": "Отказана {time}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1xp33iu",
+    "value": "Публикувана {time}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h14fa3xv",
+    "value": "Публикувай отново"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h6bohuv",
+    "value": "Вашите проекти."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hakfv2",
+    "value": "{label} — {count, plural, one {1 проект} other {# проекта}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h8259n1",
+    "value": "Акаунт"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hnlwttq",
+    "value": "Редактирай адреса"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h64dcma",
+    "value": "Задачи за адреса"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hr8yj4k",
+    "value": "Нов адрес"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1p02",
+    "value": "PDF"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h4w8gv6",
+    "value": "Общо фактурирано"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hmwx17j",
+    "value": "Тази година"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h4dhpt4",
+    "value": "Фактури."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hej5ukd",
+    "value": "Разписки за завършени задачи, най-новите най-отгоре."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h8j9892",
+    "value": "Запазените карти се използват, когато приемете оферта. По подразбиране се таксува основната карта."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1hr978t",
+    "value": "Отзиви, които сте оставили за майстори след приключване на задача."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h18s5zpr",
+    "value": "Достъп до местоположение"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1kxaemn",
+    "value": "пише…"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h17f5ceo",
+    "value": "КЛИЕНТ · ПУБЛИЧЕН ПРОФИЛ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h10nz7x2",
+    "value": "от {count} майстори"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1v14ork",
+    "value": "Наема за: {category} ×{count}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h3ivt66",
+    "value": "Средна оферта"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1ugza8u",
+    "value": "Отговаря"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h11dv04l",
+    "value": "Отворени обяви"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h16kee85",
+    "value": "ОТВОРЕНИ ОБЯВИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1feyuz8",
+    "value": "Ескроу депозит за всяка задача"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hjoj0ta",
+    "value": "Проверени самоличност и плащане"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h12ibwyf",
+    "value": "ОФЕРТИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1z0zohb",
+    "value": "ЗА ПРЕГЛЕД"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1w5s7dd",
+    "value": "{count, plural, one {1 завършена задача чака вашето одобрение.} other {# завършени задачи чакат вашето одобрение.}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h14fdt2w",
+    "value": "Прегледай"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1akdsfr",
+    "value": "ПОЛУЧАВА ОФЕРТИ · {count}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h18poizc",
+    "value": "Активни →"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hqdh5eh",
+    "value": "Бюджет {amount} · {area}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1axc9ku",
+    "value": "Все още няма оферти"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1zuxen",
+    "value": "ТЕКУЩИ ПРОЕКТИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hr2dofd",
+    "value": "{name} ви изпрати оферта"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h17dtw3a",
+    "value": "{title} е отбелязана като завършена"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hm83p0c",
+    "value": "Чака вашето одобрение"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hq1lwrr",
+    "value": "Имате нова задача?"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1c9btej",
+    "value": "Публикувайте я и започнете да получавате оферти."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1s61mu4",
+    "value": "ИЗИСКВА ВНИМАНИЕ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hdssl0w",
+    "value": "{count, plural, one {1 нова оферта} other {# нови оферти}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hj5qccg",
+    "value": "от {amount}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1wo0ib3",
+    "value": "Оставете отзив · {count, plural, one {1 завършена задача} other {# завършени задачи}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1ifpc",
+    "value": "Оцени"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1g9cfta",
+    "value": "{count, plural, one {1 завършена задача} other {# завършени задачи}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1qd8eds",
+    "value": "напр. Иван Петров"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h77sxi2",
+    "value": "Продължи към приложението"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hw4rbyo",
+    "value": "По обект"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1oqzijc",
+    "value": "Изпрати на клиента"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hhvk5g1",
+    "value": "Фактурата не можа да бъде изпратена. Опитайте отново."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h12wxxqr",
+    "value": "ПЛАЩАНЕ КЪМ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h17j98",
+    "value": "БАНКА"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h9sj7fx",
+    "value": "Плащането е дължимо до посочената по-горе дата. Моля, посочете фактура {ref} при превода."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h15vopt3",
+    "value": "Банкови детайли при поискване."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h12mpp6c",
+    "value": "{count, plural, =0 {Няма фактури} one {1 фактура} other {# фактури}}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h45cdxc",
+    "value": "3 месеца"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hjl3r4t",
+    "value": "6 месеца"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1771ebg",
+    "value": "Клиентът вижда този запис и получава известие"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1e93n4q",
+    "value": "{client} ще види записа и ще получи известие"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h12vlav",
+    "value": "Корица"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1pske15",
+    "value": "Влачете за подреждане · първата е корицата"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hvdt8rd",
+    "value": "Качи отново"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hnmyltb",
+    "value": "Публикувай"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hga52jm",
+    "value": "Клиентът вижда този разход и получава известие"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1jhdcv1",
+    "value": "СУМА (€)"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hq4o2fn",
+    "value": "Разходът не можа да бъде добавен. Моля, опитайте отново."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hebmcd7",
+    "value": "Приемете задача от пазара и тя ще се появи тук — първо активните, после историята ви."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hdtjngb",
+    "value": "Проектите ви не можаха да се заредят."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hk1we7d",
+    "value": "Чака потвърждение"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hwapbus",
+    "value": "Задачите, по които работите сега, плюс завършената работа, оценена от клиентите."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hdtx4vz",
+    "value": "Филтърът е запазен"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h5ac8d",
+    "value": "Отбележи всички като видени"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1hq8r9c",
+    "value": "Филтърът е запазен — следващия път ще се отвори с тези етикети."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.he1oq1a",
+    "value": "Няма приходи за този период."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h14sj53q",
+    "value": "Миналия месец"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1eoieza",
+    "value": "Последните 90 дни"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.htuhouk",
+    "value": "За цялото време"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1oct8fa",
+    "value": "ЗАВЪРШЕНА РАБОТА"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h45o4ti",
+    "value": "Предадени задачи · общо {amount} — изпратете фактура, за да получите плащане"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hku4j31",
+    "value": "Премахни проекта"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1xab3m4",
+    "value": "Да премахна ли този проект?"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1imkpo9",
+    "value": "Проектът не можа да бъде премахнат. Опитайте отново."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hgrbl4u",
+    "value": "Все още няма умения или цени."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1rmnr8w",
+    "value": "Добавете уменията си"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h17mjc4o",
+    "value": "ПОРТФОЛИО · {count}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h17js0s6",
+    "value": "В кои обяви от пазара да се показва това умение."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1jcyj",
+    "value": "Скоро"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1bj78",
+    "value": "НАЕМИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h116ajgq",
+    "value": "Свободен днес"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1kyobx2",
+    "value": "В момента не приема работа"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hgf0yer",
+    "value": "Обикновено отговаря за ~{hours}ч"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1t96fmv",
+    "value": "Наеми за задача"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h3pfjl0",
+    "value": "Това натискат клиентите, за да се свържат с вас."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1nvurwh",
+    "value": "Виж всички отзиви"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h13njnt3",
+    "value": "Избрани **{count}** от {max}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hqf958g",
+    "value": "{city} · {years} г. опит"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.he65jqx",
+    "value": "· документи проверени"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hyo7n37",
+    "value": "Повторни клиенти"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hp05vwe",
+    "value": "Свободен от"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1vjf2hw",
+    "value": "Проверени документи и умения"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hw3nz59",
+    "value": "СВОБОДЕН В СЛЕДВАЩИТЕ ДНИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h15f1smi",
+    "value": "Разговор"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1c7du",
+    "value": "Скрий"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h2zajuc",
+    "value": "КОМЕНТАРИ"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.hgijac3",
+    "value": "**Задачата е приета** · {date}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h19wb9u",
+    "value": "Снимка"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.h1d8lxb8",
+    "value": "Нова обява"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k004",
+    "value": "Избран е друг майстор"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k008",
+    "value": "Свържи се с майстора"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k013",
+    "value": "{count, plural, =0 {няма записи} one {1 запис} other {# записа}} · €{amount}"
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k058",
+    "value": "Този майстор оттегли офертата си."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k074",
+    "value": "Вече избрахте този майстор за тази задача."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k076",
+    "value": "Вече избрахте майстор за тази задача."
+  },
+  {
+    "locale": "bg",
+    "key": "_pendingI18n.k082",
+    "value": "Все още няма оферти — вашата оферта задава тона. Бюджет: €{amount}."
+  },
+  {
+    "locale": "bg",
+    "key": "notifications.kindEscrowReleased",
+    "value": "ЕСКРОУ"
+  },
+  {
+    "locale": "bg",
+    "key": "settings.paymentHistory.kindEscrowFunded",
+    "value": "ЕСКРОУ"
+  },
+  {
+    "locale": "bg",
+    "key": "workerJobDetail.desktop.escrowTitle",
+    "value": "Ескроу"
+  },
+  {
+    "locale": "bg",
+    "key": "workerJobDetail.desktop.stageEscrow",
+    "value": "Ескроу"
+  }
+]

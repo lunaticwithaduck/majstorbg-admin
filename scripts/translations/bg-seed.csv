@@ -1,0 +1,284 @@
+locale,key,value
+en,_pendingI18n.hgf0eus,JOB DETAIL
+en,_pendingI18n.h1jsgz7m,{rating} ★ ({reviews} reviews · {jobs} jobs)
+en,_pendingI18n.h1g22pvu,QUICK ACTIONS
+en,_pendingI18n.hcrf8ry,Message craftsman
+en,_pendingI18n.hcri2ar,Share listing
+en,_pendingI18n.h1q80vze,AGREEMENT
+en,_pendingI18n.h1fjwzwe,No craftsman yet.
+en,_pendingI18n.h14l46lo,Waiting for offers from verified craftsmen.
+en,_pendingI18n.h6i8nv0,Resolution
+en,_pendingI18n.hwvsy21,MEDIATOR DECISION
+en,_pendingI18n.h167fkuh,Escrow funds are frozen immediately. No funds move while a case is open.
+en,_pendingI18n.hxw760p,Choose the issue type
+en,_pendingI18n.hh8fblv,Continue to evidence
+en,_pendingI18n.h6l7ui,Raise an issue
+en,_pendingI18n.h1kz9oct,STEP 1 OF 3
+en,_pendingI18n.h11zrown,Escrow funds freeze immediately while we look into it. Majstor reviews every case within 24 business hours.
+en,_pendingI18n.h7ehv93,Evidence
+en,_pendingI18n.h173h4qo,STEP 2 / 3
+en,_pendingI18n.hpb8fsg,"{count, plural, one {1 offer} other {# offers}}"
+en,_pendingI18n.h1613agm,No offers
+en,_pendingI18n.hdplhg9,New offer {time}
+en,_pendingI18n.h1lq2kck,Cancelled {time}
+en,_pendingI18n.h1xp33iu,Posted {time}
+en,_pendingI18n.h14fa3xv,Repost
+en,_pendingI18n.h6bohuv,Your projects.
+en,_pendingI18n.hakfv2,"{label} — {count, plural, one {1 project} other {# projects}}"
+en,_pendingI18n.h8259n1,Account
+en,_pendingI18n.hnlwttq,Edit address
+en,_pendingI18n.h64dcma,Address jobs
+en,_pendingI18n.hr8yj4k,New address
+en,_pendingI18n.h1p02,PDF
+en,_pendingI18n.h4w8gv6,Total billed
+en,_pendingI18n.hmwx17j,This year
+en,_pendingI18n.h4dhpt4,Invoices.
+en,_pendingI18n.hej5ukd,"Receipts for completed jobs, newest first."
+en,_pendingI18n.h8j9892,Saved cards are used when you accept an offer. The primary card is charged by default.
+en,_pendingI18n.h1hr978t,Reviews you've left for craftsmen after a job wraps up.
+en,_pendingI18n.h18s5zpr,Location access
+en,_pendingI18n.h1kxaemn,typing…
+en,_pendingI18n.h17f5ceo,CLIENT · PUBLIC PROFILE
+en,_pendingI18n.h10nz7x2,from {count} craftsmen
+en,_pendingI18n.h1v14ork,Hires for: {category} ×{count}
+en,_pendingI18n.h3ivt66,Avg offer
+en,_pendingI18n.h1ugza8u,Responds
+en,_pendingI18n.h11dv04l,Open listings
+en,_pendingI18n.h16kee85,OPEN LISTINGS
+en,_pendingI18n.h1feyuz8,Escrow deposit on every job
+en,_pendingI18n.hjoj0ta,Identity & payment verified
+en,_pendingI18n.h12ibwyf,OFFERS
+en,_pendingI18n.h1z0zohb,FOR REVIEW
+en,_pendingI18n.h1w5s7dd,"{count, plural, one {1 completed job awaits your approval.} other {# completed jobs await your approval.}}"
+en,_pendingI18n.h14fdt2w,Review
+en,_pendingI18n.h1akdsfr,RECEIVING OFFERS · {count}
+en,_pendingI18n.h18poizc,Active →
+en,_pendingI18n.hqdh5eh,Budget {amount} · {area}
+en,_pendingI18n.h1axc9ku,No offers yet
+en,_pendingI18n.h1zuxen,ONGOING PROJECTS
+en,_pendingI18n.hr2dofd,{name} sent you an offer
+en,_pendingI18n.h17dtw3a,{title} was marked complete
+en,_pendingI18n.hm83p0c,Awaiting your approval
+en,_pendingI18n.hq1lwrr,Got a new task?
+en,_pendingI18n.h1c9btej,Post it and start receiving offers.
+en,_pendingI18n.h1s61mu4,NEEDS YOU
+en,_pendingI18n.hdssl0w,"{count, plural, one {1 new offer} other {# new offers}}"
+en,_pendingI18n.hj5qccg,from {amount}
+en,_pendingI18n.h1wo0ib3,"Leave a review · {count, plural, one {1 completed job} other {# completed jobs}}"
+en,_pendingI18n.h1ifpc,Rate
+en,_pendingI18n.h1g9cfta,"{count, plural, one {1 job completed} other {# jobs completed}}"
+en,_pendingI18n.h1qd8eds,e.g. Ivan Petrov
+en,_pendingI18n.h77sxi2,Continue into app
+en,_pendingI18n.hw4rbyo,By site
+en,_pendingI18n.h1oqzijc,Send to client
+en,_pendingI18n.hhvk5g1,Couldn't send the invoice. Try again.
+en,_pendingI18n.h12wxxqr,PAY TO
+en,_pendingI18n.h17j98,BANK
+en,_pendingI18n.h9sj7fx,Payment is due by the date shown above. Please quote invoice {ref} on your transfer.
+en,_pendingI18n.h15vopt3,Bank details available on request.
+en,_pendingI18n.h12mpp6c,"{count, plural, =0 {No invoices} one {1 invoice} other {# invoices}}"
+en,_pendingI18n.h45cdxc,3 months
+en,_pendingI18n.hjl3r4t,6 months
+en,_pendingI18n.h1771ebg,The client sees this entry and gets notified
+en,_pendingI18n.h1e93n4q,{client} will see the entry and get notified
+en,_pendingI18n.h12vlav,Cover
+en,_pendingI18n.h1pske15,Drag to reorder · first is the cover
+en,_pendingI18n.hvdt8rd,Retry upload
+en,_pendingI18n.hnmyltb,Publish
+en,_pendingI18n.hga52jm,The client sees this expense and gets notified
+en,_pendingI18n.h1jhdcv1,AMOUNT (€)
+en,_pendingI18n.hq4o2fn,Couldn't add the expense. Please try again.
+en,_pendingI18n.hebmcd7,"Accept a job from the marketplace and it shows up here — active first, then your history."
+en,_pendingI18n.hdtjngb,Couldn't load your projects.
+en,_pendingI18n.hk1we7d,Awaiting confirmation
+en,_pendingI18n.hwapbus,"Jobs you’re working on now, plus the completed work clients have rated."
+en,_pendingI18n.hdtx4vz,Filter saved
+en,_pendingI18n.h5ac8d,Mark all seen
+en,_pendingI18n.h1hq8r9c,Filter saved — it’ll reopen with these chips next time.
+en,_pendingI18n.he1oq1a,No income in this period.
+en,_pendingI18n.h14sj53q,Last month
+en,_pendingI18n.h1eoieza,Last 90 days
+en,_pendingI18n.htuhouk,All time
+en,_pendingI18n.h1oct8fa,COMPLETED WORK
+en,_pendingI18n.h45o4ti,Delivered jobs · {amount} total — send an invoice to get paid
+en,_pendingI18n.hku4j31,Remove project
+en,_pendingI18n.h1xab3m4,Remove this project?
+en,_pendingI18n.h1imkpo9,Couldn't remove the project. Try again.
+en,_pendingI18n.hgrbl4u,No skills or pricing yet.
+en,_pendingI18n.h1rmnr8w,Add your skills
+en,_pendingI18n.h17mjc4o,PORTFOLIO · {count}
+en,_pendingI18n.h17js0s6,Which marketplace listings this skill should surface.
+en,_pendingI18n.h1jcyj,Soon
+en,_pendingI18n.h1bj78,HIRE
+en,_pendingI18n.h116ajgq,Available today
+en,_pendingI18n.h1kyobx2,Not accepting work right now
+en,_pendingI18n.hgf0yer,Usually responds in ~{hours}h
+en,_pendingI18n.h1t96fmv,Hire for a task
+en,_pendingI18n.h3pfjl0,This is what clients tap to reach you.
+en,_pendingI18n.h1nvurwh,View all reviews
+en,_pendingI18n.h13njnt3,Selected **{count}** of {max}
+en,_pendingI18n.hqf958g,{city} · {years} yrs experience
+en,_pendingI18n.he65jqx,· documents verified
+en,_pendingI18n.hyo7n37,Repeat clients
+en,_pendingI18n.hp05vwe,Free from
+en,_pendingI18n.h1vjf2hw,Documents & skills verified
+en,_pendingI18n.hw3nz59,AVAILABLE NEXT DAYS
+en,_pendingI18n.h15f1smi,Thread
+en,_pendingI18n.h1c7du,Hide
+en,_pendingI18n.h2zajuc,COMMENTS
+en,_pendingI18n.hgijac3,**Job accepted** · {date}
+en,_pendingI18n.h19wb9u,Photo
+en,_pendingI18n.h1d8lxb8,New listing
+en,_pendingI18n.hai73wn,{name} · {time}
+en,_pendingI18n.h9xrgkl,{rating}
+en,_pendingI18n.h1cnh7n1,{category} · {when}
+en,_pendingI18n.h16u2tq9,“{body}”
+en,_pendingI18n.hbkohm,{workerName} · ★{rating}
+en,_pendingI18n.h1oolx03,{title} · {amount}
+en,_pendingI18n.h1vn64pn,{bankName}
+en,_pendingI18n.h1nw2k64,{iban}
+en,_pendingI18n.hhg0pst, · {date}
+en,_pendingI18n.h1n62fo2,{category} · {location}
+en,_pendingI18n.hghv6zu,{name} · ★{rating} · {job}
+en,_pendingI18n.h1eu2dku,· {time}
+bg,_pendingI18n.hgf0eus,ДЕТАЙЛИ ЗА ЗАДАЧАТА
+bg,_pendingI18n.h1jsgz7m,{rating} ★ ({reviews} отзива · {jobs} задачи)
+bg,_pendingI18n.h1g22pvu,БЪРЗИ ДЕЙСТВИЯ
+bg,_pendingI18n.hcrf8ry,Съобщение до майстора
+bg,_pendingI18n.hcri2ar,Сподели обявата
+bg,_pendingI18n.h1q80vze,СПОРАЗУМЕНИЕ
+bg,_pendingI18n.h1fjwzwe,Все още няма майстор.
+bg,_pendingI18n.h14l46lo,В очакване на оферти от проверени майстори.
+bg,_pendingI18n.h6i8nv0,Решение
+bg,_pendingI18n.hwvsy21,РЕШЕНИЕ НА МЕДИАТОРА
+bg,_pendingI18n.h167fkuh,"Средствата в ескроу се замразяват веднага. Докато случаят е отворен, не се местят средства."
+bg,_pendingI18n.hxw760p,Изберете типа на проблема
+bg,_pendingI18n.hh8fblv,Продължи към доказателствата
+bg,_pendingI18n.h6l7ui,Заведи спор
+bg,_pendingI18n.h1kz9oct,СТЪПКА 1 ОТ 3
+bg,_pendingI18n.h11zrown,"Средствата в ескроу се замразяват веднага, докато проверяваме. Majstor разглежда всеки случай в рамките на 24 работни часа."
+bg,_pendingI18n.h7ehv93,Доказателства
+bg,_pendingI18n.h173h4qo,СТЪПКА 2 / 3
+bg,_pendingI18n.hpb8fsg,"{count, plural, one {1 оферта} other {# оферти}}"
+bg,_pendingI18n.h1613agm,Няма оферти
+bg,_pendingI18n.hdplhg9,Нова оферта {time}
+bg,_pendingI18n.h1lq2kck,Отказана {time}
+bg,_pendingI18n.h1xp33iu,Публикувана {time}
+bg,_pendingI18n.h14fa3xv,Публикувай отново
+bg,_pendingI18n.h6bohuv,Вашите проекти.
+bg,_pendingI18n.hakfv2,"{label} — {count, plural, one {1 проект} other {# проекта}}"
+bg,_pendingI18n.h8259n1,Акаунт
+bg,_pendingI18n.hnlwttq,Редактирай адреса
+bg,_pendingI18n.h64dcma,Задачи за адреса
+bg,_pendingI18n.hr8yj4k,Нов адрес
+bg,_pendingI18n.h1p02,PDF
+bg,_pendingI18n.h4w8gv6,Общо фактурирано
+bg,_pendingI18n.hmwx17j,Тази година
+bg,_pendingI18n.h4dhpt4,Фактури.
+bg,_pendingI18n.hej5ukd,"Разписки за завършени задачи, най-новите най-отгоре."
+bg,_pendingI18n.h8j9892,"Запазените карти се използват, когато приемете оферта. По подразбиране се таксува основната карта."
+bg,_pendingI18n.h1hr978t,"Отзиви, които сте оставили за майстори след приключване на задача."
+bg,_pendingI18n.h18s5zpr,Достъп до местоположение
+bg,_pendingI18n.h1kxaemn,пише…
+bg,_pendingI18n.h17f5ceo,КЛИЕНТ · ПУБЛИЧЕН ПРОФИЛ
+bg,_pendingI18n.h10nz7x2,от {count} майстори
+bg,_pendingI18n.h1v14ork,Наема за: {category} ×{count}
+bg,_pendingI18n.h3ivt66,Средна оферта
+bg,_pendingI18n.h1ugza8u,Отговаря
+bg,_pendingI18n.h11dv04l,Отворени обяви
+bg,_pendingI18n.h16kee85,ОТВОРЕНИ ОБЯВИ
+bg,_pendingI18n.h1feyuz8,Ескроу депозит за всяка задача
+bg,_pendingI18n.hjoj0ta,Проверени самоличност и плащане
+bg,_pendingI18n.h12ibwyf,ОФЕРТИ
+bg,_pendingI18n.h1z0zohb,ЗА ПРЕГЛЕД
+bg,_pendingI18n.h1w5s7dd,"{count, plural, one {1 завършена задача чака вашето одобрение.} other {# завършени задачи чакат вашето одобрение.}}"
+bg,_pendingI18n.h14fdt2w,Прегледай
+bg,_pendingI18n.h1akdsfr,ПОЛУЧАВА ОФЕРТИ · {count}
+bg,_pendingI18n.h18poizc,Активни →
+bg,_pendingI18n.hqdh5eh,Бюджет {amount} · {area}
+bg,_pendingI18n.h1axc9ku,Все още няма оферти
+bg,_pendingI18n.h1zuxen,ТЕКУЩИ ПРОЕКТИ
+bg,_pendingI18n.hr2dofd,{name} ви изпрати оферта
+bg,_pendingI18n.h17dtw3a,{title} е отбелязана като завършена
+bg,_pendingI18n.hm83p0c,Чака вашето одобрение
+bg,_pendingI18n.hq1lwrr,Имате нова задача?
+bg,_pendingI18n.h1c9btej,Публикувайте я и започнете да получавате оферти.
+bg,_pendingI18n.h1s61mu4,ИЗИСКВА ВНИМАНИЕ
+bg,_pendingI18n.hdssl0w,"{count, plural, one {1 нова оферта} other {# нови оферти}}"
+bg,_pendingI18n.hj5qccg,от {amount}
+bg,_pendingI18n.h1wo0ib3,"Оставете отзив · {count, plural, one {1 завършена задача} other {# завършени задачи}}"
+bg,_pendingI18n.h1ifpc,Оцени
+bg,_pendingI18n.h1g9cfta,"{count, plural, one {1 завършена задача} other {# завършени задачи}}"
+bg,_pendingI18n.h1qd8eds,напр. Иван Петров
+bg,_pendingI18n.h77sxi2,Продължи към приложението
+bg,_pendingI18n.hw4rbyo,По обект
+bg,_pendingI18n.h1oqzijc,Изпрати на клиента
+bg,_pendingI18n.hhvk5g1,Фактурата не можа да бъде изпратена. Опитайте отново.
+bg,_pendingI18n.h12wxxqr,ПЛАЩАНЕ КЪМ
+bg,_pendingI18n.h17j98,БАНКА
+bg,_pendingI18n.h9sj7fx,"Плащането е дължимо до посочената по-горе дата. Моля, посочете фактура {ref} при превода."
+bg,_pendingI18n.h15vopt3,Банкови детайли при поискване.
+bg,_pendingI18n.h12mpp6c,"{count, plural, =0 {Няма фактури} one {1 фактура} other {# фактури}}"
+bg,_pendingI18n.h45cdxc,3 месеца
+bg,_pendingI18n.hjl3r4t,6 месеца
+bg,_pendingI18n.h1771ebg,Клиентът вижда този запис и получава известие
+bg,_pendingI18n.h1e93n4q,{client} ще види записа и ще получи известие
+bg,_pendingI18n.h12vlav,Корица
+bg,_pendingI18n.h1pske15,Влачете за подреждане · първата е корицата
+bg,_pendingI18n.hvdt8rd,Качи отново
+bg,_pendingI18n.hnmyltb,Публикувай
+bg,_pendingI18n.hga52jm,Клиентът вижда този разход и получава известие
+bg,_pendingI18n.h1jhdcv1,СУМА (€)
+bg,_pendingI18n.hq4o2fn,"Разходът не можа да бъде добавен. Моля, опитайте отново."
+bg,_pendingI18n.hebmcd7,"Приемете задача от пазара и тя ще се появи тук — първо активните, после историята ви."
+bg,_pendingI18n.hdtjngb,Проектите ви не можаха да се заредят.
+bg,_pendingI18n.hk1we7d,Чака потвърждение
+bg,_pendingI18n.hwapbus,"Задачите, по които работите сега, плюс завършената работа, оценена от клиентите."
+bg,_pendingI18n.hdtx4vz,Филтърът е запазен
+bg,_pendingI18n.h5ac8d,Отбележи всички като видени
+bg,_pendingI18n.h1hq8r9c,Филтърът е запазен — следващия път ще се отвори с тези етикети.
+bg,_pendingI18n.he1oq1a,Няма приходи за този период.
+bg,_pendingI18n.h14sj53q,Миналия месец
+bg,_pendingI18n.h1eoieza,Последните 90 дни
+bg,_pendingI18n.htuhouk,За цялото време
+bg,_pendingI18n.h1oct8fa,ЗАВЪРШЕНА РАБОТА
+bg,_pendingI18n.h45o4ti,"Предадени задачи · общо {amount} — изпратете фактура, за да получите плащане"
+bg,_pendingI18n.hku4j31,Премахни проекта
+bg,_pendingI18n.h1xab3m4,Да премахна ли този проект?
+bg,_pendingI18n.h1imkpo9,Проектът не можа да бъде премахнат. Опитайте отново.
+bg,_pendingI18n.hgrbl4u,Все още няма умения или цени.
+bg,_pendingI18n.h1rmnr8w,Добавете уменията си
+bg,_pendingI18n.h17mjc4o,ПОРТФОЛИО · {count}
+bg,_pendingI18n.h17js0s6,В кои обяви от пазара да се показва това умение.
+bg,_pendingI18n.h1jcyj,Скоро
+bg,_pendingI18n.h1bj78,НАЕМИ
+bg,_pendingI18n.h116ajgq,Свободен днес
+bg,_pendingI18n.h1kyobx2,В момента не приема работа
+bg,_pendingI18n.hgf0yer,Обикновено отговаря за ~{hours}ч
+bg,_pendingI18n.h1t96fmv,Наеми за задача
+bg,_pendingI18n.h3pfjl0,"Това натискат клиентите, за да се свържат с вас."
+bg,_pendingI18n.h1nvurwh,Виж всички отзиви
+bg,_pendingI18n.h13njnt3,Избрани **{count}** от {max}
+bg,_pendingI18n.hqf958g,{city} · {years} г. опит
+bg,_pendingI18n.he65jqx,· документи проверени
+bg,_pendingI18n.hyo7n37,Повторни клиенти
+bg,_pendingI18n.hp05vwe,Свободен от
+bg,_pendingI18n.h1vjf2hw,Проверени документи и умения
+bg,_pendingI18n.hw3nz59,СВОБОДЕН В СЛЕДВАЩИТЕ ДНИ
+bg,_pendingI18n.h15f1smi,Разговор
+bg,_pendingI18n.h1c7du,Скрий
+bg,_pendingI18n.h2zajuc,КОМЕНТАРИ
+bg,_pendingI18n.hgijac3,**Задачата е приета** · {date}
+bg,_pendingI18n.h19wb9u,Снимка
+bg,_pendingI18n.h1d8lxb8,Нова обява
+bg,_pendingI18n.k004,Избран е друг майстор
+bg,_pendingI18n.k008,Свържи се с майстора
+bg,_pendingI18n.k013,"{count, plural, =0 {няма записи} one {1 запис} other {# записа}} · €{amount}"
+bg,_pendingI18n.k058,Този майстор оттегли офертата си.
+bg,_pendingI18n.k074,Вече избрахте този майстор за тази задача.
+bg,_pendingI18n.k076,Вече избрахте майстор за тази задача.
+bg,_pendingI18n.k082,Все още няма оферти — вашата оферта задава тона. Бюджет: €{amount}.
+bg,notifications.kindEscrowReleased,ЕСКРОУ
+bg,settings.paymentHistory.kindEscrowFunded,ЕСКРОУ
+bg,workerJobDetail.desktop.escrowTitle,Ескроу
+bg,workerJobDetail.desktop.stageEscrow,Ескроу
