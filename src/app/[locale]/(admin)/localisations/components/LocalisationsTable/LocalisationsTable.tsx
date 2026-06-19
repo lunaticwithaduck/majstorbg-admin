@@ -19,6 +19,7 @@ import {
   type LocaleFilter,
 } from './config/constants';
 import styles from './LocalisationsTable.styles';
+import { parseTranslationsImport } from './utils/parseTranslationsImport.utils';
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-GB', {
@@ -171,33 +172,44 @@ export default function LocalisationsTable() {
     URL.revokeObjectURL(url);
   }, [localeFilter]);
 
-  const handleImportFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    e.target.value = '';
-    setImportStatus('loading');
-    setImportMessage('');
-    try {
-      const text = await file.text();
-      const flat = JSON.parse(text) as Record<string, string>;
-      const items = Object.entries(flat).map(([key, value]) => ({
-        locale: localeFilter,
-        key,
-        value,
-      }));
-      const BATCH = 500;
-      let total = 0;
-      for (let i = 0; i < items.length; i += BATCH) {
-        const res = await bulkUpsert({ items: items.slice(i, i + BATCH) }).unwrap();
-        total += res.count;
+  const handleImportFile = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      e.target.value = '';
+      setImportStatus('loading');
+      setImportMessage('');
+      try {
+        const text = await file.text();
+        const { items, error } = parseTranslationsImport(file.name, text, localeFilter);
+        if (error) {
+          setImportStatus('error');
+          setImportMessage(
+            error.code === 'csvHeader'
+              ? LABELS.importErrorCsvHeader
+              : error.code === 'noKeys'
+                ? LABELS.importErrorNoKeys
+                : error.code === 'badLocale'
+                  ? LABELS.importErrorBadLocale(error.locale ?? '')
+                  : LABELS.importErrorParse,
+          );
+          return;
+        }
+        const BATCH = 500;
+        let total = 0;
+        for (let i = 0; i < items.length; i += BATCH) {
+          const res = await bulkUpsert({ items: items.slice(i, i + BATCH) }).unwrap();
+          total += res.count;
+        }
+        setImportStatus('success');
+        setImportMessage(LABELS.importSuccess(total));
+      } catch {
+        setImportStatus('error');
+        setImportMessage(LABELS.importError);
       }
-      setImportStatus('success');
-      setImportMessage(LABELS.importSuccess(total));
-    } catch {
-      setImportStatus('error');
-      setImportMessage(LABELS.importError);
-    }
-  }, [bulkUpsert, localeFilter]);
+    },
+    [bulkUpsert, localeFilter],
+  );
 
   const queryArgs = useMemo(
     () => ({
@@ -283,7 +295,7 @@ export default function LocalisationsTable() {
       <input
         ref={importInputRef}
         type="file"
-        accept="application/json,.json"
+        accept="application/json,.json,text/csv,.csv"
         className="hidden"
         onChange={handleImportFile}
       />
