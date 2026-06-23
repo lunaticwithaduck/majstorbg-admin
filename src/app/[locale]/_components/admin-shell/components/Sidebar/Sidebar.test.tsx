@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { createElement, type ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -33,22 +33,34 @@ vi.mock('@lunaticwithaduck/i18n/runtime/navigation', () => ({
 import Sidebar from './Sidebar';
 
 describe('Sidebar', () => {
-  it('renders the User management module with the Report link', () => {
+  it('auto-expands the active module and marks its link as current', () => {
     pathnameRef.current = '/en/users/report';
     render(<Sidebar />);
     expect(screen.getByText(/User management/)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Report/ })).toBeInTheDocument();
-  });
-
-  it('marks the Report link as current when pathname matches', () => {
-    pathnameRef.current = '/en/users/report';
-    render(<Sidebar />);
     expect(screen.getByRole('link', { name: /Report/ })).toHaveAttribute('aria-current', 'page');
   });
 
-  it('marks the Report link as current when pathname is a child like /en/users/abc123', () => {
+  it('marks the Report link as not current when pathname is a child like /en/users/abc123', () => {
     pathnameRef.current = '/en/users/abc123';
     render(<Sidebar />);
-    expect(screen.getByRole('link', { name: /Report/ })).not.toHaveAttribute('aria-current');
+    expect(screen.queryByRole('link', { name: /Report/ })).not.toBeInTheDocument();
+  });
+
+  it('hides a non-active module links until its header is clicked', () => {
+    pathnameRef.current = '/en/users/report';
+    render(<Sidebar />);
+    expect(screen.queryByRole('link', { name: /Feature flags/ })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Configuration/ }));
+    expect(screen.getByRole('link', { name: /Feature flags/ })).toBeInTheDocument();
+  });
+
+  it('renders the Reports module links when a report route is active', () => {
+    pathnameRef.current = '/en/reports/jobs-funnel';
+    render(<Sidebar />);
+    expect(screen.getByRole('link', { name: /Jobs funnel/ })).toHaveAttribute(
+      'aria-current',
+      'page',
+    );
+    expect(screen.getByRole('link', { name: /User directory/ })).toBeInTheDocument();
   });
 });

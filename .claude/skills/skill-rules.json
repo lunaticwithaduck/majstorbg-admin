@@ -1,4 +1,48 @@
 {
+  "admin-reports": {
+    "keywords": [
+      "admin report",
+      "admin-reports",
+      "reports module",
+      "report screen",
+      "analytics report",
+      "StatTile",
+      "StatTileRow",
+      "ReportChart",
+      "ReportFilters",
+      "PeriodSelect",
+      "SortHeader",
+      "DataTable report",
+      "useReportQuery",
+      "report-query.utils",
+      "export.utils",
+      "toCsv",
+      "CSV export",
+      "aggregation endpoint",
+      "createZodDto",
+      "groupBy",
+      "in-memory aggregation",
+      "supply and demand",
+      "worker supply",
+      "coverage ratio",
+      "ratings report",
+      "reviews aggregate",
+      "dispute rate",
+      "donut chart",
+      "half-open date window",
+      "AllowAnonymous",
+      "local-stopgap endpoint",
+      "NavModule"
+    ],
+    "filePatterns": [
+      "src/app/[locale]/(admin)/reports/**",
+      "src/api/admin-*-endpoints.ts",
+      "src/ui/components/composed/{PeriodSelect,ReportFilters,ReportChart,StatTile,StatTileRow,SortHeader}/**",
+      "src/lib/report-query.utils.ts",
+      "src/lib/export.utils.ts"
+    ],
+    "toolTriggers": ["Write", "Edit"]
+  },
   "skill-creator": {
     "keywords": [
       "create skill",
