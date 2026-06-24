@@ -2,8 +2,11 @@ import { PERIOD_PRESETS } from '../config/constants';
 
 export type PeriodPreset = (typeof PERIOD_PRESETS)[number];
 
-// ISO `yyyy-mm-dd` (date-only) — the BE report endpoints accept inclusive
-// `from`/`to` day bounds, so we never carry a time component here.
+// ISO `yyyy-mm-dd` (date-only) — this is the UI/URL representation that the
+// native `<input type="date">` custom range speaks. The BE report endpoints
+// actually validate `from`/`to` as ISO *datetimes*, so the axios request
+// interceptor (see `src/api/axios.ts`) promotes these to inclusive day bounds
+// (`from`→start-of-day, `to`→end-of-day, UTC) at the request boundary.
 export type PeriodRange = { from: string; to: string };
 
 // Local-date ISO (yyyy-mm-dd) WITHOUT timezone shifting. `toISOString()` would
