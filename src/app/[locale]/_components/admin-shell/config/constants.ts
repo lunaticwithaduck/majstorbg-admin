@@ -1,14 +1,30 @@
 import {
+  Activity,
+  BarChart3,
   Briefcase,
   Code,
   FileText,
   Flag,
+  Gavel,
   Hammer,
+  Images,
   Languages,
+  Layers,
   type LucideIcon,
+  MapPin,
+  Receipt,
   Settings,
+  Split,
+  Star,
   Tag,
+  Tags,
+  Timer,
+  TrendingUp,
+  Trophy,
+  UserCheck,
+  UserPlus,
   Users,
+  XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
 
@@ -18,10 +34,16 @@ export type NavLink = {
   icon?: LucideIcon;
 };
 
+export type NavGroup = {
+  label: string;
+  links: readonly NavLink[];
+};
+
 export type NavModule = {
   label: string;
   icon: LucideIcon;
-  links: readonly NavLink[];
+  links?: readonly NavLink[];
+  groups?: readonly NavGroup[];
 };
 
 export const NAV_MODULES: readonly NavModule[] = [
@@ -50,6 +72,56 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
       { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
+    ],
+  },
+  {
+    label: 'Reports',
+    icon: BarChart3,
+    groups: [
+      {
+        label: 'Overview',
+        links: [
+          { href: routes.reports.users, label: 'User directory', icon: Users },
+          { href: routes.reports.jobsFunnel, label: 'Jobs funnel', icon: TrendingUp },
+          { href: routes.reports.disputes, label: 'Open disputes', icon: Gavel },
+          { href: routes.reports.invoices, label: 'Invoices & AR aging', icon: Receipt },
+        ],
+      },
+      {
+        label: 'Marketplace',
+        links: [
+          { href: routes.reports.liquidity, label: 'Liquidity (bids per job)', icon: Layers },
+          { href: routes.reports.matchSpeed, label: 'Match speed', icon: Timer },
+          { href: routes.reports.cancellations, label: 'Cancellations & stuck jobs', icon: XCircle },
+          { href: routes.reports.bidOutcomes, label: 'Bid outcomes', icon: Split },
+        ],
+      },
+      {
+        label: 'Supply',
+        links: [
+          { href: routes.reports.workerSupply, label: 'Worker supply & coverage', icon: MapPin },
+          { href: routes.reports.workerLeaderboard, label: 'Worker leaderboard', icon: Trophy },
+          { href: routes.reports.profileCompleteness, label: 'Profile completeness', icon: UserCheck },
+        ],
+      },
+      {
+        label: 'Growth',
+        links: [
+          { href: routes.reports.registrations, label: 'User registrations', icon: UserPlus },
+          { href: routes.reports.engagement, label: 'Engagement & presence', icon: Activity },
+        ],
+      },
+      {
+        label: 'Quality',
+        links: [{ href: routes.reports.ratings, label: 'Ratings & quality', icon: Star }],
+      },
+      {
+        label: 'Catalogue',
+        links: [
+          { href: routes.reports.categories, label: 'Category performance', icon: Tags },
+          { href: routes.reports.portfolio, label: 'Portfolio & content coverage', icon: Images },
+        ],
+      },
     ],
   },
 ];
