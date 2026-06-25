@@ -1,8 +1,11 @@
 import axios from 'axios';
-import { env } from '@/config/env';
+import { serverApiBase } from '@/config/env';
 
 export const axiosClient = axios.create({
-  baseURL: env.NEXT_PUBLIC_API_URL,
+  // Browser → same-origin `/api/be` proxy (first-party session cookie + survives
+  // the staging access gate). Server-side → the backend directly via
+  // `serverApiBase` (private-network address bypasses the gate).
+  baseURL: typeof window === 'undefined' ? serverApiBase : '/api/be',
   withCredentials: true,
   timeout: 15_000,
 });

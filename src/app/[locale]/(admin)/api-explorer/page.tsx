@@ -1,7 +1,6 @@
 import { Link, Text } from '@lunaticwithaduck/webui';
 import { ExternalLink } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
-import { env } from '@/config/env';
 import { API_EXPLORER_LABELS, SWAGGER_PATH } from './config/constants';
 import styles from './page.styles';
 
@@ -15,7 +14,12 @@ export default async function ApiExplorerPage({ params }: ApiExplorerPageProps) 
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const swaggerUrl = `${env.NEXT_PUBLIC_API_URL}${SWAGGER_PATH}`;
+  // Route through the same-origin BFF proxy so the iframe + "open in new tab"
+  // link stay behind the dev-login gate (a cross-origin call to the gated
+  // backend host would be blocked). If swagger-ui's own asset URLs are absolute
+  // (`/api/docs/*`) they may 404 behind the `/api/be` prefix — verify in the
+  // browser; the open-in-new-tab link is the escape hatch.
+  const swaggerUrl = `/api/be${SWAGGER_PATH}`;
 
   return (
     <div className={styles.root}>
@@ -41,11 +45,7 @@ export default async function ApiExplorerPage({ params }: ApiExplorerPageProps) 
         </div>
       </header>
       <div className={styles.frameCard}>
-        <iframe
-          src={swaggerUrl}
-          title={API_EXPLORER_LABELS.iframeTitle}
-          className={styles.frame}
-        />
+        <iframe src={swaggerUrl} title={API_EXPLORER_LABELS.iframeTitle} className={styles.frame} />
       </div>
     </div>
   );

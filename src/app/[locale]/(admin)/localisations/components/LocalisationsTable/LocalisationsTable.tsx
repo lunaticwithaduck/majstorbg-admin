@@ -15,8 +15,8 @@ import {
   LABELS,
   LOCALE_FILTER_LABELS,
   LOCALE_FILTER_VALUES,
-  PAGE_SIZE,
   type LocaleFilter,
+  PAGE_SIZE,
 } from './config/constants';
 import styles from './LocalisationsTable.styles';
 import { parseTranslationsImport } from './utils/parseTranslationsImport.utils';
@@ -91,12 +91,7 @@ function InlineValueCell({ row }: InlineCellProps) {
           >
             {LABELS.save}
           </button>
-          <button
-            type="button"
-            className={styles.cancelBtn}
-            onClick={cancel}
-            disabled={isLoading}
-          >
+          <button type="button" className={styles.cancelBtn} onClick={cancel} disabled={isLoading}>
             {LABELS.cancel}
           </button>
         </div>
@@ -111,12 +106,7 @@ function InlineValueCell({ row }: InlineCellProps) {
       ) : (
         <span className={styles.valueCell}>{row.value}</span>
       )}
-      <button
-        type="button"
-        className={styles.editIconBtn}
-        onClick={startEdit}
-        title={LABELS.edit}
-      >
+      <button type="button" className={styles.editIconBtn} onClick={startEdit} title={LABELS.edit}>
         ✎
       </button>
     </div>
@@ -140,7 +130,9 @@ export default function LocalisationsTable() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [localeFilter, setLocaleFilter] = useState<LocaleFilter>('en');
-  const [importStatus, setImportStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [importStatus, setImportStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
+    'idle',
+  );
   const [importMessage, setImportMessage] = useState('');
   const importInputRef = useRef<HTMLInputElement>(null);
 
@@ -159,8 +151,9 @@ export default function LocalisationsTable() {
   }, []);
 
   const handleExport = useCallback(async () => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? '';
-    const res = await fetch(`${apiUrl}/translations/${localeFilter}`);
+    // Same-origin BFF proxy → backend /translations/:locale. The absolute
+    // backend URL would be cross-origin and blocked by the staging gate.
+    const res = await fetch(`/api/be/translations/${localeFilter}`);
     const nested = (await res.json()) as Record<string, unknown>;
     const flat = flattenNested(nested);
     const blob = new Blob([JSON.stringify(flat, null, 2)], { type: 'application/json' });
@@ -236,11 +229,7 @@ export default function LocalisationsTable() {
           </Text>
         ),
         cell: ({ row }) => (
-          <span
-            className={
-              row.original.locale === 'en' ? styles.badgeEn : styles.badgeBg
-            }
-          >
+          <span className={row.original.locale === 'en' ? styles.badgeEn : styles.badgeBg}>
             <Text as="span" size="xs" weight="medium">
               {row.original.locale === 'en' ? LABELS.localeBadgeEn : LABELS.localeBadgeBg}
             </Text>
@@ -329,11 +318,7 @@ export default function LocalisationsTable() {
         }
         actions={
           <div className="flex gap-2">
-            <button
-              type="button"
-              className={styles.actionBtn}
-              onClick={handleExport}
-            >
+            <button type="button" className={styles.actionBtn} onClick={handleExport}>
               {LABELS.exportJson}
             </button>
             <button
