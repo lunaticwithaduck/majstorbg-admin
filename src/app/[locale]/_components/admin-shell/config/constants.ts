@@ -1,8 +1,10 @@
 import {
   Activity,
+  Banknote,
   BarChart3,
   Briefcase,
   Code,
+  CreditCard,
   FileText,
   Flag,
   Gavel,
@@ -12,6 +14,7 @@ import {
   Layers,
   type LucideIcon,
   MapPin,
+  Percent,
   Receipt,
   Settings,
   Split,
@@ -24,6 +27,7 @@ import {
   UserCheck,
   UserPlus,
   Users,
+  Wallet,
   XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -75,6 +79,15 @@ export const NAV_MODULES: readonly NavModule[] = [
     ],
   },
   {
+    label: 'Finance',
+    icon: Wallet,
+    links: [
+      { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
+      { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.settings, label: 'Commission', icon: Percent },
+    ],
+  },
+  {
     label: 'Reports',
     icon: BarChart3,
     groups: [
@@ -92,7 +105,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.liquidity, label: 'Liquidity (bids per job)', icon: Layers },
           { href: routes.reports.matchSpeed, label: 'Match speed', icon: Timer },
-          { href: routes.reports.cancellations, label: 'Cancellations & stuck jobs', icon: XCircle },
+          {
+            href: routes.reports.cancellations,
+            label: 'Cancellations & stuck jobs',
+            icon: XCircle,
+          },
           { href: routes.reports.bidOutcomes, label: 'Bid outcomes', icon: Split },
         ],
       },
@@ -101,7 +118,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.workerSupply, label: 'Worker supply & coverage', icon: MapPin },
           { href: routes.reports.workerLeaderboard, label: 'Worker leaderboard', icon: Trophy },
-          { href: routes.reports.profileCompleteness, label: 'Profile completeness', icon: UserCheck },
+          {
+            href: routes.reports.profileCompleteness,
+            label: 'Profile completeness',
+            icon: UserCheck,
+          },
         ],
       },
       {

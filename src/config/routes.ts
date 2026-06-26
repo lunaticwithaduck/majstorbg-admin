@@ -17,6 +17,12 @@ export const routes = {
   localisations: '/localisations',
   skillCategories: '/skill-categories',
   jobCategories: '/job-categories',
+  finance: {
+    transactions: '/finance/transactions',
+    transactionDetail: (txId: string) => `/finance/transactions/${encodeURIComponent(txId)}`,
+    payouts: '/finance/payouts',
+    settings: '/finance/settings',
+  },
   reports: {
     users: '/reports/users',
     jobsFunnel: '/reports/jobs-funnel',
