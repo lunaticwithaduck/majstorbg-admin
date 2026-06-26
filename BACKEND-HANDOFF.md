@@ -133,14 +133,13 @@ below** (a crafted request bypasses the form entirely).
 - **`POST /admin/disputes/:id/resolve`** — unchanged contract, but note the FE now also invalidates the finance ledger cache (`Escrow/TXN_LIST`) on resolve, so the escrow release/refund this triggers must be committed before the mutation returns (the Transactions ledger refetches immediately).
 - **Moderation `suspend`/`ban`** — unchanged contract; the FE busts the target user's moderation-status cache so the BE must have actually flipped `users/:id/moderation` by the time the action response returns.
 
-## Deferred FE cleanups (no BE impact)
+## FE duplication cleanups — DONE (no BE impact)
 
-Two below-the-bar duplication cleanups from the review were deferred to a
-post-merge follow-up (doing them now would force a rebase of the whole stacked-PR
-set). FE-only, listed so they aren't lost:
+Both review cleanups were completed and the **whole stack was rebased** onto the
+shared code in the foundation branch (#10). FE-only — no contract change:
 
-- Consolidate `amountToCents` / `isAmountWithinCap` — `ResolutionPanel/utils/resolution.utils.ts` (disputes) duplicates `src/lib/money.utils.ts` (finance). After both land on `main`, keep one and import it.
-- Extract a shared `ReasonModal` primitive — the reason-capture confirm modal is hand-rolled ~10× (DisputeActions, PayoutActions, RefundModal, ReleaseEscrowModal, ModerationActionModal, ReviewActions, DataRequestActions, InvoiceActions).
+- `amountToCents` / `isAmountWithinCap` now live once in `src/lib/money.utils.ts` (foundation). The byte-identical `ResolutionPanel/utils/resolution.utils.ts` copy is deleted; disputes' `ResolutionPanel` and finance both import the shared one.
+- A shared `ReasonModal` primitive (`src/ui/components/composed/ReasonModal/`, foundation) replaces the hand-rolled reason-capture modal across PayoutActions, RefundModal, ReleaseEscrowModal, InvoiceActions, DisputeActions (reopen), ModerationActionModal, ReviewActions, DataRequestActions (erase). Extra fields (amount, radios, retained-records note) ride a `children` slot. Intentionally NOT migrated: the two form modals (PromotionFormModal, PromoteUserModal), the identity-verify confirm (no reason field), and ResolutionPanel (inline form + confirm-summary, not a reason modal).
 
 ## Notes for the BE
 
