@@ -3,44 +3,48 @@ import { configureStore, type Middleware } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 // TODO: replace with @lunaticwithaduck/api adminActivityEndpoints once BE lands.
 import { adminActivityEndpoints } from './admin-activity-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminBidOutcomesEndpoints once BE lands.
+import { adminBidOutcomesEndpoints } from './admin-bid-outcomes-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminCancellationEndpoints once BE lands.
+import { adminCancellationEndpoints } from './admin-cancellation-endpoints';
+import { adminJobCategoryEndpoints, adminSkillCategoryEndpoints } from './admin-category-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminCategoryPerfEndpoints once BE lands.
+import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
+import { adminDisputesEndpoints } from './admin-disputes-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
+import { adminEngagementEndpoints } from './admin-engagement-endpoints';
+import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminGrowthEndpoints once BE lands.
+import { adminGrowthEndpoints } from './admin-growth-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminGrowthMutations once BE lands.
+import { adminGrowthMutations } from './admin-growth-mutations';
+// TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
+import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
 import { adminJobEndpoints } from './admin-job-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminJobMutations once BE lands.
 import { adminJobMutations } from './admin-job-mutations';
-// TODO: replace with @lunaticwithaduck/api adminUserMutations once BE lands.
-import { adminUserMutations } from './admin-user-mutations';
-import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
-import { adminTranslationEndpoints } from './admin-translation-endpoints';
-import { adminSkillCategoryEndpoints, adminJobCategoryEndpoints } from './admin-category-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminReportsEndpoints once BE lands.
-import { adminReportsEndpoints } from './admin-reports-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
-import { adminDisputesEndpoints } from './admin-disputes-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
-import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminLiquidityEndpoints once BE lands.
 import { adminLiquidityEndpoints } from './admin-liquidity-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminMatchSpeedEndpoints once BE lands.
 import { adminMatchSpeedEndpoints } from './admin-match-speed-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminCancellationEndpoints once BE lands.
-import { adminCancellationEndpoints } from './admin-cancellation-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminBidOutcomesEndpoints once BE lands.
-import { adminBidOutcomesEndpoints } from './admin-bid-outcomes-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminWorkerSupplyEndpoints once BE lands.
-import { adminWorkerSupplyEndpoints } from './admin-worker-supply-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminWorkerLeaderboardEndpoints once BE lands.
-import { adminWorkerLeaderboardEndpoints } from './admin-worker-leaderboard-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminProfileCompletenessEndpoints once BE lands.
-import { adminProfileCompletenessEndpoints } from './admin-profile-completeness-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminRegistrationsEndpoints once BE lands.
-import { adminRegistrationsEndpoints } from './admin-registrations-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
-import { adminEngagementEndpoints } from './admin-engagement-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminRatingsEndpoints once BE lands.
-import { adminRatingsEndpoints } from './admin-ratings-endpoints';
-// TODO: replace with @lunaticwithaduck/api adminCategoryPerfEndpoints once BE lands.
-import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminPortfolioEndpoints once BE lands.
 import { adminPortfolioEndpoints } from './admin-portfolio-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminProfileCompletenessEndpoints once BE lands.
+import { adminProfileCompletenessEndpoints } from './admin-profile-completeness-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminRatingsEndpoints once BE lands.
+import { adminRatingsEndpoints } from './admin-ratings-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminRegistrationsEndpoints once BE lands.
+import { adminRegistrationsEndpoints } from './admin-registrations-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminReportsEndpoints once BE lands.
+import { adminReportsEndpoints } from './admin-reports-endpoints';
+import { adminTranslationEndpoints } from './admin-translation-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminUserMutations once BE lands.
+import { adminUserMutations } from './admin-user-mutations';
+// TODO: replace with @lunaticwithaduck/api adminWorkerLeaderboardEndpoints once BE lands.
+import { adminWorkerLeaderboardEndpoints } from './admin-worker-leaderboard-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminWorkerSupplyEndpoints once BE lands.
+import { adminWorkerSupplyEndpoints } from './admin-worker-supply-endpoints';
 import { axiosClient } from './axios';
 
 export const api = createAppApi({ client: axiosClient });
@@ -71,6 +75,8 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminGrowthEndpoints(build),
+    ...adminGrowthMutations(build),
   }),
 });
 
@@ -138,4 +144,9 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListCampaignsQuery,
+  useListTemplatesQuery,
+  useCreateCampaignMutation,
+  useSendCampaignMutation,
+  useUpsertTemplateMutation,
 } = appApi;
