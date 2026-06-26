@@ -17,6 +17,8 @@ import type { InvoiceRow } from '@/api/admin-invoices-endpoints';
 import { useCreditNoteMutation, useIssueInvoiceMutation } from '@/api/store';
 import { can } from '@/auth/can';
 import { PERMISSIONS } from '@/auth/permissions';
+import { formatEur } from '@/lib/format.utils';
+import { amountToCents, isAmountWithinCap } from '@/lib/money.utils';
 import { INVOICE_ACTION_LABELS } from './config/constants';
 import styles from './InvoiceActions.styles';
 
@@ -32,8 +34,12 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
 
   const canIssue = invoice.status === 'draft';
   const canCredit = invoice.status === 'sent' || invoice.status === 'paid';
-  const amountCents = Math.round(Number.parseFloat(amount.replace(',', '.')) * 100);
-  const canSubmit = Number.isFinite(amountCents) && amountCents > 0 && reason.trim().length > 0;
+  // A credit note can't exceed the invoice total (amount is major units → cents),
+  // mirroring RefundModal's cap against the refundable amount.
+  const invoiceCents = Math.round(invoice.amount * 100);
+  const amountCents = amountToCents(amount);
+  const amountValid = isAmountWithinCap(amountCents, invoiceCents);
+  const canSubmit = amountValid && reason.trim().length > 0;
 
   const handleIssue = async () => {
     setError(null);
@@ -118,11 +124,25 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
               type="number"
               inputMode="decimal"
               min={0}
+              max={invoiceCents / 100}
               step={0.01}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               suffix="EUR"
             />
+            <div className={styles.metaRow}>
+              <Text as="span" size="sm" color="muted">
+                {INVOICE_ACTION_LABELS.maxLabel}
+              </Text>
+              <Text as="span" size="sm">
+                {formatEur(invoiceCents)}
+              </Text>
+            </div>
+            {amount.length > 0 && !amountValid ? (
+              <Text as="span" size="sm" color="destructive">
+                {INVOICE_ACTION_LABELS.invalid}
+              </Text>
+            ) : null}
           </div>
           <Textarea
             label={INVOICE_ACTION_LABELS.reasonLabel}

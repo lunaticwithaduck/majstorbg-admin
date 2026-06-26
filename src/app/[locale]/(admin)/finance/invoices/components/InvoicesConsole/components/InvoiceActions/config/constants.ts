@@ -5,6 +5,8 @@ export const INVOICE_ACTION_LABELS = {
   cnTitle: 'Credit note',
   cnBody: 'Issue a credit note against this invoice. Audited.',
   amountLabel: 'Amount',
+  maxLabel: 'Invoice total',
+  invalid: 'Amount must be more than 0 and at most the invoice total.',
   reasonLabel: 'Reason',
   reasonPlaceholder: 'Reason for the credit note…',
   cnConfirm: 'Issue credit note',

@@ -1,7 +1,8 @@
 const styles = {
   root: 'flex items-center gap-2 flex-wrap',
   modalContent: 'flex flex-col gap-4 w-full max-w-md',
-  amountRow: 'max-w-xs',
+  amountRow: 'flex flex-col gap-1 max-w-xs',
+  metaRow: 'flex items-center gap-2',
   actions: 'flex items-center justify-end gap-2',
 };
 
