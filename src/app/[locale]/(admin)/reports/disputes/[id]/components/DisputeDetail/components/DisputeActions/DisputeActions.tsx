@@ -1,20 +1,13 @@
 'use client';
 
-import {
-  Button,
-  Modal,
-  ModalContent,
-  ModalDescription,
-  ModalTitle,
-  Text,
-  Textarea,
-} from '@lunaticwithaduck/webui';
+import { Button, Text } from '@lunaticwithaduck/webui';
 import { RotateCcw, UserCheck } from 'lucide-react';
 import { useState } from 'react';
 import type { DisputeStatus } from '@/api/admin-disputes-endpoints';
 import { useAssignDisputeMutation, useReopenDisputeMutation } from '@/api/store';
 import { can } from '@/auth/can';
 import { PERMISSIONS } from '@/auth/permissions';
+import ReasonModal from '@/ui/components/composed/ReasonModal/ReasonModal';
 import { ACTIONS_LABELS } from './config/constants';
 import styles from './DisputeActions.styles';
 
@@ -25,10 +18,8 @@ type DisputeActionsProps = {
 
 export default function DisputeActions({ disputeId, status }: DisputeActionsProps) {
   const [assignDispute, { isLoading: isAssigning }] = useAssignDisputeMutation();
-  const [reopenDispute, { isLoading: isReopening }] = useReopenDisputeMutation();
+  const [reopenDispute] = useReopenDisputeMutation();
   const [error, setError] = useState<string | null>(null);
-  const [reopenOpen, setReopenOpen] = useState(false);
-  const [reopenReason, setReopenReason] = useState('');
 
   if (!can(PERMISSIONS.disputes)) return null;
 
@@ -44,34 +35,26 @@ export default function DisputeActions({ disputeId, status }: DisputeActionsProp
     }
   };
 
-  const handleReopen = async () => {
-    setError(null);
-    try {
-      await reopenDispute({ id: disputeId, reason: reopenReason.trim() }).unwrap();
-      setReopenOpen(false);
-      setReopenReason('');
-    } catch {
-      setError(ACTIONS_LABELS.reopenError);
-    }
-  };
-
-  const handleReopenOpenChange = (next: boolean) => {
-    if (!next) setError(null);
-    if (!isReopening) setReopenOpen(next);
-  };
-
   return (
     <div className={styles.root}>
       {isResolved ? (
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          iconLeft={RotateCcw}
-          onClick={() => setReopenOpen(true)}
-        >
-          {ACTIONS_LABELS.reopen}
-        </Button>
+        <ReasonModal
+          trigger={(open) => (
+            <Button type="button" variant="outline" size="sm" iconLeft={RotateCcw} onClick={open}>
+              {ACTIONS_LABELS.reopen}
+            </Button>
+          )}
+          title={ACTIONS_LABELS.reopenTitle}
+          description={ACTIONS_LABELS.reopenBody}
+          reasonLabel={ACTIONS_LABELS.reasonLabel}
+          reasonPlaceholder={ACTIONS_LABELS.reasonPlaceholder}
+          confirmLabel={ACTIONS_LABELS.reopenConfirm}
+          cancelLabel={ACTIONS_LABELS.cancel}
+          errorMessage={ACTIONS_LABELS.reopenError}
+          onConfirm={async (reason) => {
+            await reopenDispute({ id: disputeId, reason }).unwrap();
+          }}
+        />
       ) : (
         <Button
           type="button"
@@ -89,48 +72,6 @@ export default function DisputeActions({ disputeId, status }: DisputeActionsProp
           {error}
         </Text>
       ) : null}
-
-      <Modal open={reopenOpen} onOpenChange={handleReopenOpenChange}>
-        <ModalContent className={styles.modalContent}>
-          <ModalTitle>
-            <Text as="span" size="lg" weight="bold">
-              {ACTIONS_LABELS.reopenTitle}
-            </Text>
-          </ModalTitle>
-          <ModalDescription>
-            <Text as="span" size="sm" color="muted">
-              {ACTIONS_LABELS.reopenBody}
-            </Text>
-          </ModalDescription>
-          <Textarea
-            label={ACTIONS_LABELS.reasonLabel}
-            placeholder={ACTIONS_LABELS.reasonPlaceholder}
-            value={reopenReason}
-            onChange={(e) => setReopenReason(e.target.value)}
-          />
-          <div className={styles.actions}>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => handleReopenOpenChange(false)}
-              disabled={isReopening}
-            >
-              {ACTIONS_LABELS.cancel}
-            </Button>
-            <Button
-              type="button"
-              variant="primary"
-              size="sm"
-              loading={isReopening}
-              disabled={reopenReason.trim().length === 0}
-              onClick={handleReopen}
-            >
-              {ACTIONS_LABELS.reopenConfirm}
-            </Button>
-          </div>
-        </ModalContent>
-      </Modal>
     </div>
   );
 }

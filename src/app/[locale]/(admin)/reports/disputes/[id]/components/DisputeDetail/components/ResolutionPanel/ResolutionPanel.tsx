@@ -22,6 +22,7 @@ import { useResolveDisputeMutation } from '@/api/store';
 import { can } from '@/auth/can';
 import { PERMISSIONS } from '@/auth/permissions';
 import { formatEur } from '@/lib/format.utils';
+import { amountToCents, isAmountWithinCap } from '@/lib/money.utils';
 import {
   OUTCOME_LABELS,
   OUTCOME_OPTIONS,
@@ -29,7 +30,6 @@ import {
   RESOLUTION_LABELS,
 } from './config/constants';
 import styles from './ResolutionPanel.styles';
-import { amountToCents, isAmountWithinCap } from './utils/resolution.utils';
 
 type ResolutionPanelProps = {
   dispute: DisputeDetail;
