@@ -73,7 +73,13 @@ export const adminDisputesMutations = (build: Build) => ({
       method: 'POST',
       data: body,
     }),
-    invalidatesTags: (_res, _err, arg) => disputeTags(arg.id),
+    // A resolve moves escrow money (refund / release, Module 4), so it must also
+    // bust the finance ledger — the mirror of finance.releaseEscrow invalidating
+    // the dispute KPIs. `Escrow/TXN_LIST` is what finance.listTransactions provides.
+    invalidatesTags: (_res, _err, arg) => [
+      ...disputeTags(arg.id),
+      { type: API_TAGS.Escrow, id: 'TXN_LIST' },
+    ],
   }),
 
   // BACKEND TODO: POST /admin/disputes/:id/reopen { reason } — sets status

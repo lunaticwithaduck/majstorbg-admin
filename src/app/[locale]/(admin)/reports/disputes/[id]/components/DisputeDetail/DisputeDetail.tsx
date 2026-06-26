@@ -4,7 +4,7 @@ import { Badge, Button, Link, Spinner, Text } from '@lunaticwithaduck/webui';
 import { ChevronLeft, ExternalLink } from 'lucide-react';
 import { useGetDisputeQuery } from '@/api/store';
 import { routes } from '@/config/routes';
-import { formatEur } from '@/lib/format.utils';
+import { formatDateTime, formatEur } from '@/lib/format.utils';
 import DisputeActions from './components/DisputeActions/DisputeActions';
 import DisputeEvidence from './components/DisputeEvidence/DisputeEvidence';
 import DisputeTimeline from './components/DisputeTimeline/DisputeTimeline';
@@ -20,27 +20,11 @@ import {
 } from './config/constants';
 import styles from './DisputeDetail.styles';
 
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-});
-
-function formatDate(iso: string | null | undefined): string {
-  if (!iso) return DETAIL_LABELS.none;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return DETAIL_LABELS.none;
-  return dateFormatter.format(d);
-}
-
-function formatMoney(amount: number, currency: string): string {
-  return new Intl.NumberFormat(undefined, {
-    style: 'currency',
-    currency: currency || 'EUR',
-    maximumFractionDigits: 2,
-  }).format(amount);
+// `escrowAmount` is the legacy major-units field (the disputes list report renders
+// it the same way); the shared `formatEur` takes integer minor units, so scale by
+// 100 to keep one bg-BG money format across the whole screen alongside `*Cents`.
+function formatEscrowAmount(amount: number): string {
+  return formatEur(Math.round(amount * 100));
 }
 
 export default function DisputeDetail({ disputeId }: { disputeId: string }) {
@@ -134,7 +118,7 @@ export default function DisputeDetail({ disputeId }: { disputeId: string }) {
           </div>
           <div className={styles.field}>
             <FieldLabel>{DETAIL_LABELS.amount}</FieldLabel>
-            <FieldValue>{formatMoney(data.escrowAmount, data.currency)}</FieldValue>
+            <FieldValue>{formatEscrowAmount(data.escrowAmount)}</FieldValue>
           </div>
           <div className={styles.field}>
             <FieldLabel>{DETAIL_LABELS.job}</FieldLabel>
@@ -150,7 +134,7 @@ export default function DisputeDetail({ disputeId }: { disputeId: string }) {
           </div>
           <div className={styles.field}>
             <FieldLabel>{DETAIL_LABELS.created}</FieldLabel>
-            <FieldValue>{formatDate(data.createdAt)}</FieldValue>
+            <FieldValue>{formatDateTime(data.createdAt)}</FieldValue>
           </div>
           {data.payment ? (
             <div className={styles.field}>
