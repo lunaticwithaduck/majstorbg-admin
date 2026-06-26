@@ -14,6 +14,7 @@ import {
   MapPin,
   Receipt,
   Settings,
+  ShieldAlert,
   Split,
   Star,
   Tag,
@@ -75,6 +76,11 @@ export const NAV_MODULES: readonly NavModule[] = [
     ],
   },
   {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
     label: 'Reports',
     icon: BarChart3,
     groups: [
@@ -92,7 +98,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.liquidity, label: 'Liquidity (bids per job)', icon: Layers },
           { href: routes.reports.matchSpeed, label: 'Match speed', icon: Timer },
-          { href: routes.reports.cancellations, label: 'Cancellations & stuck jobs', icon: XCircle },
+          {
+            href: routes.reports.cancellations,
+            label: 'Cancellations & stuck jobs',
+            icon: XCircle,
+          },
           { href: routes.reports.bidOutcomes, label: 'Bid outcomes', icon: Split },
         ],
       },
@@ -101,7 +111,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.workerSupply, label: 'Worker supply & coverage', icon: MapPin },
           { href: routes.reports.workerLeaderboard, label: 'Worker leaderboard', icon: Trophy },
-          { href: routes.reports.profileCompleteness, label: 'Profile completeness', icon: UserCheck },
+          {
+            href: routes.reports.profileCompleteness,
+            label: 'Profile completeness',
+            icon: UserCheck,
+          },
         ],
       },
       {
