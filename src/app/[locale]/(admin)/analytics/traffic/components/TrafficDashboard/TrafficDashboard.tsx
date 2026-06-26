@@ -76,6 +76,7 @@ export default function TrafficDashboard() {
   const referrers = data?.referrers ?? [];
   const pages = data?.pages ?? [];
   const devices = data?.devices ?? [];
+  const countries = data?.countries ?? [];
 
   const chartSeries = useMemo(
     () => [
@@ -97,6 +98,13 @@ export default function TrafficDashboard() {
   const deviceData = useMemo(
     () => devices.map((device) => ({ label: device.device, value: device.visitors })),
     [devices],
+  );
+  const countryData = useMemo(
+    () =>
+      countries
+        .slice(0, TOP_N)
+        .map((country) => ({ label: country.country, value: country.visitors })),
+    [countries],
   );
   const topPages = pages.slice(0, TOP_N);
 
@@ -168,7 +176,7 @@ export default function TrafficDashboard() {
         />
       </div>
 
-      <div className={styles.grid2}>
+      <div className={styles.grid3}>
         <div className={styles.card}>
           <Text as="h2" size="lg" weight="semibold" className={styles.cardTitle}>
             {TRAFFIC_LABELS.byReferrer}
@@ -178,6 +186,17 @@ export default function TrafficDashboard() {
             data={referrerData}
             height={CHART_HEIGHT}
             ariaLabel={TRAFFIC_LABELS.byReferrer}
+          />
+        </div>
+        <div className={styles.card}>
+          <Text as="h2" size="lg" weight="semibold" className={styles.cardTitle}>
+            {TRAFFIC_LABELS.byCountry}
+          </Text>
+          <ReportChart
+            kind="bar"
+            data={countryData}
+            height={CHART_HEIGHT}
+            ariaLabel={TRAFFIC_LABELS.byCountry}
           />
         </div>
         <div className={styles.card}>
