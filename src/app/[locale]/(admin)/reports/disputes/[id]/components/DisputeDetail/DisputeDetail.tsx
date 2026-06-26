@@ -4,9 +4,14 @@ import { Badge, Button, Link, Spinner, Text } from '@lunaticwithaduck/webui';
 import { ChevronLeft, ExternalLink } from 'lucide-react';
 import { useGetDisputeQuery } from '@/api/store';
 import { routes } from '@/config/routes';
+import { formatEur } from '@/lib/format.utils';
+import DisputeActions from './components/DisputeActions/DisputeActions';
+import DisputeEvidence from './components/DisputeEvidence/DisputeEvidence';
 import DisputeTimeline from './components/DisputeTimeline/DisputeTimeline';
 import FieldLabel from './components/FieldLabel/FieldLabel';
 import FieldValue from './components/FieldValue/FieldValue';
+import NotesThread from './components/NotesThread/NotesThread';
+import ResolutionPanel from './components/ResolutionPanel/ResolutionPanel';
 import {
   DETAIL_LABELS,
   STATUS_BADGE_VARIANT,
@@ -90,12 +95,15 @@ export default function DisputeDetail({ disputeId }: { disputeId: string }) {
               {STATUS_LABELS[data.status]}
             </Badge>
           </div>
-          <Button asChild variant="outline" size="sm">
-            <Link href={routes.jobs.detail(data.jobId)} variant="inherit">
-              <ExternalLink size={14} />
-              {DETAIL_LABELS.viewJob}
-            </Link>
-          </Button>
+          <div className={styles.headerActions}>
+            <DisputeActions disputeId={disputeId} status={data.status} />
+            <Button asChild variant="outline" size="sm">
+              <Link href={routes.jobs.detail(data.jobId)} variant="inherit">
+                <ExternalLink size={14} />
+                {DETAIL_LABELS.viewJob}
+              </Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -137,10 +145,53 @@ export default function DisputeDetail({ disputeId }: { disputeId: string }) {
             <FieldValue>{data.workerName}</FieldValue>
           </div>
           <div className={styles.field}>
+            <FieldLabel>{DETAIL_LABELS.assignedTo}</FieldLabel>
+            <FieldValue>{data.assignedToName ?? DETAIL_LABELS.unassigned}</FieldValue>
+          </div>
+          <div className={styles.field}>
             <FieldLabel>{DETAIL_LABELS.created}</FieldLabel>
             <FieldValue>{formatDate(data.createdAt)}</FieldValue>
           </div>
+          {data.payment ? (
+            <div className={styles.field}>
+              <FieldLabel>{DETAIL_LABELS.heldEscrow}</FieldLabel>
+              <FieldValue>{formatEur(data.payment.heldCents)}</FieldValue>
+            </div>
+          ) : null}
+          {data.payment?.releasedCents != null ? (
+            <div className={styles.field}>
+              <FieldLabel>{DETAIL_LABELS.released}</FieldLabel>
+              <FieldValue>{formatEur(data.payment.releasedCents)}</FieldValue>
+            </div>
+          ) : null}
+          {data.payment?.refundedCents != null ? (
+            <div className={styles.field}>
+              <FieldLabel>{DETAIL_LABELS.refunded}</FieldLabel>
+              <FieldValue>{formatEur(data.payment.refundedCents)}</FieldValue>
+            </div>
+          ) : null}
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <Text as="h2" size="lg" weight="semibold" className={styles.sectionTitle}>
+          {DETAIL_LABELS.resolutionSection}
+        </Text>
+        <ResolutionPanel dispute={data} />
+      </section>
+
+      <section className={styles.section}>
+        <Text as="h2" size="lg" weight="semibold" className={styles.sectionTitle}>
+          {DETAIL_LABELS.evidenceSection}
+        </Text>
+        <DisputeEvidence photos={data.photos} chat={data.chat} />
+      </section>
+
+      <section className={styles.section}>
+        <Text as="h2" size="lg" weight="semibold" className={styles.sectionTitle}>
+          {DETAIL_LABELS.notesSection}
+        </Text>
+        <NotesThread disputeId={disputeId} notes={data.notes ?? []} />
       </section>
 
       <section className={styles.section}>
