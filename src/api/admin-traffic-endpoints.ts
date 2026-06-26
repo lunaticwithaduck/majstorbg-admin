@@ -13,7 +13,6 @@ export type TrafficPoint = { date: string; visitors: number; pageviews: number }
 export type TrafficReferrer = { referrer: string; visitors: number; pageviews: number };
 export type TrafficPage = { path: string; pageviews: number; uniqueVisitors: number };
 export type TrafficDevice = { device: string; visitors: number };
-export type TrafficCountry = { country: string; visitors: number };
 
 export type TrafficOverview = {
   visitors: number;
@@ -26,7 +25,6 @@ export type TrafficOverview = {
   referrers: TrafficReferrer[];
   pages: TrafficPage[];
   devices: TrafficDevice[];
-  countries: TrafficCountry[];
 };
 
 export type GetTrafficArgs = {
@@ -38,7 +36,7 @@ export type GetTrafficArgs = {
 // TODO(api-tags): add a `Traffic` tag.
 export const adminTrafficEndpoints = (build: Build) => ({
   // BACKEND TODO: GET /admin/analytics/traffic?from=&to= → overview + series +
-  //   per-referrer / per-page / per-device / per-country breakdowns.
+  //   per-referrer / per-page / per-device breakdowns.
   getTrafficOverview: build.query<TrafficOverview, GetTrafficArgs>({
     query: (params) => ({ url: '/admin/analytics/traffic', params }),
     providesTags: [{ type: API_TAGS.WelcomeStats, id: 'TRAFFIC' }],

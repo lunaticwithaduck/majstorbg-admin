@@ -11,7 +11,7 @@ selectable period. Standalone feature (not part of the kure2 ops-layer spec) —
 branched off `main`.
 
 ## Steps
-- [x] `admin-traffic-endpoints.ts` — getTrafficOverview (overview + series + referrers/pages/devices/countries)
+- [x] `admin-traffic-endpoints.ts` — getTrafficOverview (overview + series + referrers/pages/devices)
 - [x] Register in `store.ts`; `routes.ts` `analytics.traffic`; new "Analytics" nav group (Traffic)
 - [x] `/analytics/traffic` — PeriodSelect + 5 StatTiles (visitors / unique / pageviews / bounce / avg duration)
 - [x] Traffic-over-time area chart (visitors + pageviews); By-referrer bar chart; By-device donut; Top-pages list
@@ -22,9 +22,9 @@ branched off `main`.
 - `GET /admin/analytics/traffic?from=&to=` →
   `{ visitors, uniqueVisitors, pageviews, sessions, bounceRatePct, avgDurationSec,
      series:[{date,visitors,pageviews}], referrers:[{referrer,visitors,pageviews}],
-     pages:[{path,pageviews,uniqueVisitors}], devices:[{device,visitors}],
-     countries:[{country,visitors}] }`.
+     pages:[{path,pageviews,uniqueVisitors}], devices:[{device,visitors}] }`.
   Needs a traffic source (e.g. server access logs, a pageview beacon, or Plausible/Umami).
+- By-country was intentionally dropped — not worth standing up GeoIP for one chart.
 
 ## Notes
 - Read-only; reused the `WelcomeStats` API tag (never invalidated). TODO(api-tags): add a `Traffic` tag.

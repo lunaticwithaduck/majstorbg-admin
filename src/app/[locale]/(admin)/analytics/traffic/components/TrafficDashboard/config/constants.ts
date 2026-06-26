@@ -22,7 +22,6 @@ export const TRAFFIC_LABELS = {
   avgDuration: 'Avg. duration',
   overTime: 'Traffic over time',
   byReferrer: 'By referrer',
-  byCountry: 'By country',
   topPages: 'Top pages',
   byDevice: 'By device',
   empty: 'No data for this period.',
