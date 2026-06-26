@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { ADMIN_SHELL_BRAND, NAV_MODULES } from '../../config/constants';
 import { moduleIsActive, stripLocale } from '../../utils/nav.utils';
 import NavModuleSection from '../NavModuleSection/NavModuleSection';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import styles from './Sidebar.styles';
 
 export default function Sidebar() {
@@ -31,6 +32,9 @@ export default function Sidebar() {
           />
         ))}
       </div>
+      <footer className={styles.footer}>
+        <ThemeToggle />
+      </footer>
     </aside>
   );
 }
