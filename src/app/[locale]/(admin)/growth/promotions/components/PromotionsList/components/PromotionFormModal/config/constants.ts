@@ -22,6 +22,7 @@ export const FORM_LABELS = {
   save: 'Save',
   cancel: 'Cancel',
   error: 'Could not save the promotion. Check the values and try again.',
+  percentError: 'A percent discount must be between 0 and 100.',
 } as const;
 
 export const TYPE_OPTIONS: readonly { value: PromotionType; label: string }[] = [

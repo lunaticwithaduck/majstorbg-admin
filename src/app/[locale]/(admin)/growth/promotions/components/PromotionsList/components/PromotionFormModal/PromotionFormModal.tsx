@@ -29,6 +29,22 @@ import {
 } from './config/constants';
 import styles from './PromotionFormModal.styles';
 
+const pad = (n: number) => String(n).padStart(2, '0');
+
+/**
+ * UTC ISO → a `datetime-local` value in the admin's LOCAL wall-clock. Saving
+ * does `new Date(value).toISOString()` (local → UTC), so loading must render the
+ * stored instant in local time too — otherwise each edit re-parses the UTC
+ * wall-clock as local and the validity window drifts by the tz offset on every
+ * save.
+ */
+function toLocalInputValue(iso: string | null | undefined): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export default function PromotionFormModal({ promotion }: { promotion?: Promotion }) {
   const [createPromotion, { isLoading: creating }] = useCreatePromotionMutation();
   const [updatePromotion, { isLoading: updating }] = useUpdatePromotionMutation();
@@ -62,8 +78,8 @@ export default function PromotionFormModal({ promotion }: { promotion?: Promotio
       );
       setMaxRedemptions(promotion.maxRedemptions != null ? String(promotion.maxRedemptions) : '');
       setPerUserLimit(promotion.perUserLimit != null ? String(promotion.perUserLimit) : '');
-      setValidFrom((promotion.validFrom ?? '').slice(0, 16));
-      setValidTo((promotion.validTo ?? '').slice(0, 16));
+      setValidFrom(toLocalInputValue(promotion.validFrom));
+      setValidTo(toLocalInputValue(promotion.validTo));
       setStatus(promotion.status);
     } else {
       setCode('');
@@ -85,11 +101,23 @@ export default function PromotionFormModal({ promotion }: { promotion?: Promotio
     setOpen(next);
   };
 
+  const handleDiscountTypeChange = (next: DiscountType) => {
+    setDiscountType(next);
+    // The value means different units per type (% vs €). Clear it so a fixed
+    // euro amount can't linger and get sent as a raw percent.
+    setValue('');
+    setError(null);
+  };
+
   const handleSave = async () => {
     setError(null);
     const parsedValue = Number.parseFloat(value.replace(',', '.'));
     if (!Number.isFinite(parsedValue) || parsedValue < 0) {
       setError(FORM_LABELS.error);
+      return;
+    }
+    if (discountType === 'percent' && parsedValue > 100) {
+      setError(FORM_LABELS.percentError);
       return;
     }
     const valueNum = discountType === 'fixed' ? Math.round(parsedValue * 100) : parsedValue;
@@ -157,7 +185,7 @@ export default function PromotionFormModal({ promotion }: { promotion?: Promotio
             <Select
               label={FORM_LABELS.discountTypeLabel}
               value={discountType}
-              onValueChange={(next) => setDiscountType(next as DiscountType)}
+              onValueChange={(next) => handleDiscountTypeChange(next as DiscountType)}
             >
               {DISCOUNT_TYPE_OPTIONS.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
