@@ -5,7 +5,7 @@ against. The FE leads the contract: each route below has a wired RTK Query
 endpoint + UI in `majstorbg-admin`, shipping non-functional until the BE
 implements the matching route in `majstorbg-backend`.
 
-- **Source PRs:** `lunaticwithaduck/majstorbg-admin` #10–#20 (foundation + modules 1,3,4,5,6,7,8,9,10) + #19 (traffic).
+- **Source PRs:** `lunaticwithaduck/majstorbg-admin` #10–#20 (foundation + modules 1,3,4,5,6,7,8,9,10) + #19 (traffic). A code-review hardening pass added follow-up commits to #11, #12, #13, #17, #18 — see **Server-side enforcement** below.
 - **Proxy:** the FE calls `/api/be/[...path]` (same-origin BFF) → backend `/admin/*`.
 - **Both clones are local:** `~/majstorbg-admin`, `~/majstorbg-backend`. Grep the FE for `// BACKEND TODO:` to jump to each call site.
 
@@ -119,6 +119,28 @@ session + `admin` role when ready.
 - **Not just an endpoint — needs a data source:** server access logs, a pageview beacon on the consumer site, or a cookieless analytics tool (Plausible/Umami self-hosted, EU-friendly). By-country was intentionally dropped (not worth GeoIP).
 
 ---
+
+## Server-side enforcement (post-review hardening)
+
+A code-review pass hardened the FE-side validation on these endpoints. **FE
+validation is UX, not a security boundary — the BE MUST re-enforce every invariant
+below** (a crafted request bypasses the form entirely).
+
+- **`POST /admin/invoices/:id/credit-note`** — `amountCents` must be `> 0` and **≤ the invoice total**. The FE now caps it; reject an over-credit server-side.
+- **`POST /admin/finance/transactions/:id/refund`** — `amountCents` must be `> 0` and **≤ refundable** (already specced; the FE caps it — keep the BE check).
+- **`PUT /admin/finance/commission`** — `takeRatePct` and every `perCategory[].takeRatePct` must be within **[0, 100]**. The FE no longer coerces a blank category field to `0%`; the BE treats the submitted `perCategory` array as authoritative, so reject out-of-range rates rather than clamping.
+- **`POST /admin/promotions` + `PATCH /admin/promotions/:id`** — for `discountType: 'percent'`, `value` must be **≤ 100**; for `'fixed'`, `value` is **integer cents**. `validFrom`/`validTo` arrive as **UTC ISO-8601** (the FE now round-trips them through local wall-clock correctly — store/compare as UTC).
+- **`POST /admin/disputes/:id/resolve`** — unchanged contract, but note the FE now also invalidates the finance ledger cache (`Escrow/TXN_LIST`) on resolve, so the escrow release/refund this triggers must be committed before the mutation returns (the Transactions ledger refetches immediately).
+- **Moderation `suspend`/`ban`** — unchanged contract; the FE busts the target user's moderation-status cache so the BE must have actually flipped `users/:id/moderation` by the time the action response returns.
+
+## Deferred FE cleanups (no BE impact)
+
+Two below-the-bar duplication cleanups from the review were deferred to a
+post-merge follow-up (doing them now would force a rebase of the whole stacked-PR
+set). FE-only, listed so they aren't lost:
+
+- Consolidate `amountToCents` / `isAmountWithinCap` — `ResolutionPanel/utils/resolution.utils.ts` (disputes) duplicates `src/lib/money.utils.ts` (finance). After both land on `main`, keep one and import it.
+- Extract a shared `ReasonModal` primitive — the reason-capture confirm modal is hand-rolled ~10× (DisputeActions, PayoutActions, RefundModal, ReleaseEscrowModal, ModerationActionModal, ReviewActions, DataRequestActions, InvoiceActions).
 
 ## Notes for the BE
 
