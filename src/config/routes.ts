@@ -19,6 +19,7 @@ export const routes = {
   jobCategories: '/job-categories',
   trust: {
     moderation: '/trust/moderation',
+    reviews: '/trust/reviews',
   },
   reports: {
     users: '/reports/users',
