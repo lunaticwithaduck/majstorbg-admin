@@ -50,6 +50,7 @@ export default function ModerationActionModal({ report }: ModerationActionModalP
         id: report.id,
         action,
         reason: reason.trim(),
+        ...(report.entityType === 'user' ? { targetUserId: report.entityId } : {}),
         ...(durationDays ? { durationDays } : {}),
       }).unwrap();
       setOpen(false);

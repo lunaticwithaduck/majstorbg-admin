@@ -18,6 +18,12 @@ export type ActionReportArgs = {
   reason: string;
   /** Only for `suspend` — days the suspension lasts (omitted = indefinite). */
   durationDays?: number;
+  /**
+   * Client-only hint: the reported user's id (the report's `entityId` when it
+   * targets a user). NOT sent to the BE — it derives the subject from the report
+   * — but lets `suspend`/`ban` bust that user's moderation-status cache.
+   */
+  targetUserId?: string;
 };
 
 export const adminModerationMutations = (build: Build) => ({
@@ -25,15 +31,24 @@ export const adminModerationMutations = (build: Build) => ({
   //   { action, reason, durationDays? } — `suspend`/`ban` also update the user
   //   state; `remove_content` hides the entity. Actor from session. Emit admin-audit.
   actionReport: build.mutation<ModerationReportRow, ActionReportArgs>({
-    query: ({ id, ...body }) => ({
+    // `targetUserId` is a cache-invalidation hint only — strip it from the body.
+    query: ({ id, targetUserId: _targetUserId, ...body }) => ({
       url: `/admin/moderation/reports/${encodeURIComponent(id)}/action`,
       method: 'POST',
       data: body,
     }),
-    // Refresh the whole moderation queue + any user moderation status it touched.
-    invalidatesTags: [
-      { type: API_TAGS.AdminUser, id: 'MODERATION_LIST' },
-      { type: API_TAGS.AdminUser, id: 'LIST' },
-    ],
+    // Refresh the moderation queue, and — when suspend/ban flips the user's
+    // account state — that user's moderation status so the UserDetailPanel badge
+    // (getUserModerationStatus → `moderation-${userId}`) stops showing "Active".
+    invalidatesTags: (_res, _err, arg) => {
+      const tags = [
+        { type: API_TAGS.AdminUser, id: 'MODERATION_LIST' },
+        { type: API_TAGS.AdminUser, id: 'LIST' },
+      ];
+      if (arg.targetUserId && (arg.action === 'suspend' || arg.action === 'ban')) {
+        tags.push({ type: API_TAGS.AdminUser, id: `moderation-${arg.targetUserId}` });
+      }
+      return tags;
+    },
   }),
 });
