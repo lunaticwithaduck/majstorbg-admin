@@ -21,6 +21,7 @@ export const routes = {
     transactions: '/finance/transactions',
     transactionDetail: (txId: string) => `/finance/transactions/${encodeURIComponent(txId)}`,
     payouts: '/finance/payouts',
+    invoices: '/finance/invoices',
     settings: '/finance/settings',
   },
   reports: {

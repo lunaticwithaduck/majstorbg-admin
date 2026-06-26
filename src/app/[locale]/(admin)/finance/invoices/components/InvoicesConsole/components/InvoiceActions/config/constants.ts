@@ -1,0 +1,13 @@
+export const INVOICE_ACTION_LABELS = {
+  issue: 'Issue',
+  download: 'PDF',
+  creditNote: 'Credit note',
+  cnTitle: 'Credit note',
+  cnBody: 'Issue a credit note against this invoice. Audited.',
+  amountLabel: 'Amount',
+  reasonLabel: 'Reason',
+  reasonPlaceholder: 'Reason for the credit note…',
+  cnConfirm: 'Issue credit note',
+  cancel: 'Cancel',
+  error: 'Could not complete the action. Try again.',
+} as const;
