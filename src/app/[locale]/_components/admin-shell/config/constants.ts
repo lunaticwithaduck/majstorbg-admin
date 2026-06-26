@@ -21,6 +21,7 @@ import {
   Star,
   Tag,
   Tags,
+  Ticket,
   Timer,
   TrendingUp,
   Trophy,
@@ -83,6 +84,7 @@ export const NAV_MODULES: readonly NavModule[] = [
     links: [
       { href: routes.growth.campaigns, label: 'Campaigns', icon: Send },
       { href: routes.growth.templates, label: 'Templates', icon: Mail },
+      { href: routes.growth.promotions, label: 'Promotions', icon: Ticket },
     ],
   },
   {

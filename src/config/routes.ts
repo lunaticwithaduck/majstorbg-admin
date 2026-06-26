@@ -20,6 +20,7 @@ export const routes = {
   growth: {
     campaigns: '/growth/campaigns',
     templates: '/growth/templates',
+    promotions: '/growth/promotions',
   },
   reports: {
     users: '/reports/users',
