@@ -11,7 +11,16 @@ type Build = EndpointBuilder<
 >;
 
 export type RefundArgs = { id: string; amountCents: number; reason: string };
-export type ReleaseEscrowArgs = { jobId: string; reason: string };
+export type ReleaseEscrowArgs = {
+  jobId: string;
+  reason: string;
+  /**
+   * Client-only hint: the transaction row's id. NOT sent to the BE (the release
+   * is keyed by jobId) — it lets the per-row `txn-${id}` cache tag bust too, so a
+   * single-transaction view doesn't keep showing the pre-release "held" state.
+   */
+  txnId?: string;
+};
 export type RejectPayoutArgs = { id: string; reason: string };
 export type SetCommissionArgs = {
   takeRatePct: number;
@@ -43,12 +52,16 @@ export const adminFinanceMutations = (build: Build) => ({
   // BACKEND TODO: POST /admin/finance/jobs/:jobId/release { reason } — releases
   //   held escrow to the worker once the job is complete. Emit admin-audit.
   releaseEscrow: build.mutation<{ jobId: string }, ReleaseEscrowArgs>({
-    query: ({ jobId, ...body }) => ({
+    // `txnId` is a cache-invalidation hint only — strip it from the body.
+    query: ({ jobId, txnId: _txnId, ...body }) => ({
       url: `/admin/finance/jobs/${encodeURIComponent(jobId)}/release`,
       method: 'POST',
       data: body,
     }),
-    invalidatesTags: txnAndDisputeTags,
+    invalidatesTags: (_res, _err, arg) =>
+      arg.txnId
+        ? [{ type: API_TAGS.Escrow, id: `txn-${arg.txnId}` }, ...txnAndDisputeTags]
+        : txnAndDisputeTags,
   }),
   // BACKEND TODO: POST /admin/finance/payouts/:id/approve. Emit admin-audit.
   approvePayout: build.mutation<{ id: string }, string>({

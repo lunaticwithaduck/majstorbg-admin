@@ -35,7 +35,7 @@ export default function ReleaseEscrowModal({ transaction }: { transaction: Trans
   const handleConfirm = async () => {
     setError(null);
     try {
-      await releaseEscrow({ jobId, reason: reason.trim() }).unwrap();
+      await releaseEscrow({ jobId, reason: reason.trim(), txnId: transaction.id }).unwrap();
       setOpen(false);
     } catch {
       setError(RELEASE_LABELS.error);

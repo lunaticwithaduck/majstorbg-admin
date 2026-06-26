@@ -70,10 +70,23 @@ export default function CommissionSettings() {
       setError(COMMISSION_LABELS.invalid);
       return;
     }
-    const perCategory = data.perCategory.map((c) => {
-      const parsed = parseRate(rates[c.categoryId] ?? '');
-      return { ...c, takeRatePct: Number.isFinite(parsed) ? parsed : 0 };
-    });
+    // Per-category rates get the same range check as the global rate. A blank
+    // field leaves that category's rate untouched — clearing it must never
+    // silently write 0% (which would zero the platform's take on that category).
+    const perCategory: typeof data.perCategory = [];
+    for (const c of data.perCategory) {
+      const raw = (rates[c.categoryId] ?? '').trim();
+      if (raw === '') {
+        perCategory.push({ ...c });
+        continue;
+      }
+      const parsed = parseRate(raw);
+      if (!Number.isFinite(parsed) || parsed < MIN_RATE || parsed > MAX_RATE) {
+        setError(COMMISSION_LABELS.invalid);
+        return;
+      }
+      perCategory.push({ ...c, takeRatePct: parsed });
+    }
     try {
       await setCommission({ takeRatePct: rate, perCategory }).unwrap();
       setSaved(true);
