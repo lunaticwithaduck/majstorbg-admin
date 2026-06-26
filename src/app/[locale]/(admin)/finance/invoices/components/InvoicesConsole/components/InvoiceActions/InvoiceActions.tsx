@@ -1,16 +1,6 @@
 'use client';
 
-import {
-  Button,
-  Input,
-  Link,
-  Modal,
-  ModalContent,
-  ModalDescription,
-  ModalTitle,
-  Text,
-  Textarea,
-} from '@lunaticwithaduck/webui';
+import { Button, Input, Link, Text } from '@lunaticwithaduck/webui';
 import { Download, FileText, Undo2 } from 'lucide-react';
 import { useState } from 'react';
 import type { InvoiceRow } from '@/api/admin-invoices-endpoints';
@@ -19,15 +9,14 @@ import { can } from '@/auth/can';
 import { PERMISSIONS } from '@/auth/permissions';
 import { formatEur } from '@/lib/format.utils';
 import { amountToCents, isAmountWithinCap } from '@/lib/money.utils';
+import ReasonModal from '@/ui/components/composed/ReasonModal/ReasonModal';
 import { INVOICE_ACTION_LABELS } from './config/constants';
 import styles from './InvoiceActions.styles';
 
 export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
   const [issueInvoice, { isLoading: issuing }] = useIssueInvoiceMutation();
-  const [creditNote, { isLoading: crediting }] = useCreditNoteMutation();
-  const [open, setOpen] = useState(false);
+  const [creditNote] = useCreditNoteMutation();
   const [amount, setAmount] = useState('');
-  const [reason, setReason] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   if (!can(PERMISSIONS.invoices)) return null;
@@ -39,7 +28,6 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
   const invoiceCents = Math.round(invoice.amount * 100);
   const amountCents = amountToCents(amount);
   const amountValid = isAmountWithinCap(amountCents, invoiceCents);
-  const canSubmit = amountValid && reason.trim().length > 0;
 
   const handleIssue = async () => {
     setError(null);
@@ -48,23 +36,6 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
     } catch {
       setError(INVOICE_ACTION_LABELS.error);
     }
-  };
-
-  const handleCredit = async () => {
-    setError(null);
-    try {
-      await creditNote({ id: invoice.id, amountCents, reason: reason.trim() }).unwrap();
-      setOpen(false);
-      setAmount('');
-      setReason('');
-    } catch {
-      setError(INVOICE_ACTION_LABELS.error);
-    }
-  };
-
-  const handleOpenChange = (next: boolean) => {
-    if (!next) setError(null);
-    if (!crediting) setOpen(next);
   };
 
   return (
@@ -90,34 +61,27 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
         </Button>
       ) : null}
       {canCredit ? (
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          iconLeft={Undo2}
-          onClick={() => setOpen(true)}
+        <ReasonModal
+          trigger={(open) => (
+            <Button type="button" variant="outline" size="sm" iconLeft={Undo2} onClick={open}>
+              {INVOICE_ACTION_LABELS.creditNote}
+            </Button>
+          )}
+          title={INVOICE_ACTION_LABELS.cnTitle}
+          description={INVOICE_ACTION_LABELS.cnBody}
+          reasonLabel={INVOICE_ACTION_LABELS.reasonLabel}
+          reasonPlaceholder={INVOICE_ACTION_LABELS.reasonPlaceholder}
+          confirmLabel={INVOICE_ACTION_LABELS.cnConfirm}
+          cancelLabel={INVOICE_ACTION_LABELS.cancel}
+          errorMessage={INVOICE_ACTION_LABELS.error}
+          confirmDisabled={!amountValid}
+          onOpenChange={(next) => {
+            if (!next) setAmount('');
+          }}
+          onConfirm={async (reason) => {
+            await creditNote({ id: invoice.id, amountCents, reason }).unwrap();
+          }}
         >
-          {INVOICE_ACTION_LABELS.creditNote}
-        </Button>
-      ) : null}
-      {error && !open ? (
-        <Text as="span" size="sm" color="destructive">
-          {error}
-        </Text>
-      ) : null}
-
-      <Modal open={open} onOpenChange={handleOpenChange}>
-        <ModalContent className={styles.modalContent}>
-          <ModalTitle>
-            <Text as="span" size="lg" weight="bold">
-              {INVOICE_ACTION_LABELS.cnTitle}
-            </Text>
-          </ModalTitle>
-          <ModalDescription>
-            <Text as="span" size="sm" color="muted">
-              {INVOICE_ACTION_LABELS.cnBody}
-            </Text>
-          </ModalDescription>
           <div className={styles.amountRow}>
             <Input
               label={INVOICE_ACTION_LABELS.amountLabel}
@@ -144,40 +108,13 @@ export default function InvoiceActions({ invoice }: { invoice: InvoiceRow }) {
               </Text>
             ) : null}
           </div>
-          <Textarea
-            label={INVOICE_ACTION_LABELS.reasonLabel}
-            placeholder={INVOICE_ACTION_LABELS.reasonPlaceholder}
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-          />
-          {error ? (
-            <Text as="span" size="sm" color="destructive">
-              {error}
-            </Text>
-          ) : null}
-          <div className={styles.actions}>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => handleOpenChange(false)}
-              disabled={crediting}
-            >
-              {INVOICE_ACTION_LABELS.cancel}
-            </Button>
-            <Button
-              type="button"
-              variant="primary"
-              size="sm"
-              loading={crediting}
-              disabled={!canSubmit}
-              onClick={handleCredit}
-            >
-              {INVOICE_ACTION_LABELS.cnConfirm}
-            </Button>
-          </div>
-        </ModalContent>
-      </Modal>
+        </ReasonModal>
+      ) : null}
+      {error ? (
+        <Text as="span" size="sm" color="destructive">
+          {error}
+        </Text>
+      ) : null}
     </div>
   );
 }
