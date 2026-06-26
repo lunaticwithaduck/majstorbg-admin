@@ -16,3 +16,42 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
 }
+
+/*
+ * Dark ("black") theme.
+ *
+ * The design-system token VALUES are overridden under `.dark` on <html>.
+ * Components keep using the same token classes (bg-background, text-text,
+ * border-border, …) and adapt automatically — no per-component `dark:`
+ * utilities. `:root.dark` outranks the `:root` block emitted by @theme, so the
+ * override always wins regardless of source order. Brand orange (primary/accent/
+ * ring) is kept identical — it reads well on dark.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root.dark {
+  --color-background: #0f0f0f;
+  --color-elevated: #1c1c1c;
+  --color-paper: #161616;
+  --color-backdrop: rgba(0, 0, 0, 0.6);
+  --color-text: #f4f1ea;
+  --color-muted: #9a9388;
+  --color-inverse: #111111;
+  --color-primary: #f25c1f;
+  --color-secondary: #242424;
+  --color-accent: #f25c1f;
+  --color-destructive: #e5564a;
+  --color-success: #2fa37e;
+  --color-warning: #d6a526;
+  --color-border: #2a2a2a;
+  --color-ring: #f25c1f;
+}
+
+/* Native widgets (scrollbars, form controls, autofill) follow the theme. */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
