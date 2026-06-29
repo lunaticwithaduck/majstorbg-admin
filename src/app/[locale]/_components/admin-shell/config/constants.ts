@@ -15,6 +15,7 @@ import {
   Receipt,
   Scale,
   Settings,
+  ShieldAlert,
   Split,
   Star,
   Tag,
@@ -74,6 +75,11 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
     ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
   },
   {
     label: 'Compliance',

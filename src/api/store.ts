@@ -10,12 +10,12 @@ import { adminCancellationEndpoints } from './admin-cancellation-endpoints';
 import { adminJobCategoryEndpoints, adminSkillCategoryEndpoints } from './admin-category-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminCategoryPerfEndpoints once BE lands.
 import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
+import { adminDisputesEndpoints } from './admin-disputes-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminComplianceEndpoints once BE lands.
 import { adminComplianceEndpoints } from './admin-compliance-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminComplianceMutations once BE lands.
 import { adminComplianceMutations } from './admin-compliance-mutations';
-// TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
-import { adminDisputesEndpoints } from './admin-disputes-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
 import { adminDisputesMutations } from './admin-disputes-mutations';
 // TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
@@ -30,6 +30,10 @@ import { adminJobMutations } from './admin-job-mutations';
 import { adminLiquidityEndpoints } from './admin-liquidity-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminMatchSpeedEndpoints once BE lands.
 import { adminMatchSpeedEndpoints } from './admin-match-speed-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminModerationEndpoints once BE lands.
+import { adminModerationEndpoints } from './admin-moderation-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminModerationMutations once BE lands.
+import { adminModerationMutations } from './admin-moderation-mutations';
 // TODO: replace with @lunaticwithaduck/api adminPortfolioEndpoints once BE lands.
 import { adminPortfolioEndpoints } from './admin-portfolio-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminProfileCompletenessEndpoints once BE lands.
@@ -78,6 +82,8 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminModerationEndpoints(build),
+    ...adminModerationMutations(build),
     ...adminComplianceEndpoints(build),
     ...adminComplianceMutations(build),
   }),
@@ -102,6 +108,9 @@ export const {
   useCreateAdminUserMutation,
   useUpdateAdminUserMutation,
   useDeleteAdminUserMutation,
+  useSuspendUserMutation,
+  useBanUserMutation,
+  useReinstateUserMutation,
   useListAdminJobsQuery,
   useGetAdminJobQuery,
   useCreateAdminJobMutation,
@@ -151,6 +160,10 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListReportsQuery,
+  useGetReportQuery,
+  useGetUserModerationStatusQuery,
+  useActionReportMutation,
   useListDataRequestsQuery,
   useGetDataRequestQuery,
   useVerifyRequesterIdentityMutation,

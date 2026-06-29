@@ -17,6 +17,9 @@ export const routes = {
   localisations: '/localisations',
   skillCategories: '/skill-categories',
   jobCategories: '/job-categories',
+  trust: {
+    moderation: '/trust/moderation',
+  },
   compliance: {
     dataRequests: '/compliance/data-requests',
   },
