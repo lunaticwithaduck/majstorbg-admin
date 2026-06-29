@@ -108,6 +108,7 @@ export const NAV_MODULES: readonly NavModule[] = [
     links: [
       { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
       { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.invoices, label: 'Invoices', icon: Receipt },
       { href: routes.finance.settings, label: 'Commission', icon: Percent },
     ],
   },
