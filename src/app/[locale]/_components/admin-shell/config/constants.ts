@@ -1,8 +1,10 @@
 import {
   Activity,
+  Banknote,
   BarChart3,
   Briefcase,
   Code,
+  CreditCard,
   FileText,
   Flag,
   Gavel,
@@ -14,9 +16,12 @@ import {
   Mail,
   MapPin,
   Megaphone,
+  Percent,
   Receipt,
+  Scale,
   Send,
   Settings,
+  ShieldAlert,
   Split,
   Star,
   Tag,
@@ -27,6 +32,7 @@ import {
   UserCheck,
   UserPlus,
   Users,
+  Wallet,
   XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -84,6 +90,25 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.growth.campaigns, label: 'Campaigns', icon: Send },
       { href: routes.growth.templates, label: 'Templates', icon: Mail },
     ],
+  },
+  {
+    label: 'Finance',
+    icon: Wallet,
+    links: [
+      { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
+      { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.settings, label: 'Commission', icon: Percent },
+    ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
   },
   {
     label: 'Reports',

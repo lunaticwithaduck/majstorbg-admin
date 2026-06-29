@@ -21,6 +21,18 @@ export const routes = {
     campaigns: '/growth/campaigns',
     templates: '/growth/templates',
   },
+  finance: {
+    transactions: '/finance/transactions',
+    transactionDetail: (txId: string) => `/finance/transactions/${encodeURIComponent(txId)}`,
+    payouts: '/finance/payouts',
+    settings: '/finance/settings',
+  },
+  trust: {
+    moderation: '/trust/moderation',
+  },
+  compliance: {
+    dataRequests: '/compliance/data-requests',
+  },
   reports: {
     users: '/reports/users',
     jobsFunnel: '/reports/jobs-funnel',
