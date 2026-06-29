@@ -13,10 +13,13 @@ import {
   Languages,
   Layers,
   type LucideIcon,
+  Mail,
   MapPin,
+  Megaphone,
   Percent,
   Receipt,
   Scale,
+  Send,
   Settings,
   ShieldAlert,
   Split,
@@ -78,6 +81,14 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
       { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
+    ],
+  },
+  {
+    label: 'Growth',
+    icon: Megaphone,
+    links: [
+      { href: routes.growth.campaigns, label: 'Campaigns', icon: Send },
+      { href: routes.growth.templates, label: 'Templates', icon: Mail },
     ],
   },
   {
