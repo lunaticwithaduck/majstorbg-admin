@@ -19,9 +19,12 @@ import {
   Percent,
   Receipt,
   Scale,
+  ScrollText,
   Send,
+  Server,
   Settings,
   ShieldAlert,
+  ShieldCheck,
   Split,
   Star,
   Tag,
@@ -81,6 +84,14 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
       { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
+    ],
+  },
+  {
+    label: 'Platform',
+    icon: Server,
+    links: [
+      { href: routes.platform.admins, label: 'Admins & roles', icon: ShieldCheck },
+      { href: routes.platform.audit, label: 'Audit log', icon: ScrollText },
     ],
   },
   {

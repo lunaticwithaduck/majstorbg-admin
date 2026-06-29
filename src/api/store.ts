@@ -38,6 +38,10 @@ import { adminJobMutations } from './admin-job-mutations';
 import { adminLiquidityEndpoints } from './admin-liquidity-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminMatchSpeedEndpoints once BE lands.
 import { adminMatchSpeedEndpoints } from './admin-match-speed-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPlatformEndpoints once BE lands.
+import { adminPlatformEndpoints } from './admin-platform-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPlatformMutations once BE lands.
+import { adminPlatformMutations } from './admin-platform-mutations';
 // TODO: replace with @lunaticwithaduck/api adminModerationEndpoints once BE lands.
 import { adminModerationEndpoints } from './admin-moderation-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminModerationMutations once BE lands.
@@ -90,6 +94,8 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminPlatformEndpoints(build),
+    ...adminPlatformMutations(build),
     ...adminGrowthEndpoints(build),
     ...adminGrowthMutations(build),
     ...adminFinanceEndpoints(build),
@@ -172,6 +178,9 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListAdminsQuery,
+  useListAuditQuery,
+  useSetAdminRoleMutation,
   useListCampaignsQuery,
   useListTemplatesQuery,
   useCreateCampaignMutation,
