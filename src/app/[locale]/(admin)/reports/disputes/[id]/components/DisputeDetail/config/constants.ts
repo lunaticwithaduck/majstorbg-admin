@@ -11,6 +11,14 @@ export const DETAIL_LABELS = {
   job: 'Job',
   worker: 'Worker',
   created: 'Opened',
+  assignedTo: 'Assigned to',
+  unassigned: 'Unassigned',
+  heldEscrow: 'Held in escrow',
+  released: 'Released',
+  refunded: 'Refunded',
+  resolutionSection: 'Resolution',
+  evidenceSection: 'Evidence',
+  notesSection: 'Notes',
   timelineSection: 'Timeline',
   timelineEmpty: 'No timeline events recorded yet.',
   viewJob: 'View job',
@@ -21,7 +29,9 @@ export const DETAIL_LABELS = {
 export const STATUS_LABELS: Record<string, string> = {
   pending: 'Pending',
   under_review: 'Under review',
+  assigned: 'Assigned',
   resolved: 'Resolved',
+  reopened: 'Reopened',
   escalated: 'Escalated',
 };
 
@@ -38,7 +48,9 @@ export const STATUS_BADGE_VARIANT: Record<
 > = {
   pending: 'warning',
   under_review: 'primary',
+  assigned: 'primary',
   resolved: 'success',
+  reopened: 'warning',
   escalated: 'destructive',
 };
 

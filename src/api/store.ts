@@ -19,8 +19,20 @@ import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
 import { adminGrowthEndpoints } from './admin-growth-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminGrowthMutations once BE lands.
 import { adminGrowthMutations } from './admin-growth-mutations';
+// TODO: replace with @lunaticwithaduck/api adminFinanceEndpoints once BE lands.
+import { adminFinanceEndpoints } from './admin-finance-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminFinanceMutations once BE lands.
+import { adminFinanceMutations } from './admin-finance-mutations';
+// TODO: replace with @lunaticwithaduck/api adminComplianceEndpoints once BE lands.
+import { adminComplianceEndpoints } from './admin-compliance-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminComplianceMutations once BE lands.
+import { adminComplianceMutations } from './admin-compliance-mutations';
+// TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
+import { adminDisputesMutations } from './admin-disputes-mutations';
 // TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
 import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminInvoicesMutations once BE lands.
+import { adminInvoicesMutations } from './admin-invoices-mutations';
 import { adminJobEndpoints } from './admin-job-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminJobMutations once BE lands.
 import { adminJobMutations } from './admin-job-mutations';
@@ -28,6 +40,14 @@ import { adminJobMutations } from './admin-job-mutations';
 import { adminLiquidityEndpoints } from './admin-liquidity-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminMatchSpeedEndpoints once BE lands.
 import { adminMatchSpeedEndpoints } from './admin-match-speed-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPlatformEndpoints once BE lands.
+import { adminPlatformEndpoints } from './admin-platform-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPlatformMutations once BE lands.
+import { adminPlatformMutations } from './admin-platform-mutations';
+// TODO: replace with @lunaticwithaduck/api adminModerationEndpoints once BE lands.
+import { adminModerationEndpoints } from './admin-moderation-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminModerationMutations once BE lands.
+import { adminModerationMutations } from './admin-moderation-mutations';
 // TODO: replace with @lunaticwithaduck/api adminPortfolioEndpoints once BE lands.
 import { adminPortfolioEndpoints } from './admin-portfolio-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminProfileCompletenessEndpoints once BE lands.
@@ -66,6 +86,7 @@ export const appApi = api.injectEndpoints({
     ...adminJobCategoryEndpoints(build),
     ...adminReportsEndpoints(build),
     ...adminDisputesEndpoints(build),
+    ...adminDisputesMutations(build),
     ...adminInvoicesEndpoints(build),
     ...adminLiquidityEndpoints(build),
     ...adminMatchSpeedEndpoints(build),
@@ -79,10 +100,19 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminPlatformEndpoints(build),
+    ...adminPlatformMutations(build),
     ...adminGrowthEndpoints(build),
     ...adminGrowthMutations(build),
     ...adminPromotionsEndpoints(build),
     ...adminPromotionsMutations(build),
+    ...adminFinanceEndpoints(build),
+    ...adminFinanceMutations(build),
+    ...adminInvoicesMutations(build),
+    ...adminModerationEndpoints(build),
+    ...adminModerationMutations(build),
+    ...adminComplianceEndpoints(build),
+    ...adminComplianceMutations(build),
   }),
 });
 
@@ -105,6 +135,9 @@ export const {
   useCreateAdminUserMutation,
   useUpdateAdminUserMutation,
   useDeleteAdminUserMutation,
+  useSuspendUserMutation,
+  useBanUserMutation,
+  useReinstateUserMutation,
   useListAdminJobsQuery,
   useGetAdminJobQuery,
   useCreateAdminJobMutation,
@@ -132,8 +165,16 @@ export const {
   useListOpenDisputesQuery,
   useGetDisputesSummaryQuery,
   useGetDisputeQuery,
+  useAssignDisputeMutation,
+  useAddDisputeNoteMutation,
+  useResolveDisputeMutation,
+  useReopenDisputeMutation,
   useGetArAgingQuery,
   useListInvoicesQuery,
+  useGetVatSettingsQuery,
+  useIssueInvoiceMutation,
+  useCreditNoteMutation,
+  useSetVatSettingsMutation,
   useGetLiquidityQuery,
   useGetMatchSpeedQuery,
   useGetCancellationSummaryQuery,
@@ -150,6 +191,9 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListAdminsQuery,
+  useListAuditQuery,
+  useSetAdminRoleMutation,
   useListCampaignsQuery,
   useListTemplatesQuery,
   useCreateCampaignMutation,
@@ -160,4 +204,22 @@ export const {
   useCreatePromotionMutation,
   useUpdatePromotionMutation,
   useDeletePromotionMutation,
+  useListTransactionsQuery,
+  useGetTransactionQuery,
+  useListPayoutsQuery,
+  useGetCommissionQuery,
+  useRefundMutation,
+  useReleaseEscrowMutation,
+  useApprovePayoutMutation,
+  useRejectPayoutMutation,
+  useSetCommissionMutation,
+  useListReportsQuery,
+  useGetReportQuery,
+  useGetUserModerationStatusQuery,
+  useActionReportMutation,
+  useListDataRequestsQuery,
+  useGetDataRequestQuery,
+  useVerifyRequesterIdentityMutation,
+  useFulfilExportMutation,
+  useConfirmErasureMutation,
 } = appApi;

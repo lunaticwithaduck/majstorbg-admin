@@ -1,6 +1,7 @@
 // TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
-import { API_TAGS, type ApiTag } from '@lunaticwithaduck/api';
+
 import type { AxiosBaseQueryArgs, AxiosBaseQueryError } from '@lunaticwithaduck/api';
+import { API_TAGS, type ApiTag } from '@lunaticwithaduck/api';
 import type { BaseQueryFn, EndpointBuilder } from '@reduxjs/toolkit/query';
 
 type Build = EndpointBuilder<
@@ -9,7 +10,15 @@ type Build = EndpointBuilder<
   'api'
 >;
 
-export type DisputeStatus = 'pending' | 'under_review' | 'resolved' | 'escalated';
+// 'assigned' | 'reopened' are added by the resolution layer (Module 1).
+// BACKEND TODO: extend the dispute status enum with `assigned` and `reopened`.
+export type DisputeStatus =
+  | 'pending'
+  | 'under_review'
+  | 'assigned'
+  | 'resolved'
+  | 'reopened'
+  | 'escalated';
 
 export type DisputeType = 'unfinished' | 'poor_quality' | 'money' | 'materials';
 
@@ -61,6 +70,39 @@ export type DisputeTimelineEntry = {
   summary: string;
 };
 
+// Internal/public mediation note thread on a dispute.
+// BACKEND TODO: GET /admin/disputes/:id returns `notes` (author from session).
+export type DisputeNote = {
+  id: string;
+  body: string;
+  internal: boolean;
+  authorName: string;
+  createdAt: string;
+};
+
+// Chat excerpt + uploaded evidence + escrow state, pulled into the one view the
+// mediator resolves from. All optional until the BE relations land.
+// BACKEND TODO: GET /admin/disputes/:id returns `chat`, `photos`, `payment`.
+export type DisputeChatMessage = {
+  id: string;
+  author: 'client' | 'worker';
+  body: string;
+  at: string;
+};
+
+export type DisputePhoto = {
+  id: string;
+  url: string;
+  caption?: string;
+};
+
+export type DisputePaymentState = {
+  heldCents: number;
+  releasedCents?: number;
+  refundedCents?: number;
+  status: 'held' | 'released' | 'refunded' | 'partial';
+};
+
 export type DisputeDetail = {
   id: string;
   jobId: string;
@@ -72,9 +114,15 @@ export type DisputeDetail = {
   escrowAmount: number;
   currency: 'EUR';
   createdAt: string;
+  assignedToId?: string | null;
+  assignedToName?: string | null;
   evidence?: unknown;
   resolution?: unknown;
   timeline: DisputeTimelineEntry[];
+  notes?: DisputeNote[];
+  chat?: DisputeChatMessage[];
+  photos?: DisputePhoto[];
+  payment?: DisputePaymentState;
 };
 
 export const adminDisputesEndpoints = (build: Build) => ({

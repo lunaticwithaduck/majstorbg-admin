@@ -8,6 +8,7 @@ import ActivityTimeline from '@/ui/components/composed/ActivityTimeline/Activity
 import DeleteUserButton from './components/DeleteUserButton/DeleteUserButton';
 import FieldLabel from './components/FieldLabel/FieldLabel';
 import FieldValue from './components/FieldValue/FieldValue';
+import UserModerationControls from './components/UserModerationControls/UserModerationControls';
 import { DETAIL_LABELS } from './config/constants';
 import styles from './UserDetailPanel.styles';
 
@@ -113,6 +114,13 @@ export default function UserDetailPanel({ userId }: { userId: string }) {
             </FieldValue>
           </div>
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <Text as="h2" size="lg" weight="semibold" className={styles.sectionTitle}>
+          {DETAIL_LABELS.moderationSection}
+        </Text>
+        <UserModerationControls userId={data.id} />
       </section>
 
       {data.workerProfile ? (

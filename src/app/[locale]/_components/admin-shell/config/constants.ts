@@ -1,8 +1,10 @@
 import {
   Activity,
+  Banknote,
   BarChart3,
   Briefcase,
   Code,
+  CreditCard,
   FileText,
   Flag,
   Gavel,
@@ -14,9 +16,15 @@ import {
   Mail,
   MapPin,
   Megaphone,
+  Percent,
   Receipt,
+  Scale,
+  ScrollText,
   Send,
+  Server,
   Settings,
+  ShieldAlert,
+  ShieldCheck,
   Split,
   Star,
   Tag,
@@ -28,6 +36,7 @@ import {
   UserCheck,
   UserPlus,
   Users,
+  Wallet,
   XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -79,6 +88,14 @@ export const NAV_MODULES: readonly NavModule[] = [
     ],
   },
   {
+    label: 'Platform',
+    icon: Server,
+    links: [
+      { href: routes.platform.admins, label: 'Admins & roles', icon: ShieldCheck },
+      { href: routes.platform.audit, label: 'Audit log', icon: ScrollText },
+    ],
+  },
+  {
     label: 'Growth',
     icon: Megaphone,
     links: [
@@ -86,6 +103,26 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.growth.templates, label: 'Templates', icon: Mail },
       { href: routes.growth.promotions, label: 'Promotions', icon: Ticket },
     ],
+  },
+  {
+    label: 'Finance',
+    icon: Wallet,
+    links: [
+      { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
+      { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.invoices, label: 'Invoices', icon: Receipt },
+      { href: routes.finance.settings, label: 'Commission', icon: Percent },
+    ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
   },
   {
     label: 'Reports',
