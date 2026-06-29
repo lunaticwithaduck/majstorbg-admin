@@ -20,6 +20,9 @@ export const routes = {
   trust: {
     moderation: '/trust/moderation',
   },
+  compliance: {
+    dataRequests: '/compliance/data-requests',
+  },
   reports: {
     users: '/reports/users',
     jobsFunnel: '/reports/jobs-funnel',

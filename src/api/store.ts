@@ -12,6 +12,12 @@ import { adminJobCategoryEndpoints, adminSkillCategoryEndpoints } from './admin-
 import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
 import { adminDisputesEndpoints } from './admin-disputes-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminComplianceEndpoints once BE lands.
+import { adminComplianceEndpoints } from './admin-compliance-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminComplianceMutations once BE lands.
+import { adminComplianceMutations } from './admin-compliance-mutations';
+// TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
+import { adminDisputesMutations } from './admin-disputes-mutations';
 // TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
 import { adminEngagementEndpoints } from './admin-engagement-endpoints';
 import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
@@ -62,6 +68,7 @@ export const appApi = api.injectEndpoints({
     ...adminJobCategoryEndpoints(build),
     ...adminReportsEndpoints(build),
     ...adminDisputesEndpoints(build),
+    ...adminDisputesMutations(build),
     ...adminInvoicesEndpoints(build),
     ...adminLiquidityEndpoints(build),
     ...adminMatchSpeedEndpoints(build),
@@ -77,6 +84,8 @@ export const appApi = api.injectEndpoints({
     ...adminPortfolioEndpoints(build),
     ...adminModerationEndpoints(build),
     ...adminModerationMutations(build),
+    ...adminComplianceEndpoints(build),
+    ...adminComplianceMutations(build),
   }),
 });
 
@@ -129,6 +138,10 @@ export const {
   useListOpenDisputesQuery,
   useGetDisputesSummaryQuery,
   useGetDisputeQuery,
+  useAssignDisputeMutation,
+  useAddDisputeNoteMutation,
+  useResolveDisputeMutation,
+  useReopenDisputeMutation,
   useGetArAgingQuery,
   useListInvoicesQuery,
   useGetLiquidityQuery,
@@ -151,4 +164,9 @@ export const {
   useGetReportQuery,
   useGetUserModerationStatusQuery,
   useActionReportMutation,
+  useListDataRequestsQuery,
+  useGetDataRequestQuery,
+  useVerifyRequesterIdentityMutation,
+  useFulfilExportMutation,
+  useConfirmErasureMutation,
 } = appApi;

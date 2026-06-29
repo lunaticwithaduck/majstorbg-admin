@@ -13,6 +13,7 @@ import {
   type LucideIcon,
   MapPin,
   Receipt,
+  Scale,
   Settings,
   ShieldAlert,
   Split,
@@ -79,6 +80,11 @@ export const NAV_MODULES: readonly NavModule[] = [
     label: 'Trust & Safety',
     icon: ShieldAlert,
     links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
   },
   {
     label: 'Reports',
