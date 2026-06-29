@@ -13,10 +13,18 @@ import {
   Languages,
   Layers,
   type LucideIcon,
+  Mail,
   MapPin,
+  Megaphone,
   Percent,
   Receipt,
+  Scale,
+  ScrollText,
+  Send,
+  Server,
   Settings,
+  ShieldAlert,
+  ShieldCheck,
   Split,
   Star,
   Tag,
@@ -79,6 +87,22 @@ export const NAV_MODULES: readonly NavModule[] = [
     ],
   },
   {
+    label: 'Platform',
+    icon: Server,
+    links: [
+      { href: routes.platform.admins, label: 'Admins & roles', icon: ShieldCheck },
+      { href: routes.platform.audit, label: 'Audit log', icon: ScrollText },
+    ],
+  },
+  {
+    label: 'Growth',
+    icon: Megaphone,
+    links: [
+      { href: routes.growth.campaigns, label: 'Campaigns', icon: Send },
+      { href: routes.growth.templates, label: 'Templates', icon: Mail },
+    ],
+  },
+  {
     label: 'Finance',
     icon: Wallet,
     links: [
@@ -87,6 +111,16 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.finance.invoices, label: 'Invoices', icon: Receipt },
       { href: routes.finance.settings, label: 'Commission', icon: Percent },
     ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
   },
   {
     label: 'Reports',
