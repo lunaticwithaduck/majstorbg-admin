@@ -24,6 +24,7 @@ export const routes = {
   growth: {
     campaigns: '/growth/campaigns',
     templates: '/growth/templates',
+    promotions: '/growth/promotions',
   },
   finance: {
     transactions: '/finance/transactions',

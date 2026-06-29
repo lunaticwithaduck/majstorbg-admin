@@ -52,6 +52,10 @@ import { adminModerationMutations } from './admin-moderation-mutations';
 import { adminPortfolioEndpoints } from './admin-portfolio-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminProfileCompletenessEndpoints once BE lands.
 import { adminProfileCompletenessEndpoints } from './admin-profile-completeness-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPromotionsEndpoints once BE lands.
+import { adminPromotionsEndpoints } from './admin-promotions-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminPromotionsMutations once BE lands.
+import { adminPromotionsMutations } from './admin-promotions-mutations';
 // TODO: replace with @lunaticwithaduck/api adminRatingsEndpoints once BE lands.
 import { adminRatingsEndpoints } from './admin-ratings-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminRegistrationsEndpoints once BE lands.
@@ -100,6 +104,8 @@ export const appApi = api.injectEndpoints({
     ...adminPlatformMutations(build),
     ...adminGrowthEndpoints(build),
     ...adminGrowthMutations(build),
+    ...adminPromotionsEndpoints(build),
+    ...adminPromotionsMutations(build),
     ...adminFinanceEndpoints(build),
     ...adminFinanceMutations(build),
     ...adminInvoicesMutations(build),
@@ -193,6 +199,11 @@ export const {
   useCreateCampaignMutation,
   useSendCampaignMutation,
   useUpsertTemplateMutation,
+  useListPromotionsQuery,
+  useGetPromotionRedemptionsQuery,
+  useCreatePromotionMutation,
+  useUpdatePromotionMutation,
+  useDeletePromotionMutation,
   useListTransactionsQuery,
   useGetTransactionQuery,
   useListPayoutsQuery,
