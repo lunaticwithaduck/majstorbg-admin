@@ -1,8 +1,10 @@
 import {
   Activity,
+  Banknote,
   BarChart3,
   Briefcase,
   Code,
+  CreditCard,
   FileText,
   Flag,
   Gavel,
@@ -12,6 +14,7 @@ import {
   Layers,
   type LucideIcon,
   MapPin,
+  Percent,
   Receipt,
   Scale,
   Settings,
@@ -26,6 +29,7 @@ import {
   UserCheck,
   UserPlus,
   Users,
+  Wallet,
   XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -74,6 +78,15 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.featureFlags, label: 'Feature flags', icon: Flag },
       { href: routes.localisations, label: 'Localisations', icon: Languages },
       { href: routes.apiExplorer, label: 'API explorer', icon: Code },
+    ],
+  },
+  {
+    label: 'Finance',
+    icon: Wallet,
+    links: [
+      { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
+      { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.settings, label: 'Commission', icon: Percent },
     ],
   },
   {

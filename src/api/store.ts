@@ -12,15 +12,19 @@ import { adminJobCategoryEndpoints, adminSkillCategoryEndpoints } from './admin-
 import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
 import { adminDisputesEndpoints } from './admin-disputes-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
+import { adminEngagementEndpoints } from './admin-engagement-endpoints';
+import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminFinanceEndpoints once BE lands.
+import { adminFinanceEndpoints } from './admin-finance-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminFinanceMutations once BE lands.
+import { adminFinanceMutations } from './admin-finance-mutations';
 // TODO: replace with @lunaticwithaduck/api adminComplianceEndpoints once BE lands.
 import { adminComplianceEndpoints } from './admin-compliance-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminComplianceMutations once BE lands.
 import { adminComplianceMutations } from './admin-compliance-mutations';
 // TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
 import { adminDisputesMutations } from './admin-disputes-mutations';
-// TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
-import { adminEngagementEndpoints } from './admin-engagement-endpoints';
-import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
 import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
 import { adminJobEndpoints } from './admin-job-endpoints';
@@ -82,6 +86,8 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminFinanceEndpoints(build),
+    ...adminFinanceMutations(build),
     ...adminModerationEndpoints(build),
     ...adminModerationMutations(build),
     ...adminComplianceEndpoints(build),
@@ -160,6 +166,15 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListTransactionsQuery,
+  useGetTransactionQuery,
+  useListPayoutsQuery,
+  useGetCommissionQuery,
+  useRefundMutation,
+  useReleaseEscrowMutation,
+  useApprovePayoutMutation,
+  useRejectPayoutMutation,
+  useSetCommissionMutation,
   useListReportsQuery,
   useGetReportQuery,
   useGetUserModerationStatusQuery,
