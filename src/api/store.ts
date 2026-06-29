@@ -10,6 +10,10 @@ import { adminCancellationEndpoints } from './admin-cancellation-endpoints';
 import { adminJobCategoryEndpoints, adminSkillCategoryEndpoints } from './admin-category-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminCategoryPerfEndpoints once BE lands.
 import { adminCategoryPerfEndpoints } from './admin-category-perf-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminComplianceEndpoints once BE lands.
+import { adminComplianceEndpoints } from './admin-compliance-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminComplianceMutations once BE lands.
+import { adminComplianceMutations } from './admin-compliance-mutations';
 // TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
 import { adminDisputesEndpoints } from './admin-disputes-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
@@ -74,6 +78,8 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminComplianceEndpoints(build),
+    ...adminComplianceMutations(build),
   }),
 });
 
@@ -145,4 +151,9 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useListDataRequestsQuery,
+  useGetDataRequestQuery,
+  useVerifyRequesterIdentityMutation,
+  useFulfilExportMutation,
+  useConfirmErasureMutation,
 } = appApi;
