@@ -17,9 +17,28 @@ export const routes = {
   localisations: '/localisations',
   skillCategories: '/skill-categories',
   jobCategories: '/job-categories',
+  platform: {
+    admins: '/platform/admins',
+    audit: '/platform/audit',
+  },
+  growth: {
+    campaigns: '/growth/campaigns',
+    templates: '/growth/templates',
+    promotions: '/growth/promotions',
+  },
+  finance: {
+    transactions: '/finance/transactions',
+    transactionDetail: (txId: string) => `/finance/transactions/${encodeURIComponent(txId)}`,
+    payouts: '/finance/payouts',
+    invoices: '/finance/invoices',
+    settings: '/finance/settings',
+  },
   trust: {
     moderation: '/trust/moderation',
     reviews: '/trust/reviews',
+  },
+  compliance: {
+    dataRequests: '/compliance/data-requests',
   },
   reports: {
     users: '/reports/users',
