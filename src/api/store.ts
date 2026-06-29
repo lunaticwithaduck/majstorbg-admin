@@ -62,6 +62,10 @@ import { adminRatingsEndpoints } from './admin-ratings-endpoints';
 import { adminRegistrationsEndpoints } from './admin-registrations-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminReportsEndpoints once BE lands.
 import { adminReportsEndpoints } from './admin-reports-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminReviewsEndpoints once BE lands.
+import { adminReviewsEndpoints } from './admin-reviews-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminReviewsMutations once BE lands.
+import { adminReviewsMutations } from './admin-reviews-mutations';
 import { adminTranslationEndpoints } from './admin-translation-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminUserMutations once BE lands.
 import { adminUserMutations } from './admin-user-mutations';
@@ -111,6 +115,8 @@ export const appApi = api.injectEndpoints({
     ...adminInvoicesMutations(build),
     ...adminModerationEndpoints(build),
     ...adminModerationMutations(build),
+    ...adminReviewsEndpoints(build),
+    ...adminReviewsMutations(build),
     ...adminComplianceEndpoints(build),
     ...adminComplianceMutations(build),
   }),
@@ -217,6 +223,10 @@ export const {
   useGetReportQuery,
   useGetUserModerationStatusQuery,
   useActionReportMutation,
+  useListReviewsQuery,
+  useHideReviewMutation,
+  useRemoveReviewMutation,
+  useFlagRingMutation,
   useListDataRequestsQuery,
   useGetDataRequestQuery,
   useVerifyRequesterIdentityMutation,

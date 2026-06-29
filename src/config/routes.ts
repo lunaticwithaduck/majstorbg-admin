@@ -35,6 +35,7 @@ export const routes = {
   },
   trust: {
     moderation: '/trust/moderation',
+    reviews: '/trust/reviews',
   },
   compliance: {
     dataRequests: '/compliance/data-requests',

@@ -117,7 +117,10 @@ export const NAV_MODULES: readonly NavModule[] = [
   {
     label: 'Trust & Safety',
     icon: ShieldAlert,
-    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+    links: [
+      { href: routes.trust.moderation, label: 'Moderation', icon: Flag },
+      { href: routes.trust.reviews, label: 'Reviews', icon: Star },
+    ],
   },
   {
     label: 'Compliance',
