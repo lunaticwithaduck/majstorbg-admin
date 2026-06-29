@@ -39,6 +39,21 @@ export type AdminUserMutationResult = {
   phone: string | null;
 };
 
+// Module 3 — graduated enforcement (suspend/ban/reinstate) alongside the
+// nuclear delete. Each carries a `reason` for the BE-emitted audit row.
+export type SuspendUserInput = { id: string; reason: string; until?: string };
+export type BanUserInput = { id: string; reason: string };
+export type ReinstateUserInput = { id: string; reason: string };
+
+function userStateTags(id: string) {
+  return [
+    { type: API_TAGS.AdminUser, id },
+    { type: API_TAGS.AdminUser, id: `moderation-${id}` },
+    { type: API_TAGS.AdminUser, id: 'LIST' },
+    { type: API_TAGS.AdminUser, id: 'MODERATION_LIST' },
+  ];
+}
+
 export const adminUserMutations = (build: Build) => ({
   createAdminUser: build.mutation<AdminUserMutationResult, CreateAdminUserInput>({
     query: (body) => ({ url: '/admin/users', method: 'POST', data: body }),
@@ -64,5 +79,32 @@ export const adminUserMutations = (build: Build) => ({
       { type: API_TAGS.AdminUser, id },
       { type: API_TAGS.AdminUser, id: 'LIST' },
     ],
+  }),
+  // BACKEND TODO: POST /admin/users/:id/suspend { reason, until? }. Emit admin-audit.
+  suspendUser: build.mutation<{ id: string }, SuspendUserInput>({
+    query: ({ id, ...body }) => ({
+      url: `/admin/users/${encodeURIComponent(id)}/suspend`,
+      method: 'POST',
+      data: body,
+    }),
+    invalidatesTags: (_res, _err, arg) => userStateTags(arg.id),
+  }),
+  // BACKEND TODO: POST /admin/users/:id/ban { reason }. Emit admin-audit.
+  banUser: build.mutation<{ id: string }, BanUserInput>({
+    query: ({ id, ...body }) => ({
+      url: `/admin/users/${encodeURIComponent(id)}/ban`,
+      method: 'POST',
+      data: body,
+    }),
+    invalidatesTags: (_res, _err, arg) => userStateTags(arg.id),
+  }),
+  // BACKEND TODO: POST /admin/users/:id/reinstate { reason }. Emit admin-audit.
+  reinstateUser: build.mutation<{ id: string }, ReinstateUserInput>({
+    query: ({ id, ...body }) => ({
+      url: `/admin/users/${encodeURIComponent(id)}/reinstate`,
+      method: 'POST',
+      data: body,
+    }),
+    invalidatesTags: (_res, _err, arg) => userStateTags(arg.id),
   }),
 });

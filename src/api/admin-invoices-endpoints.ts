@@ -1,6 +1,7 @@
 // TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
-import { API_TAGS, type ApiTag } from '@lunaticwithaduck/api';
+
 import type { AxiosBaseQueryArgs, AxiosBaseQueryError } from '@lunaticwithaduck/api';
+import { API_TAGS, type ApiTag } from '@lunaticwithaduck/api';
 import type { BaseQueryFn, EndpointBuilder } from '@reduxjs/toolkit/query';
 
 type Build = EndpointBuilder<
@@ -47,6 +48,16 @@ export type InvoiceRow = {
   dueAt: string;
   daysOverdue: number;
   agingBucket: InvoiceAgingBucket | null;
+  // Module 7 (issuing + VAT). BACKEND TODO: populate `vatAmount` (cents) + `pdfUrl`.
+  vatAmount?: number | null;
+  pdfUrl?: string | null;
+};
+
+// Platform VAT (BG ДДС) configuration.
+export type VatSettings = {
+  ratePct: number;
+  registered: boolean;
+  vatId?: string | null;
 };
 
 export type ListInvoicesArgs = {
@@ -76,6 +87,11 @@ export const adminInvoicesEndpoints = (build: Build) => ({
       params: params ?? undefined,
     }),
     providesTags: [{ type: API_TAGS.Escrow, id: 'AGING' }],
+  }),
+  // BACKEND TODO: GET /admin/finance/vat → { ratePct, registered, vatId? }
+  getVatSettings: build.query<VatSettings, void>({
+    query: () => ({ url: '/admin/finance/vat' }),
+    providesTags: [{ type: API_TAGS.Escrow, id: 'VAT' }],
   }),
   listInvoices: build.query<ListInvoicesResponse, ListInvoicesArgs>({
     query: (params) => ({ url: '/admin/invoices', params }),
