@@ -17,6 +17,9 @@ export const routes = {
   localisations: '/localisations',
   skillCategories: '/skill-categories',
   jobCategories: '/job-categories',
+  analytics: {
+    traffic: '/analytics/traffic',
+  },
   platform: {
     admins: '/platform/admins',
     audit: '/platform/audit',

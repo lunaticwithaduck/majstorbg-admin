@@ -15,6 +15,8 @@ import { adminDisputesEndpoints } from './admin-disputes-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
 import { adminEngagementEndpoints } from './admin-engagement-endpoints';
 import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
+import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminGrowthEndpoints once BE lands.
 import { adminGrowthEndpoints } from './admin-growth-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminGrowthMutations once BE lands.
@@ -29,8 +31,6 @@ import { adminComplianceEndpoints } from './admin-compliance-endpoints';
 import { adminComplianceMutations } from './admin-compliance-mutations';
 // TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
 import { adminDisputesMutations } from './admin-disputes-mutations';
-// TODO: replace with @lunaticwithaduck/api adminInvoicesEndpoints once BE lands.
-import { adminInvoicesEndpoints } from './admin-invoices-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminInvoicesMutations once BE lands.
 import { adminInvoicesMutations } from './admin-invoices-mutations';
 import { adminJobEndpoints } from './admin-job-endpoints';
@@ -62,6 +62,8 @@ import { adminRatingsEndpoints } from './admin-ratings-endpoints';
 import { adminRegistrationsEndpoints } from './admin-registrations-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminReportsEndpoints once BE lands.
 import { adminReportsEndpoints } from './admin-reports-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminTrafficEndpoints once BE lands.
+import { adminTrafficEndpoints } from './admin-traffic-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminReviewsEndpoints once BE lands.
 import { adminReviewsEndpoints } from './admin-reviews-endpoints';
 // TODO: replace with @lunaticwithaduck/api adminReviewsMutations once BE lands.
@@ -104,6 +106,7 @@ export const appApi = api.injectEndpoints({
     ...adminRatingsEndpoints(build),
     ...adminCategoryPerfEndpoints(build),
     ...adminPortfolioEndpoints(build),
+    ...adminTrafficEndpoints(build),
     ...adminPlatformEndpoints(build),
     ...adminPlatformMutations(build),
     ...adminGrowthEndpoints(build),
@@ -197,6 +200,7 @@ export const {
   useListCategoryPerfQuery,
   useGetPortfolioSummaryQuery,
   useListPortfolioCoverageQuery,
+  useGetTrafficOverviewQuery,
   useListAdminsQuery,
   useListAuditQuery,
   useSetAdminRoleMutation,
