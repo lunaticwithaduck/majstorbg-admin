@@ -16,7 +16,9 @@ import {
   MapPin,
   Percent,
   Receipt,
+  Scale,
   Settings,
+  ShieldAlert,
   Split,
   Star,
   Tag,
@@ -86,6 +88,16 @@ export const NAV_MODULES: readonly NavModule[] = [
       { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
       { href: routes.finance.settings, label: 'Commission', icon: Percent },
     ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [{ href: routes.trust.moderation, label: 'Moderation', icon: Flag }],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
   },
   {
     label: 'Reports',
