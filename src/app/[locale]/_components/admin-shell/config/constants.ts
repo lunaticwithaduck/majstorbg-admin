@@ -1,8 +1,10 @@
 import {
   Activity,
+  Banknote,
   BarChart3,
   Briefcase,
   Code,
+  CreditCard,
   FileText,
   Flag,
   Gavel,
@@ -11,19 +13,30 @@ import {
   Languages,
   Layers,
   type LucideIcon,
+  Mail,
   MapPin,
+  Megaphone,
+  Percent,
   Receipt,
+  Scale,
+  ScrollText,
+  Send,
+  Server,
   Settings,
+  ShieldAlert,
+  ShieldCheck,
   Split,
   Star,
   Tag,
   Tags,
+  Ticket,
   Timer,
   TrendingUp,
   Trophy,
   UserCheck,
   UserPlus,
   Users,
+  Wallet,
   XCircle,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
@@ -75,6 +88,46 @@ export const NAV_MODULES: readonly NavModule[] = [
     ],
   },
   {
+    label: 'Platform',
+    icon: Server,
+    links: [
+      { href: routes.platform.admins, label: 'Admins & roles', icon: ShieldCheck },
+      { href: routes.platform.audit, label: 'Audit log', icon: ScrollText },
+    ],
+  },
+  {
+    label: 'Growth',
+    icon: Megaphone,
+    links: [
+      { href: routes.growth.campaigns, label: 'Campaigns', icon: Send },
+      { href: routes.growth.templates, label: 'Templates', icon: Mail },
+      { href: routes.growth.promotions, label: 'Promotions', icon: Ticket },
+    ],
+  },
+  {
+    label: 'Finance',
+    icon: Wallet,
+    links: [
+      { href: routes.finance.transactions, label: 'Transactions', icon: CreditCard },
+      { href: routes.finance.payouts, label: 'Payouts', icon: Banknote },
+      { href: routes.finance.invoices, label: 'Invoices', icon: Receipt },
+      { href: routes.finance.settings, label: 'Commission', icon: Percent },
+    ],
+  },
+  {
+    label: 'Trust & Safety',
+    icon: ShieldAlert,
+    links: [
+      { href: routes.trust.moderation, label: 'Moderation', icon: Flag },
+      { href: routes.trust.reviews, label: 'Reviews', icon: Star },
+    ],
+  },
+  {
+    label: 'Compliance',
+    icon: Scale,
+    links: [{ href: routes.compliance.dataRequests, label: 'Data requests', icon: FileText }],
+  },
+  {
     label: 'Reports',
     icon: BarChart3,
     groups: [
@@ -92,7 +145,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.liquidity, label: 'Liquidity (bids per job)', icon: Layers },
           { href: routes.reports.matchSpeed, label: 'Match speed', icon: Timer },
-          { href: routes.reports.cancellations, label: 'Cancellations & stuck jobs', icon: XCircle },
+          {
+            href: routes.reports.cancellations,
+            label: 'Cancellations & stuck jobs',
+            icon: XCircle,
+          },
           { href: routes.reports.bidOutcomes, label: 'Bid outcomes', icon: Split },
         ],
       },
@@ -101,7 +158,11 @@ export const NAV_MODULES: readonly NavModule[] = [
         links: [
           { href: routes.reports.workerSupply, label: 'Worker supply & coverage', icon: MapPin },
           { href: routes.reports.workerLeaderboard, label: 'Worker leaderboard', icon: Trophy },
-          { href: routes.reports.profileCompleteness, label: 'Profile completeness', icon: UserCheck },
+          {
+            href: routes.reports.profileCompleteness,
+            label: 'Profile completeness',
+            icon: UserCheck,
+          },
         ],
       },
       {

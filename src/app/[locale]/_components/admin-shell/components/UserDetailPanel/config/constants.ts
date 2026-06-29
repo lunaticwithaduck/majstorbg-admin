@@ -26,5 +26,6 @@ export const DETAIL_LABELS = {
   acceptingWork: 'Accepting work',
   addressLine: 'Address line',
   edit: 'Edit',
+  moderationSection: 'Moderation',
   activitySection: 'Activity timeline',
 } as const;
