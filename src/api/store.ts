@@ -16,6 +16,8 @@ import { adminComplianceEndpoints } from './admin-compliance-endpoints';
 import { adminComplianceMutations } from './admin-compliance-mutations';
 // TODO: replace with @lunaticwithaduck/api adminDisputesEndpoints once BE lands.
 import { adminDisputesEndpoints } from './admin-disputes-endpoints';
+// TODO: replace with @lunaticwithaduck/api adminDisputesMutations once BE lands.
+import { adminDisputesMutations } from './admin-disputes-mutations';
 // TODO: replace with @lunaticwithaduck/api adminEngagementEndpoints once BE lands.
 import { adminEngagementEndpoints } from './admin-engagement-endpoints';
 import { adminFeatureFlagEndpoints } from './admin-feature-flag-endpoints';
@@ -62,6 +64,7 @@ export const appApi = api.injectEndpoints({
     ...adminJobCategoryEndpoints(build),
     ...adminReportsEndpoints(build),
     ...adminDisputesEndpoints(build),
+    ...adminDisputesMutations(build),
     ...adminInvoicesEndpoints(build),
     ...adminLiquidityEndpoints(build),
     ...adminMatchSpeedEndpoints(build),
@@ -126,6 +129,10 @@ export const {
   useListOpenDisputesQuery,
   useGetDisputesSummaryQuery,
   useGetDisputeQuery,
+  useAssignDisputeMutation,
+  useAddDisputeNoteMutation,
+  useResolveDisputeMutation,
+  useReopenDisputeMutation,
   useGetArAgingQuery,
   useListInvoicesQuery,
   useGetLiquidityQuery,
